@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/brainybuddy/static/css/main.0299b26b.css",
+    "main.js": "/brainybuddy/static/js/main.1788ae31.js",
+    "static/js/453.1dad941d.chunk.js": "/brainybuddy/static/js/453.1dad941d.chunk.js",
+    "index.html": "/brainybuddy/index.html",
+    "main.0299b26b.css.map": "/brainybuddy/static/css/main.0299b26b.css.map",
+    "main.1788ae31.js.map": "/brainybuddy/static/js/main.1788ae31.js.map",
+    "453.1dad941d.chunk.js.map": "/brainybuddy/static/js/453.1dad941d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0299b26b.css",
+    "static/js/main.1788ae31.js"
+  ]
+}
