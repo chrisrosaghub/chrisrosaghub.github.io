@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chris Rosa - Full Stack Developer</title>
+    <script>
+        (() => {
+            const param = new URLSearchParams(window.location.search).get("clawpilotTheme");
+            const theme =
+                param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+            document.documentElement.setAttribute("data-theme", theme);
+        })();
+    </script>
+    <style>
+        :root {
+            color-scheme: light;
+            --cp-bg: #f7f4ef;
+            --cp-bg-elevated: #fcfbf8;
+            --cp-surface: #ffffff;
+            --cp-surface-soft: #f5f5f5;
+            --cp-border: #dedede;
+            --cp-border-strong: #919191;
+            --cp-text: #242424;
+            --cp-text-muted: #5c5c5c;
+            --cp-text-soft: #6f6f6f;
+            --cp-accent: #b11f4b;
+            --cp-accent-hover: #9a1a41;
+            --cp-accent-soft: rgba(177, 31, 75, 0.08);
+            --cp-accent-fg: #ffffff;
+            --cp-success: #16a34a;
+            --cp-danger: #dc2626;
+            --cp-warning: #f59e0b;
+            --cp-link: #0078d4;
+            --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+            --cp-overlay: rgba(255, 255, 255, 0.8);
+            --cp-panel: rgba(255, 255, 255, 0.86);
+            --cp-panel-strong: rgba(255, 255, 255, 0.96);
+            --cp-sheen: rgba(255, 255, 255, 0.55);
+            --cp-highlight: rgba(177, 31, 75, 0.12);
+        }
+
+        html[data-theme="dark"] {
+            color-scheme: dark;
+            --cp-bg: #3d3b3a;
+            --cp-bg-elevated: #343231;
+            --cp-surface: #292929;
+            --cp-surface-soft: #2e2e2e;
+            --cp-border: #474747;
+            --cp-border-strong: #5f5f5f;
+            --cp-text: #dedede;
+            --cp-text-muted: #919191;
+            --cp-text-soft: #b0b0b0;
+            --cp-accent: #fd8ea1;
+            --cp-accent-hover: #fb7b91;
+            --cp-accent-soft: rgba(253, 142, 161, 0.14);
+            --cp-accent-fg: #1a1a1a;
+            --cp-success: #4ade80;
+            --cp-danger: #f87171;
+            --cp-warning: #fbbf24;
+            --cp-link: #4da6ff;
+            --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+            --cp-overlay: rgba(41, 41, 41, 0.88);
+            --cp-panel: rgba(41, 41, 41, 0.72);
+            --cp-panel-strong: rgba(41, 41, 41, 0.96);
+            --cp-sheen: rgba(255, 255, 255, 0.04);
+            --cp-highlight: rgba(253, 142, 161, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cp-bg);
+            color: var(--cp-text);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header {
+            background: var(--cp-surface);
+            border-bottom: 1px solid var(--cp-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--cp-text);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--cp-accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--cp-text-soft);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--cp-accent);
+        }
+
+        .theme-toggle {
+            background: var(--cp-surface-soft);
+            border: 1px solid var(--cp-border);
+            border-radius: 0.625rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            color: var(--cp-text);
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--cp-accent-soft);
+            color: var(--cp-accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--cp-accent-soft), var(--cp-bg));
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--cp-text);
+        }
+
+        .hero .title {
+            font-size: 1.5rem;
+            color: var(--cp-accent);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--cp-text-soft);
+            max-width: 600px;
+            margin: 1rem auto 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.625rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--cp-accent);
+            color: var(--cp-accent-fg);
+        }
+
+        .btn-primary:hover {
+            background: var(--cp-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--cp-shadow);
+        }
+
+        .btn-secondary {
+            background: var(--cp-surface);
+            color: var(--cp-text);
+            border: 2px solid var(--cp-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--cp-accent);
+            color: var(--cp-accent);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 2rem;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--cp-text);
+            text-align: center;
+        }
+
+        section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--cp-text);
+        }
+
+        /* About Section */
+        #about {
+            background: var(--cp-bg-elevated);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--cp-text-soft);
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        #skills {
+            background: var(--cp-surface);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: var(--cp-surface-soft);
+            padding: 2rem;
+            border-radius: 0.625rem;
+            border: 1px solid var(--cp-border);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--cp-accent);
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category {
+            font-weight: 600;
+            color: var(--cp-accent);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            color: var(--cp-text-soft);
+        }
+
+        .skill-list li:before {
+            content: "→ ";
+            color: var(--cp-accent);
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        /* Projects Section */
+        #projects {
+            background: var(--cp-bg-elevated);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--cp-surface);
+            border-radius: 0.625rem;
+            overflow: hidden;
+            border: 1px solid var(--cp-border);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--cp-accent);
+            transform: translateY(-4px);
+            box-shadow: var(--cp-shadow);
+        }
+
+        .project-header {
+            height: 200px;
+            background: linear-gradient(135deg, var(--cp-accent-soft), var(--cp-highlight));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--cp-accent);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: var(--cp-text-soft);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: var(--cp-accent-soft);
+            color: var(--cp-accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.625rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .placeholder {
+            text-align: center;
+            color: var(--cp-text-muted);
+            padding: 3rem 2rem;
+        }
+
+        .placeholder p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--cp-accent-soft);
+            text-align: center;
+        }
+
+        #contact h2 {
+            color: var(--cp-text);
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            color: var(--cp-text-soft);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--cp-accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .social-link:hover {
+            color: var(--cp-accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--cp-surface);
+            border-top: 1px solid var(--cp-border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--cp-text-soft);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .title {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Chris<span>Rosa</span></a>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌓 Theme</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Chris Rosa</h1>
+                <p class="title">Full Stack Developer & Problem Solver</p>
+                <p>Building elegant solutions to complex problems. Passionate about clean code, modern web technologies,
+                    and continuous learning.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>I'm a passionate full stack developer with experience building web applications that solve
+                            real-world problems. With a strong foundation in both frontend and backend technologies, I
+                            create seamless user experiences backed by robust infrastructure.</p>
+                        <p>I'm driven by a desire to write clean, maintainable code and contribute to meaningful
+                            projects. I enjoy collaborating with teams and am always eager to learn new technologies and
+                            best practices.</p>
+                        <p><strong>Let me know if you'd like to update this section with your specific background and
+                                experience!</strong></p>
+                    </div>
+                    <div class="about-text">
+                        <h3>Quick Facts</h3>
+                        <p><strong>📍 Location:</strong> Update with your location</p>
+                        <p><strong>💼 Experience:</strong> Update with years and focus areas</p>
+                        <p><strong>🎓 Education:</strong> Update with your background</p>
+                        <p><strong>🎯 Focus:</strong> Full stack development, modern web technologies</p>
+                        <p style="margin-top: 2rem; font-size: 0.9rem;"><em>Replace these placeholder details with your
+                                actual information from your LinkedIn profile.</em></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <h2>Skills & Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-category">Frontend Development</div>
+                        <ul class="skill-list">
+                            <li>React / Next.js</li>
+                            <li>TypeScript</li>
+                            <li>Tailwind CSS</li>
+                            <li>HTML5 / CSS3</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-category">Backend Development</div>
+                        <ul class="skill-list">
+                            <li>Node.js / Express</li>
+                            <li>Python / Django</li>
+                            <li>RESTful APIs</li>
+                            <li>Database Design</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-category">Tools & Platforms</div>
+                        <ul class="skill-list">
+                            <li>Git / GitHub</li>
+                            <li>Docker</li>
+                            <li>AWS / Cloud Services</li>
+                            <li>CI/CD Pipelines</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <h2>Featured Projects</h2>
+                <div class="placeholder">
+                    <p>📁 Your project portfolio will go here</p>
+                    <p style="font-size: 0.9rem; color: var(--cp-text-soft);">Add your personal and professional
+                        projects to showcase your work. Include project descriptions, technologies used, and links to
+                        live demos or repositories.</p>
+                </div>
+                <!-- Example project card (commented out - uncomment and duplicate to add projects) -->
+                <!--
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">🚀</div>
+                        <div class="project-content">
+                            <h3>Project Name</h3>
+                            <p>Brief description of the project and what technologies were used.</p>
+                            <div class="project-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">Node.js</span>
+                                <span class="tag">MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2>Let's Connect</h2>
+                <div class="contact-content">
+                    <p>I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/chrisrosadotcom/" class="social-link" target="_blank">
+                            💼 LinkedIn
+                        </a>
+                        <a href="https://github.com" class="social-link" target="_blank">
+                            🐙 GitHub
+                        </a>
+                        <a href="mailto:your.email@example.com" class="social-link">
+                            ✉️ Email
+                        </a>
+                    </div>
+                    <p style="font-size: 0.9rem; margin-top: 2rem;">Update the social links and email above with your
+                        actual contact information.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Chris Rosa. All rights reserved. Built with clean code and attention to detail.</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute("data-theme");
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            html.setAttribute("data-theme", newTheme);
+            localStorage.setItem("theme", newTheme);
+        }
+
+        // Load saved theme preference
+        window.addEventListener("load", () => {
+            const saved = localStorage.getItem("theme");
+            if (saved) {
+                document.documentElement.setAttribute("data-theme", saved);
+            }
+        });
+    </script>
+</body>
+
+</html>
