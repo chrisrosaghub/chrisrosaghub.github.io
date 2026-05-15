@@ -7,7 +7,7 @@ import { propagateQueryPlugin } from './plugins/vite-plugin-propagate-query';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/brainbuddy/',
+  base: '/',
   plugins: [react(), tailwindcss(), devReload(), propagateQueryPlugin()],
   resolve: {
     alias: {
