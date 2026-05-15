@@ -1,0 +1,13 @@
+  {
+    id: "reading",
+    name: "Sight Words",
+    emoji: "\u{1F4DA}",
+    mascot: "Ruby the Rabbit",
+    tagline: "Read super-common words in a snap",
+    gradientClass: "from-pink-300 via-rose-300 to-red-300",
+    ringClass: "ring-pink-300",
+    textClass: "text-pink-700",
+    bgSoftClass: "bg-pink-100",
+    chartVar: "var(--chart-5)",
+    availableLevels: ["kindergarten"],
+  },
