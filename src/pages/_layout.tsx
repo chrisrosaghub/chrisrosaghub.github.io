@@ -23,32 +23,36 @@ function LevelSwitcher() {
   const level = useLevel();
   const setLevel = useSetLevel();
   return (
-    <div
-      role="group"
-      aria-label="Choose grade level"
-      className="inline-flex items-center gap-1 rounded-full bg-white/85 backdrop-blur ring-1 ring-violet-200 p-1 shadow-sm"
-    >
-      <GraduationCap className="size-4 ml-2 text-violet-600" aria-hidden />
-      {LEVELS.map((lvl) => {
-        const isActive = level === lvl.id;
-        return (
-          <button
-            key={lvl.id}
-            type="button"
-            onClick={() => setLevel(lvl.id as Level)}
-            aria-pressed={isActive}
-            className={cn(
-              "inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs md:text-sm font-bold transition-all",
-              isActive
-                ? "bg-gradient-to-r from-violet-500 via-fuchsia-500 to-orange-400 text-white shadow"
-                : "text-slate-700 hover:bg-violet-50",
-            )}
-          >
-            <span aria-hidden>{lvl.emoji}</span>
-            <span>{lvl.label}</span>
-          </button>
-        );
-      })}
+    /* Outer scroll container: horizontal-only pan so swipes here never
+       bubble up and scroll the whole page on mobile. */
+    <div className="overflow-x-auto overscroll-x-contain touch-pan-x [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+      <div
+        role="group"
+        aria-label="Choose grade level"
+        className="inline-flex items-center gap-1 rounded-full bg-white/85 backdrop-blur ring-1 ring-violet-200 p-1 shadow-sm min-w-max"
+      >
+        <GraduationCap className="size-4 ml-2 text-violet-600" aria-hidden />
+        {LEVELS.map((lvl) => {
+          const isActive = level === lvl.id;
+          return (
+            <button
+              key={lvl.id}
+              type="button"
+              onClick={() => setLevel(lvl.id as Level)}
+              aria-pressed={isActive}
+              className={cn(
+                "inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs md:text-sm font-bold transition-all",
+                isActive
+                  ? "bg-gradient-to-r from-violet-500 via-fuchsia-500 to-orange-400 text-white shadow"
+                  : "text-slate-700 hover:bg-violet-50",
+              )}
+            >
+              <span aria-hidden>{lvl.emoji}</span>
+              <span>{lvl.label}</span>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
