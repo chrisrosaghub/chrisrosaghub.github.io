@@ -10,6 +10,7 @@ import SubjectPage from "./pages/subject";
 import ActivityPage from "./pages/activity";
 import ProgressPage from "./pages/progress";
 import DailyChallengePage from "./pages/daily";
+import AboutPage from "./pages/about";
 import { AppErrorBoundary } from "./components/system/AppErrorBoundary";
 
 // NOTE(ai): DO NOT REMOVE — (ROUTER BASE) keep this or deep links for playback under /<id>/ in bizchat break.
@@ -40,6 +41,7 @@ function App() {
                   <Route path="activity/:activityId" element={<ActivityPage />} />
                   <Route path="daily" element={<DailyChallengePage />} />
                   <Route path="progress" element={<ProgressPage />} />
+                  <Route path="about" element={<AboutPage />} />
                   {/* NOTE(ai): DO NOT REMOVE — catch-all 404 page */}
                   <Route path="*" element={<NotFoundPage />} />
                 </Route>

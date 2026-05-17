@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { Sparkles, Home, Flame, Star, BookOpenCheck, Globe2, FlaskConical, Calculator, Landmark, Trophy, GraduationCap, BookA } from "lucide-react";
+import { Sparkles, Home, Flame, Star, BookOpenCheck, Globe2, FlaskConical, Calculator, Landmark, Trophy, GraduationCap, BookA, UserRound } from "lucide-react";
 import { useLevel, useProgress, useSetLevel } from "@/lib/brainy-hooks";
 import { LEVELS, type Level } from "@/lib/brainy-data";
 import { cn } from "@/lib/utils";
@@ -16,6 +16,7 @@ const NAV_ITEMS = [
   { to: "/reading", label: "Sight Words", icon: BookA, levels: ["kindergarten"] as Level[] },
   { to: "/daily", label: "Daily Challenge", icon: Trophy },
   { to: "/progress", label: "My Progress", icon: BookOpenCheck },
+  { to: "/about", label: "About", icon: UserRound },
 ];
 
 function LevelSwitcher() {
