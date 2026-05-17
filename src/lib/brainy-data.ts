@@ -8,14 +8,16 @@
  */
 import { KINDERGARTEN_ACTIVITIES } from "@/lib/brainy-data-kindergarten";
 import { GRADE1_ACTIVITIES } from "@/lib/brainy-data-grade1";
+import { GRADE3_ACTIVITIES } from "@/lib/brainy-data-grade3";
 import { SIGHT_WORDS_ACTIVITIES } from "@/lib/brainy-data-sight-words";
 
 export type SubjectId = "math" | "science" | "history" | "geography" | "reading";
-export type Level = "kindergarten" | "grade1" | "grade2";
+export type Level = "kindergarten" | "grade1" | "grade2" | "grade3";
 export const LEVELS: { id: Level; label: string; shortLabel: string; emoji: string }[] = [
   { id: "kindergarten", label: "Kindergarten", shortLabel: "K", emoji: "\u{1F33C}" },
   { id: "grade1", label: "1st Grade", shortLabel: "G1", emoji: "\u{1F4D6}" },
   { id: "grade2", label: "2nd Grade", shortLabel: "G2", emoji: "\u{1F4DA}" },
+  { id: "grade3", label: "3rd Grade", shortLabel: "G3", emoji: "\u{1F4D9}" },
 ];
 
 export interface Subject {
@@ -856,6 +858,7 @@ const GRADE2_ACTIVITIES: Activity[] = [
  * kindergarten activities to produce the canonical ACTIVITIES list.
  */
 export const ACTIVITIES: Activity[] = [
+  ...GRADE3_ACTIVITIES,
   ...GRADE2_ACTIVITIES.map((a) => ({ ...a, level: "grade2" as Level })),
   ...GRADE1_ACTIVITIES,
   ...KINDERGARTEN_ACTIVITIES,
