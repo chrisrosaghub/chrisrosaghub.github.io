@@ -16,7 +16,6 @@ const NAV_ITEMS = [
   { to: "/reading", label: "Sight Words", icon: BookA, levels: ["kindergarten"] as Level[] },
   { to: "/daily", label: "Daily Challenge", icon: Trophy },
   { to: "/progress", label: "My Progress", icon: BookOpenCheck },
-  { to: "/about", label: "About", icon: UserRound },
 ];
 
 function LevelSwitcher() {
@@ -145,9 +144,26 @@ export default function Layout() {
       </main>
 
       <footer className="border-t bg-background/60 backdrop-blur">
-        <div className="mx-auto w-full max-w-7xl px-4 md:px-8 py-4 text-xs text-muted-foreground flex items-center justify-between">
-          <span>Made with <span aria-hidden>💜</span> for curious learners big and small.</span>
-          <span>Practice a little every day!</span>
+        <div className="mx-auto w-full max-w-7xl px-4 md:px-8 py-4 text-xs text-muted-foreground flex flex-col items-center gap-2">
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              cn(
+                "inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-semibold transition-all",
+                "hover:bg-white/70 hover:shadow-sm",
+                isActive
+                  ? "bg-white text-primary shadow-sm ring-2 ring-primary/30"
+                  : "text-muted-foreground",
+              )
+            }
+          >
+            <UserRound className="size-4" />
+            About Me
+          </NavLink>
+          <div className="flex items-center justify-between w-full">
+            <span>Made with <span aria-hidden>💜</span> for curious learners big and small.</span>
+            <span>Practice a little every day!</span>
+          </div>
         </div>
       </footer>
     </div>
