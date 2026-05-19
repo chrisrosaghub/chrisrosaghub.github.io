@@ -205,6 +205,7 @@ function evaluateBadges(progress: ProgressState, level: Level): string[] {
     history: new Set(),
     geography: new Set(),
     reading: new Set(),
+    states: new Set(),
   };
   let perfectExists = false;
   for (const r of progress.results) {
