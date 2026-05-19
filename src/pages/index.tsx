@@ -17,7 +17,7 @@ import type { SubjectId } from "@/lib/brainy-data";
 
 function useStarsBySubject() {
   const { data: progress } = useProgress();
-  const map: Record<SubjectId, number> = { math: 0, science: 0, history: 0, geography: 0, reading: 0 };
+  const map: Record<SubjectId, number> = { math: 0, science: 0, history: 0, geography: 0, reading: 0, states: 0 };
   progress?.results.forEach((r) => {
     if (r.activityId === DAILY_CHALLENGE_ID) return;
     map[r.subjectId] += r.starsEarned;
@@ -33,6 +33,7 @@ function useCompletedBySubject() {
     history: new Set(),
     geography: new Set(),
     reading: new Set(),
+    states: new Set(),
   };
   progress?.results.forEach((r) => {
     if (r.activityId === DAILY_CHALLENGE_ID) return;

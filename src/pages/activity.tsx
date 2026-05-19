@@ -256,6 +256,18 @@ export default function ActivityPage() {
         key={index}
         className="animate-float-up rounded-3xl border-2 border-white/60 bg-white shadow-md p-6 md:p-8 space-y-5"
       >
+        {question?.image && (
+          <div className="flex justify-center">
+            <img
+              src={question.image}
+              alt="State location map"
+              loading="lazy"
+              className="h-40 w-auto max-w-full rounded-2xl border border-slate-100 bg-slate-50 shadow-sm object-contain"
+              onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+            />
+          </div>
+        )}
+
         <h2 className="text-xl md:text-2xl font-extrabold tracking-tight text-center">
           {question?.prompt}
         </h2>

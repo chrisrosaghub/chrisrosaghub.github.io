@@ -9,9 +9,10 @@
 import { KINDERGARTEN_ACTIVITIES } from "@/lib/brainy-data-kindergarten";
 import { GRADE1_ACTIVITIES } from "@/lib/brainy-data-grade1";
 import { GRADE3_ACTIVITIES } from "@/lib/brainy-data-grade3";
+import { STATES_ACTIVITIES } from "@/lib/brainy-data-states";
 import { SIGHT_WORDS_ACTIVITIES } from "@/lib/brainy-data-sight-words";
 
-export type SubjectId = "math" | "science" | "history" | "geography" | "reading";
+export type SubjectId = "math" | "science" | "history" | "geography" | "reading" | "states";
 export type Level = "kindergarten" | "grade1" | "grade2" | "grade3";
 export const LEVELS: { id: Level; label: string; shortLabel: string; emoji: string }[] = [
   { id: "kindergarten", label: "Kindergarten", shortLabel: "K", emoji: "\u{1F33C}" },
@@ -43,6 +44,8 @@ export interface Question {
   answer: number;
   /** Short, kid-friendly explanation shown after answering. */
   explanation?: string;
+  /** Optional image URL shown above the question prompt (e.g. state location map). */
+  image?: string;
 }
 
 export interface Activity {
@@ -141,6 +144,19 @@ export const SUBJECTS: Subject[] = [
     textClass: "text-sky-700",
     bgSoftClass: "bg-sky-100",
     chartVar: "var(--chart-4)",
+  },
+  {
+    id: "states",
+    name: "States & Capitals",
+    emoji: "🗺️",
+    mascot: "Scout the Eagle",
+    tagline: "50 states, 50 capitals — let's explore!",
+    gradientClass: "from-teal-300 via-emerald-300 to-cyan-300",
+    ringClass: "ring-teal-300",
+    textClass: "text-teal-700",
+    bgSoftClass: "bg-teal-100",
+    chartVar: "var(--chart-6)",
+    availableLevels: ["grade3"],
   },
   {
     id: "reading",
@@ -859,6 +875,7 @@ const GRADE2_ACTIVITIES: Activity[] = [
  */
 export const ACTIVITIES: Activity[] = [
   ...GRADE3_ACTIVITIES,
+  ...STATES_ACTIVITIES,
   ...GRADE2_ACTIVITIES.map((a) => ({ ...a, level: "grade2" as Level })),
   ...GRADE1_ACTIVITIES,
   ...KINDERGARTEN_ACTIVITIES,
@@ -890,6 +907,7 @@ export const BADGES: Badge[] = [
   { id: "science-explorer", name: "Science Explorer", description: "Finish every Science activity.", emoji: "🔬", rule: { kind: "subjectComplete", subjectId: "science" } },
   { id: "history-buff", name: "History Buff", description: "Finish every History activity.", emoji: "📜", rule: { kind: "subjectComplete", subjectId: "history" } },
   { id: "world-traveler", name: "World Traveler", description: "Finish every Geography activity.", emoji: "🌍", rule: { kind: "subjectComplete", subjectId: "geography" } },
+  { id: "states-expert", name: "States Expert", description: "Finish every States & Capitals activity.", emoji: "🦅", rule: { kind: "subjectComplete", subjectId: "states" } },
   { id: "streak-3", name: "On a Roll", description: "Practice 3 days in a row.", emoji: "🔥", rule: { kind: "streakDays", days: 3 } },
   { id: "daily-champ", name: "Daily Champ", description: "Finish a Daily Challenge.", emoji: "🏅", rule: { kind: "dailyChallenge" } },
 ];

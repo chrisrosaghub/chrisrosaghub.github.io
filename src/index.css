@@ -31,6 +31,7 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -96,6 +97,7 @@
   --chart-3: oklch(0.66 0.21 295);               /* history: purple */
   --chart-4: oklch(0.72 0.16 220);               /* geography: sky blue */
   --chart-5: oklch(0.78 0.18 95);                /* sunny accent */
+  --chart-6: oklch(0.72 0.17 175);               /* states: teal */
 
   --sidebar: oklch(0.985 0.02 95);
   --sidebar-foreground: oklch(0.22 0.04 280);
@@ -131,6 +133,7 @@
   --chart-3: oklch(0.78 0.18 295);
   --chart-4: oklch(0.72 0.16 220);
   --chart-5: oklch(0.78 0.18 95);
+  --chart-6: oklch(0.72 0.17 175);
   --sidebar: oklch(0.24 0.04 280);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.78 0.18 295);

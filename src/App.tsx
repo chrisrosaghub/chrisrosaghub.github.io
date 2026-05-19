@@ -41,6 +41,7 @@ function App() {
                   <Route path="activity/:activityId" element={<ActivityPage />} />
                   <Route path="daily" element={<DailyChallengePage />} />
                   <Route path="progress" element={<ProgressPage />} />
+                  <Route path="states" element={<SubjectPage subjectId="states" />} />
                   <Route path="about" element={<AboutPage />} />
                   {/* NOTE(ai): DO NOT REMOVE — catch-all 404 page */}
                   <Route path="*" element={<NotFoundPage />} />
