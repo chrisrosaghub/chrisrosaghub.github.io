@@ -56,6 +56,8 @@ export interface Activity {
   emoji: string;
   /** Grade level (defaults to grade2 if missing). */
   level?: Level;
+  /** When true, the activity is available at every level (past and future). */
+  allLevels?: boolean;
   /** Full pool of questions for this activity (more than shown per round). */
   questions: Question[];
 }
@@ -66,12 +68,12 @@ export interface Badge {
   description: string;
   emoji: string;
   rule:
-    | { kind: "firstActivity" }
-    | { kind: "subjectComplete"; subjectId: SubjectId }
-    | { kind: "totalStars"; amount: number }
-    | { kind: "perfectActivity" }
-    | { kind: "streakDays"; days: number }
-    | { kind: "dailyChallenge" };
+  | { kind: "firstActivity" }
+  | { kind: "subjectComplete"; subjectId: SubjectId }
+  | { kind: "totalStars"; amount: number }
+  | { kind: "perfectActivity" }
+  | { kind: "streakDays"; days: number }
+  | { kind: "dailyChallenge" };
 }
 
 export interface ActivityResult {
@@ -156,7 +158,6 @@ export const SUBJECTS: Subject[] = [
     textClass: "text-teal-700",
     bgSoftClass: "bg-teal-100",
     chartVar: "var(--chart-6)",
-    availableLevels: ["grade3"],
   },
   {
     id: "reading",
@@ -884,7 +885,7 @@ export const ACTIVITIES: Activity[] = [
 
 /** Return all activities matching the given level (default: grade2). */
 export function getActivitiesForLevel(level: Level): Activity[] {
-  return ACTIVITIES.filter((a) => (a.level ?? "grade2") === level);
+  return ACTIVITIES.filter((a) => a.allLevels || (a.level ?? "grade2") === level);
 }
 
 /** Subjects available at a given level (subjects without availableLevels are available everywhere). */
@@ -895,7 +896,7 @@ export function getSubjectsForLevel(level: Level): Subject[] {
 
 /** Count activities for a given subject + level combination. */
 export function totalActivitiesForSubjectAndLevel(subjectId: SubjectId, level: Level): number {
-  return ACTIVITIES.filter((a) => a.subjectId === subjectId && (a.level ?? "grade2") === level).length;
+  return ACTIVITIES.filter((a) => a.subjectId === subjectId && (a.allLevels || (a.level ?? "grade2") === level)).length;
 }
 
 export const BADGES: Badge[] = [

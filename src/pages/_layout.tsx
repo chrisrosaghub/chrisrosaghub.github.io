@@ -13,7 +13,7 @@ const NAV_ITEMS = [
   { to: "/science", label: "Science", icon: FlaskConical },
   { to: "/history", label: "History", icon: Landmark },
   { to: "/geography", label: "Geography", icon: Globe2 },
-  { to: "/states", label: "States & Capitals", icon: Map, levels: ["grade3"] as Level[] },
+  { to: "/states", label: "States & Capitals", icon: Map },
   { to: "/reading", label: "Sight Words", icon: BookA, levels: ["kindergarten"] as Level[] },
   { to: "/daily", label: "Daily Challenge", icon: Trophy },
   { to: "/progress", label: "My Progress", icon: BookOpenCheck },
