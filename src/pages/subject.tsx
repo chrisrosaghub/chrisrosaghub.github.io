@@ -116,7 +116,7 @@ export default function SubjectPage({ subjectId }: SubjectPageProps) {
                       </div>
                       <p className="text-sm text-muted-foreground">{a.description}</p>
                       <div className="mt-2 flex items-center justify-between text-xs text-muted-foreground">
-                        <span>{QUESTIONS_PER_ROUND} questions per round</span>
+                        <span>{a.questionsPerRound ?? QUESTIONS_PER_ROUND} questions per round</span>
                         {result ? (
                           <span className="inline-flex items-center gap-1 text-amber-700 font-bold">
                             <Star className="size-3.5 fill-amber-400 text-amber-500" />
