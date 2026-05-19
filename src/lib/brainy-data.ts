@@ -58,6 +58,8 @@ export interface Activity {
   level?: Level;
   /** When true, the activity is available at every level (past and future). */
   allLevels?: boolean;
+  /** Override the default QUESTIONS_PER_ROUND for this activity. */
+  questionsPerRound?: number;
   /** Full pool of questions for this activity (more than shown per round). */
   questions: Question[];
 }
@@ -948,7 +950,7 @@ export function pickRandom<T>(pool: T[], count: number): T[] {
 export function buildActivityRound(activity: Activity): Activity {
   return {
     ...activity,
-    questions: pickRandom(activity.questions, QUESTIONS_PER_ROUND),
+    questions: pickRandom(activity.questions, activity.questionsPerRound ?? QUESTIONS_PER_ROUND),
   };
 }
 
