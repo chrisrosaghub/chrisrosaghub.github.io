@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle2, Star } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, Star, Zap } from "lucide-react";
+import { ACTIVITY_LEARN_DATA } from "@/lib/activity-learn-data";
 import {
   useActivities,
   useCompletedActivityIds,
@@ -72,8 +73,50 @@ export default function SubjectPage({ subjectId }: SubjectPageProps) {
         </div>
       </header>
 
+      {/* ── Learn First ──────────────────────────────────────────────────── */}
+      {activities && activities.some((a) => (ACTIVITY_LEARN_DATA[a.id]?.length ?? 0) > 0) && (
+        <section>
+          <div className="flex items-center gap-2 mb-1">
+            <BookOpen className="size-5 text-primary" />
+            <h2 className="text-lg md:text-xl font-extrabold">Learn First</h2>
+            <span className="rounded-full bg-primary/10 text-primary px-2 py-0.5 text-[11px] font-bold">
+              Recommended
+            </span>
+          </div>
+          <p className="text-sm text-muted-foreground mb-3">
+            Study the key concepts as flashcards, then take the quiz when you feel ready.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {activities
+              .filter((a) => (ACTIVITY_LEARN_DATA[a.id]?.length ?? 0) > 0)
+              .map((a) => (
+                <Link
+                  key={a.id}
+                  to={`/learn/${a.id}`}
+                  className="group flex items-center gap-3 rounded-2xl border-2 border-primary/10 bg-primary/5 hover:bg-primary/10 p-4 transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
+                >
+                  <span className="text-3xl select-none shrink-0" aria-hidden>
+                    {a.emoji}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-bold text-sm truncate">{a.title}</div>
+                    <div className="text-xs text-muted-foreground truncate">{a.description}</div>
+                  </div>
+                  <span className="shrink-0 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-white px-2.5 py-1 text-xs font-semibold text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                    <BookOpen className="size-3" /> Study
+                  </span>
+                </Link>
+              ))}
+          </div>
+        </section>
+      )}
+
+      {/* ── Quiz Activities ──────────────────────────────────────────────── */}
       <section>
-        <h2 className="text-lg md:text-xl font-extrabold mb-3">Choose an activity</h2>
+        <div className="flex items-center gap-2 mb-3">
+          <Zap className="size-5 text-amber-500" />
+          <h2 className="text-lg md:text-xl font-extrabold">Quiz Activities</h2>
+        </div>
         {isLoading || !activities ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {Array.from({ length: 6 }).map((_, i) => (
@@ -85,52 +128,62 @@ export default function SubjectPage({ subjectId }: SubjectPageProps) {
             {activities.map((a) => {
               const isDone = completedIds.has(a.id);
               const result = progress?.results.find((r) => r.activityId === a.id);
+              const hasLearn = (ACTIVITY_LEARN_DATA[a.id]?.length ?? 0) > 0;
               return (
-                <Link
-                  key={a.id}
-                  to={`/activity/${a.id}`}
-                  className={cn(
-                    "group rounded-2xl border-2 bg-white p-4 md:p-5 shadow-sm transition-all",
-                    "hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30",
-                    isDone ? "border-emerald-200" : "border-white/70",
-                  )}
-                >
-                  <div className="flex items-start gap-3">
-                    <div
-                      className={cn(
-                        "text-3xl size-12 inline-flex items-center justify-center rounded-2xl",
-                        subject?.bgSoftClass ?? "bg-muted",
-                      )}
-                      aria-hidden
+                <div key={a.id} className="flex flex-col gap-1.5">
+                  <Link
+                    to={`/activity/${a.id}`}
+                    className={cn(
+                      "group rounded-2xl border-2 bg-white p-4 md:p-5 shadow-sm transition-all",
+                      "hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30",
+                      isDone ? "border-emerald-200" : "border-white/70",
+                    )}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div
+                        className={cn(
+                          "text-3xl size-12 inline-flex items-center justify-center rounded-2xl shrink-0",
+                          subject?.bgSoftClass ?? "bg-muted",
+                        )}
+                        aria-hidden
+                      >
+                        {a.emoji}
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h3 className="font-bold">{a.title}</h3>
+                          {isDone && (
+                            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 text-emerald-700 px-2 py-0.5 text-[10px] font-bold">
+                              <CheckCircle2 className="size-3" /> Done
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-sm text-muted-foreground">{a.description}</p>
+                        <div className="mt-2 flex items-center justify-between text-xs text-muted-foreground">
+                          <span>{a.questionsPerRound ?? QUESTIONS_PER_ROUND} questions per round</span>
+                          {result ? (
+                            <span className="inline-flex items-center gap-1 text-amber-700 font-bold">
+                              <Star className="size-3.5 fill-amber-400 text-amber-500" />
+                              {result.starsEarned}
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 text-primary font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                              Start <ArrowRight className="size-3.5" />
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                  {!isDone && hasLearn && (
+                    <Link
+                      to={`/learn/${a.id}`}
+                      className="text-center text-[11px] text-muted-foreground hover:text-primary transition-colors underline-offset-4 hover:underline py-0.5"
                     >
-                      {a.emoji}
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-bold">{a.title}</h3>
-                        {isDone && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 text-emerald-700 px-2 py-0.5 text-[10px] font-bold">
-                            <CheckCircle2 className="size-3" /> Done
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-sm text-muted-foreground">{a.description}</p>
-                      <div className="mt-2 flex items-center justify-between text-xs text-muted-foreground">
-                        <span>{a.questionsPerRound ?? QUESTIONS_PER_ROUND} questions per round</span>
-                        {result ? (
-                          <span className="inline-flex items-center gap-1 text-amber-700 font-bold">
-                            <Star className="size-3.5 fill-amber-400 text-amber-500" />
-                            {result.starsEarned}
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center gap-1 text-primary font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                            Start <ArrowRight className="size-3.5" />
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+                      📚 Study {a.title} first →
+                    </Link>
+                  )}
+                </div>
               );
             })}
           </div>

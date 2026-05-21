@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, RotateCcw, Star, Trophy, XCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, RotateCcw, Star, Trophy, XCircle } from "lucide-react";
 import {
   useActivity,
   useRoundKey,
@@ -9,7 +9,6 @@ import {
 } from "@/lib/brainy-hooks";
 import type { Badge, Question, SubjectId } from "@/lib/brainy-data";
 import { DAILY_CHALLENGE_ID } from "@/lib/brainy-data";
-import { SCIENCE_LEARN_ITEMS } from "@/lib/science-learn-data";
 import { Progress } from "@/components/ui/progress";
 import { Shimmer } from "@/components/brainy/Shimmer";
 import { Confetti } from "@/components/brainy/Confetti";
@@ -41,9 +40,6 @@ export default function ActivityPage() {
     totalStars: number;
     streakDays: number;
   } | null>(null);
-  const [phase, setPhase] = useState<"learn" | "quiz">("learn");
-  const [learnIndex, setLearnIndex] = useState(0);
-
   // Reset on activity change.
   useEffect(() => {
     setIndex(0);
@@ -53,8 +49,6 @@ export default function ActivityPage() {
     setMissedQuestions([]);
     setFinished(false);
     setSummary(null);
-    setPhase("learn");
-    setLearnIndex(0);
   }, [activityId]);
 
   const total = activity?.questions.length ?? 0;
@@ -110,7 +104,6 @@ export default function ActivityPage() {
 
   function handleTryAnother() {
     nextRound();
-    setPhase("quiz"); // skip learn module on retry
     setIndex(0);
     setSelected(null);
     setRevealed(false);
@@ -139,96 +132,6 @@ export default function ActivityPage() {
     : (subject?.gradientClass ?? "from-slate-200 to-slate-300");
   const backHref = isDaily ? "/" : `/${activity.subjectId}`;
   const backLabel = isDaily ? "Back to home" : `Back to ${subject?.name ?? "subject"}`;
-
-  // ── Learn phase ──────────────────────────────────────────────────────────
-  const learnItems = SCIENCE_LEARN_ITEMS[activity.id] ?? [];
-  if (!isDaily && phase === "learn" && learnItems.length > 0) {
-    const item = learnItems[learnIndex];
-    const isLastItem = learnIndex + 1 >= learnItems.length;
-    const learnPct = ((learnIndex + 1) / learnItems.length) * 100;
-
-    return (
-      <div className="max-w-2xl mx-auto space-y-4">
-        {/* Header bar */}
-        <div className="flex items-center justify-between">
-          <Link
-            to={backHref}
-            className="inline-flex items-center gap-1 text-sm font-semibold text-muted-foreground hover:text-foreground"
-          >
-            <ArrowLeft className="size-4" /> {backLabel}
-          </Link>
-          <span className="text-xs font-bold text-muted-foreground">
-            Fact {learnIndex + 1} of {learnItems.length}
-          </span>
-        </div>
-
-        {/* Gradient banner matching the subject */}
-        <div
-          className={cn(
-            "relative overflow-hidden rounded-3xl border-2 border-white/60 shadow-md p-5 bg-gradient-to-br",
-            headerGradient,
-            "text-slate-900",
-          )}
-        >
-          <div className="absolute -right-4 -bottom-4 text-[6rem] leading-none opacity-20 select-none" aria-hidden>
-            {activity.emoji}
-          </div>
-          <div className="relative space-y-2">
-            <div className="flex items-center gap-2 text-sm font-bold text-slate-900/80">
-              <BookOpen className="size-4" />
-              <span>Learn: {activity.title}</span>
-            </div>
-            <Progress value={learnPct} className="h-2 bg-white/40" />
-          </div>
-        </div>
-
-        {/* Fact card */}
-        <div
-          key={learnIndex}
-          className="animate-float-up rounded-3xl border-2 border-white/60 bg-white shadow-md p-8 flex flex-col items-center text-center gap-4"
-        >
-          <div className="text-6xl select-none" aria-hidden>{item.emoji}</div>
-          <h2 className="text-xl md:text-2xl font-extrabold tracking-tight">{item.title}</h2>
-          <p className="text-base md:text-lg text-slate-700 leading-relaxed max-w-md">{item.fact}</p>
-        </div>
-
-        {/* Navigation */}
-        <button
-          type="button"
-          onClick={() => {
-            if (isLastItem) {
-              setPhase("quiz");
-            } else {
-              setLearnIndex((i) => i + 1);
-            }
-          }}
-          className={cn(
-            "w-full inline-flex items-center justify-center gap-2 rounded-2xl py-4 font-bold text-base shadow transition-colors active:scale-[0.98]",
-            isLastItem
-              ? "bg-emerald-600 text-white hover:bg-emerald-700"
-              : "bg-slate-900 text-white hover:bg-slate-800",
-          )}
-        >
-          {isLastItem ? (
-            <><CheckCircle2 className="size-5" /> Got it! Start the Quiz!</>
-          ) : (
-            <>Got it! Next <ArrowRight className="size-4" /></>
-          )}
-        </button>
-
-        <p className="text-center text-xs text-muted-foreground">
-          Already know this?{" "}
-          <button
-            type="button"
-            onClick={() => setPhase("quiz")}
-            className="text-primary hover:underline underline-offset-4 font-medium"
-          >
-            Skip to the quiz →
-          </button>
-        </p>
-      </div>
-    );
-  }
 
   if (finished && summary) {
     const isPerfect = correctCount === activity.questions.length;
