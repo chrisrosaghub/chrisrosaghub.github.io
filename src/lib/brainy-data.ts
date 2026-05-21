@@ -11,8 +11,9 @@ import { GRADE1_ACTIVITIES } from "@/lib/brainy-data-grade1";
 import { GRADE3_ACTIVITIES } from "@/lib/brainy-data-grade3";
 import { STATES_ACTIVITIES } from "@/lib/brainy-data-states";
 import { SIGHT_WORDS_ACTIVITIES } from "@/lib/brainy-data-sight-words";
+import { PRESIDENTS_ACTIVITIES } from "@/lib/brainy-data-presidents";
 
-export type SubjectId = "math" | "science" | "history" | "geography" | "reading" | "states";
+export type SubjectId = "math" | "science" | "history" | "geography" | "reading" | "states" | "presidents";
 export type Level = "kindergarten" | "grade1" | "grade2" | "grade3";
 export const LEVELS: { id: Level; label: string; shortLabel: string; emoji: string }[] = [
   { id: "kindergarten", label: "Kindergarten", shortLabel: "K", emoji: "\u{1F33C}" },
@@ -179,6 +180,18 @@ export const SUBJECTS: Subject[] = [
     bgSoftClass: "bg-pink-100",
     chartVar: "var(--chart-5)",
     availableLevels: ["kindergarten"],
+  },
+  {
+    id: "presidents",
+    name: "Presidents",
+    emoji: "🏛️",
+    mascot: "Abe the Eagle",
+    tagline: "America's greatest leaders, from 1 to 46",
+    gradientClass: "from-red-300 via-blue-300 to-indigo-300",
+    ringClass: "ring-blue-300",
+    textClass: "text-indigo-700",
+    bgSoftClass: "bg-indigo-100",
+    chartVar: "var(--chart-1)",
   },
 ];
 
@@ -885,6 +898,7 @@ const GRADE2_ACTIVITIES: Activity[] = [
 export const ACTIVITIES: Activity[] = [
   ...GRADE3_ACTIVITIES,
   ...STATES_ACTIVITIES,
+  ...PRESIDENTS_ACTIVITIES,
   ...GRADE2_ACTIVITIES.map((a) => ({ ...a, level: "grade2" as Level })),
   ...GRADE1_ACTIVITIES,
   ...KINDERGARTEN_ACTIVITIES,

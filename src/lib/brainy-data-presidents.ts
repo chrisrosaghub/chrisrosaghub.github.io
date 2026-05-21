@@ -1,0 +1,111 @@
+/**
+ * American Presidents — activity data.
+ * All activities are available at every grade level (allLevels: true).
+ */
+import type { Activity } from "@/lib/brainy-data";
+
+export const PRESIDENTS_ACTIVITIES: Activity[] = [
+  // ── Founding Presidents ────────────────────────────────────────────────
+  {
+    id: "pres-founders",
+    subjectId: "presidents",
+    title: "Founding Presidents",
+    description: "Meet the first five presidents of the United States.",
+    emoji: "🎩",
+    allLevels: true,
+    questions: [
+      { id: "q1", prompt: "Who was the 1st President of the United States?", choices: ["John Adams", "Thomas Jefferson", "George Washington", "James Madison"], answer: 2, explanation: "George Washington was unanimously elected the 1st President in 1789." },
+      { id: "q2", prompt: "Which president is known as the 'Father of Our Country'?", choices: ["John Adams", "George Washington", "Thomas Jefferson", "James Monroe"], answer: 1, explanation: "George Washington earned this nickname for leading the nation through its founding years." },
+      { id: "q3", prompt: "Who was the 2nd President of the United States?", choices: ["Thomas Jefferson", "James Madison", "John Adams", "Alexander Hamilton"], answer: 2, explanation: "John Adams, the first Vice President, became the 2nd President in 1797." },
+      { id: "q4", prompt: "Who wrote the Declaration of Independence?", choices: ["George Washington", "John Adams", "James Madison", "Thomas Jefferson"], answer: 3, explanation: "Thomas Jefferson was the main author of the Declaration of Independence in 1776." },
+      { id: "q5", prompt: "Thomas Jefferson was the ___ President.", choices: ["1st", "2nd", "3rd", "4th"], answer: 2, explanation: "Thomas Jefferson served as the 3rd President from 1801 to 1809." },
+      { id: "q6", prompt: "Which president's face appears on the $1 bill?", choices: ["Abraham Lincoln", "George Washington", "Thomas Jefferson", "John Adams"], answer: 1, explanation: "George Washington has been on the $1 bill since 1869." },
+      { id: "q7", prompt: "Which coin has Thomas Jefferson on it?", choices: ["Penny", "Nickel", "Dime", "Quarter"], answer: 1, explanation: "Thomas Jefferson has been on the U.S. nickel since 1938." },
+      { id: "q8", prompt: "How many terms did George Washington serve as president?", choices: ["One", "Two", "Three", "Four"], answer: 1, explanation: "Washington served two 4-year terms (1789–1797) and then retired, setting a tradition." },
+      { id: "q9", prompt: "Who was the 4th President and is called the 'Father of the Constitution'?", choices: ["John Adams", "James Monroe", "Thomas Jefferson", "James Madison"], answer: 3, explanation: "James Madison played a key role writing the U.S. Constitution and the Bill of Rights." },
+      { id: "q10", prompt: "Which president was the first to live in the White House?", choices: ["George Washington", "John Adams", "Thomas Jefferson", "James Madison"], answer: 1, explanation: "John Adams moved into the White House in 1800 — Washington never lived there as president." },
+      { id: "q11", prompt: "James Monroe was the ___ President.", choices: ["3rd", "4th", "5th", "6th"], answer: 2, explanation: "James Monroe served as the 5th President from 1817 to 1825." },
+      { id: "q12", prompt: "George Washington was the commander of which army?", choices: ["British Army", "French Army", "Continental Army", "Union Army"], answer: 2, explanation: "Washington commanded the Continental Army during the Revolutionary War, leading the colonies to independence." },
+      { id: "q13", prompt: "Thomas Jefferson founded which university in Virginia?", choices: ["Harvard University", "Yale University", "University of Virginia", "William & Mary"], answer: 2, explanation: "Jefferson founded the University of Virginia in 1819 as one of his proudest achievements." },
+      { id: "q14", prompt: "The Monroe Doctrine — a warning to European powers to stay out of the Americas — was issued by which president?", choices: ["James Madison", "John Adams", "Thomas Jefferson", "James Monroe"], answer: 3, explanation: "President Monroe announced this famous foreign policy in 1823." },
+    ],
+  },
+
+  // ── Famous Presidents ──────────────────────────────────────────────────
+  {
+    id: "pres-famous",
+    subjectId: "presidents",
+    title: "Famous Leaders",
+    description: "Explore presidents who shaped American history.",
+    emoji: "🌟",
+    allLevels: true,
+    questions: [
+      { id: "q1", prompt: "Who was the 16th President who helped end slavery in the U.S.?", choices: ["Andrew Jackson", "Abraham Lincoln", "Ulysses S. Grant", "James Buchanan"], answer: 1, explanation: "Abraham Lincoln signed the Emancipation Proclamation in 1863, freeing enslaved people in Confederate states." },
+      { id: "q2", prompt: "Which president delivered the famous 'Gettysburg Address' speech?", choices: ["George Washington", "Theodore Roosevelt", "Abraham Lincoln", "Woodrow Wilson"], answer: 2, explanation: "Lincoln gave this powerful 272-word speech in 1863 to honor soldiers who died at the Battle of Gettysburg." },
+      { id: "q3", prompt: "Which president was known by the nickname 'Teddy'?", choices: ["Thomas Jefferson", "Theodore Roosevelt", "Franklin D. Roosevelt", "Andrew Jackson"], answer: 1, explanation: "Theodore (Teddy) Roosevelt was the 26th President. Teddy bears were named after him!" },
+      { id: "q4", prompt: "Who was president during World War II and created the 'New Deal' to help Americans during the Depression?", choices: ["Woodrow Wilson", "Herbert Hoover", "Franklin D. Roosevelt", "Harry S. Truman"], answer: 2, explanation: "Franklin D. Roosevelt (FDR) served 4 terms and led the U.S. through the Great Depression and most of WWII." },
+      { id: "q5", prompt: "Which president was assassinated in Dallas, Texas on November 22, 1963?", choices: ["Abraham Lincoln", "Franklin Roosevelt", "John F. Kennedy", "Ronald Reagan"], answer: 2, explanation: "John F. Kennedy (JFK) was the 35th President. He was assassinated and Vice President Lyndon Johnson was sworn in." },
+      { id: "q6", prompt: "Who became the first African American President of the United States?", choices: ["Bill Clinton", "Barack Obama", "Colin Powell", "Kamala Harris"], answer: 1, explanation: "Barack Obama was elected the 44th President in 2008 and re-elected in 2012." },
+      { id: "q7", prompt: "Which president said 'Ask not what your country can do for you — ask what you can do for your country'?", choices: ["Ronald Reagan", "Dwight D. Eisenhower", "John F. Kennedy", "Lyndon B. Johnson"], answer: 2, explanation: "JFK said these famous words at his inauguration on January 20, 1961." },
+      { id: "q8", prompt: "Which president established the National Park System and is known as the 'Conservation President'?", choices: ["Abraham Lincoln", "Theodore Roosevelt", "Woodrow Wilson", "Warren Harding"], answer: 1, explanation: "Teddy Roosevelt protected 230 million acres of public land and created 5 national parks." },
+      { id: "q9", prompt: "Abraham Lincoln is on which U.S. coin?", choices: ["Nickel", "Dime", "Quarter", "Penny"], answer: 3, explanation: "Lincoln has appeared on the penny since 1909, the 100th anniversary of his birth." },
+      { id: "q10", prompt: "Theodore Roosevelt was the ___ President.", choices: ["20th", "24th", "26th", "28th"], answer: 2, explanation: "Theodore Roosevelt became the 26th President in 1901 after William McKinley was assassinated." },
+      { id: "q11", prompt: "Which four presidents are carved into Mount Rushmore?", choices: ["Washington, Jefferson, Lincoln, Teddy Roosevelt", "Washington, Adams, Lincoln, Kennedy", "Jefferson, Lincoln, Grant, Wilson", "Washington, Lincoln, FDR, Kennedy"], answer: 0, explanation: "Mount Rushmore in South Dakota features Washington (1st), Jefferson (3rd), Lincoln (16th), and T. Roosevelt (26th)." },
+      { id: "q12", prompt: "Franklin D. Roosevelt was the only president elected how many times?", choices: ["Once", "Twice", "Three times", "Four times"], answer: 3, explanation: "FDR was elected president in 1932, 1936, 1940, and 1944 — serving until his death in 1945." },
+      { id: "q13", prompt: "Which president was the youngest to take office, becoming president at age 42 after McKinley's assassination?", choices: ["John F. Kennedy", "Bill Clinton", "Theodore Roosevelt", "Barack Obama"], answer: 2, explanation: "Theodore Roosevelt became president at 42 years old in 1901, making him the youngest ever to hold the office." },
+      { id: "q14", prompt: "Abraham Lincoln led the country through which war?", choices: ["Revolutionary War", "War of 1812", "Civil War", "World War I"], answer: 2, explanation: "Lincoln was president during the Civil War (1861–1865), working to preserve the Union." },
+    ],
+  },
+
+  // ── Presidential Fun Facts ─────────────────────────────────────────────
+  {
+    id: "pres-facts",
+    subjectId: "presidents",
+    title: "Presidential Fun Facts",
+    description: "Surprising facts and firsts about U.S. presidents.",
+    emoji: "💡",
+    allLevels: true,
+    questions: [
+      { id: "q1", prompt: "How long is one presidential term?", choices: ["2 years", "4 years", "6 years", "8 years"], answer: 1, explanation: "A presidential term is 4 years. Presidents can serve a maximum of two terms (8 years total)." },
+      { id: "q2", prompt: "What is the maximum number of terms a U.S. president can serve?", choices: ["1", "2", "3", "4"], answer: 1, explanation: "The 22nd Amendment (1951) limits presidents to two terms after FDR served four." },
+      { id: "q3", prompt: "What is the minimum age required to become U.S. President?", choices: ["25", "30", "35", "40"], answer: 2, explanation: "The Constitution requires the president to be at least 35 years old, a natural-born citizen, and a U.S. resident for 14 years." },
+      { id: "q4", prompt: "Where does the U.S. President live and work?", choices: ["Capitol Building", "The Pentagon", "The White House", "Supreme Court"], answer: 2, explanation: "The White House at 1600 Pennsylvania Avenue has been the president's home since 1800." },
+      { id: "q5", prompt: "Which president's teddy bear is named after him?", choices: ["Abraham Lincoln", "Theodore Roosevelt", "Andrew Jackson", "Woodrow Wilson"], answer: 1, explanation: "In 1902, Teddy Roosevelt refused to shoot a bear on a hunting trip. A toy maker created the 'Teddy's Bear' in his honor!" },
+      { id: "q6", prompt: "Which president served the SHORTEST term — only 32 days — before dying of pneumonia?", choices: ["James K. Polk", "William Henry Harrison", "Zachary Taylor", "Millard Fillmore"], answer: 1, explanation: "William Henry Harrison (9th President) gave a very long inaugural speech in cold weather, got sick, and died 32 days later." },
+      { id: "q7", prompt: "Who was the first president to be photographed?", choices: ["George Washington", "John Adams", "Andrew Jackson", "Abraham Lincoln"], answer: 2, explanation: "Andrew Jackson (7th President) is the earliest president known to have been photographed, around 1845." },
+      { id: "q8", prompt: "On July 4, 1826 — the 50th anniversary of the Declaration of Independence — which two former presidents died on the SAME day?", choices: ["Washington and Adams", "Jefferson and Madison", "Adams and Jefferson", "Monroe and Madison"], answer: 2, explanation: "In an amazing coincidence, both John Adams (2nd) and Thomas Jefferson (3rd) died on July 4, 1826 — the exact same day." },
+      { id: "q9", prompt: "Which president is on the $5 bill?", choices: ["George Washington", "Thomas Jefferson", "Abraham Lincoln", "Ulysses Grant"], answer: 2, explanation: "Abraham Lincoln has appeared on the $5 bill since 1914." },
+      { id: "q10", prompt: "The president is also the commander-in-chief of what?", choices: ["Congress", "The Supreme Court", "The Armed Forces", "The Federal Reserve"], answer: 2, explanation: "Article II of the Constitution makes the president the commander-in-chief of the U.S. military." },
+      { id: "q11", prompt: "Who becomes president if the current president cannot serve?", choices: ["The Secretary of State", "The Vice President", "The Speaker of the House", "The Chief Justice"], answer: 1, explanation: "The Vice President is first in the line of succession. This has happened 9 times in U.S. history." },
+      { id: "q12", prompt: "Which was the FIRST state to vote for president, giving its electoral votes to George Washington?", choices: ["Virginia", "Pennsylvania", "Massachusetts", "All states voted for Washington unanimously"], answer: 3, explanation: "Washington was the only president elected unanimously by the Electoral College — twice!" },
+      { id: "q13", prompt: "Where does the president give the annual State of the Union address?", choices: ["The White House", "The Supreme Court", "Congress (the Capitol)", "The United Nations"], answer: 2, explanation: "The president delivers the State of the Union to a joint session of Congress in the U.S. Capitol each year." },
+      { id: "q14", prompt: "Which president created NASA in 1958?", choices: ["Harry Truman", "Dwight D. Eisenhower", "John F. Kennedy", "Lyndon B. Johnson"], answer: 1, explanation: "President Eisenhower signed the National Aeronautics and Space Act, creating NASA on October 1, 1958." },
+    ],
+  },
+
+  // ── Presidential Order ─────────────────────────────────────────────────
+  {
+    id: "pres-order",
+    subjectId: "presidents",
+    title: "In Order",
+    description: "Can you match each president to their number?",
+    emoji: "🔢",
+    allLevels: true,
+    questions: [
+      { id: "q1", prompt: "George Washington was the ___ President.", choices: ["1st", "2nd", "3rd", "5th"], answer: 0, explanation: "Washington was inaugurated as the 1st President on April 30, 1789." },
+      { id: "q2", prompt: "John Adams was the ___ President.", choices: ["1st", "2nd", "3rd", "4th"], answer: 1, explanation: "John Adams served as the 2nd President from 1797 to 1801." },
+      { id: "q3", prompt: "Abraham Lincoln was the ___ President.", choices: ["12th", "14th", "16th", "18th"], answer: 2, explanation: "Lincoln served as the 16th President from 1861 until his assassination in 1865." },
+      { id: "q4", prompt: "Theodore Roosevelt was the ___ President.", choices: ["24th", "25th", "26th", "27th"], answer: 2, explanation: "Teddy Roosevelt became the 26th President in 1901." },
+      { id: "q5", prompt: "Franklin D. Roosevelt was the ___ President.", choices: ["30th", "31st", "32nd", "33rd"], answer: 2, explanation: "FDR was the 32nd President, serving from 1933 to 1945." },
+      { id: "q6", prompt: "John F. Kennedy was the ___ President.", choices: ["33rd", "34th", "35th", "36th"], answer: 2, explanation: "JFK was inaugurated as the 35th President on January 20, 1961." },
+      { id: "q7", prompt: "Barack Obama was the ___ President.", choices: ["42nd", "43rd", "44th", "45th"], answer: 2, explanation: "Barack Obama served as the 44th President from 2009 to 2017." },
+      { id: "q8", prompt: "Thomas Jefferson was the ___ President.", choices: ["2nd", "3rd", "4th", "5th"], answer: 1, explanation: "Jefferson served as the 3rd President from 1801 to 1809." },
+      { id: "q9", prompt: "Who was the 16th President?", choices: ["Andrew Jackson", "Ulysses Grant", "Abraham Lincoln", "James Buchanan"], answer: 2, explanation: "Abraham Lincoln was the 16th President (1861–1865)." },
+      { id: "q10", prompt: "Who was the 26th President?", choices: ["Woodrow Wilson", "William Taft", "Theodore Roosevelt", "Warren Harding"], answer: 2, explanation: "Theodore Roosevelt was the 26th President (1901–1909)." },
+      { id: "q11", prompt: "Who was the 35th President?", choices: ["Lyndon Johnson", "Dwight Eisenhower", "Richard Nixon", "John F. Kennedy"], answer: 3, explanation: "JFK was the 35th President (1961–1963)." },
+      { id: "q12", prompt: "Who was the 44th President?", choices: ["George W. Bush", "Bill Clinton", "Donald Trump", "Barack Obama"], answer: 3, explanation: "Barack Obama was the 44th President (2009–2017)." },
+      { id: "q13", prompt: "Harry S. Truman was the ___ President.", choices: ["31st", "32nd", "33rd", "34th"], answer: 2, explanation: "Truman became the 33rd President when FDR died in 1945." },
+      { id: "q14", prompt: "Who was the 1st President?", choices: ["Benjamin Franklin", "John Adams", "Thomas Jefferson", "George Washington"], answer: 3, explanation: "George Washington was unanimously chosen as the 1st President." },
+    ],
+  },
+];

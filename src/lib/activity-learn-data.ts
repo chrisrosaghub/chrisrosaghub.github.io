@@ -663,4 +663,45 @@ const EXTRA: Record<string, { emoji: string; title: string; fact: string }[]> = 
 export const ACTIVITY_LEARN_DATA: Record<string, { emoji: string; title: string; fact: string }[]> = {
   ...SCIENCE_LEARN_ITEMS,
   ...EXTRA,
+
+  // ─── AMERICAN PRESIDENTS ──────────────────────────────────────────────────
+  "pres-founders": [
+    { emoji: "🎩", title: "George Washington — 1st President", fact: "George Washington was America's first president, elected in 1789. He is called the 'Father of Our Country' and appears on the $1 bill and the quarter." },
+    { emoji: "📜", title: "John Adams — 2nd President", fact: "John Adams was the first Vice President before becoming the 2nd President. He was the first to live in the White House, moving in during 1800." },
+    { emoji: "✍️", title: "Thomas Jefferson — 3rd President", fact: "Thomas Jefferson wrote the Declaration of Independence. He was the 3rd President and his face is on the nickel. He also founded the University of Virginia." },
+    { emoji: "📃", title: "James Madison — 4th President", fact: "James Madison is called the 'Father of the Constitution' because he did so much work writing it. He also helped create the Bill of Rights." },
+    { emoji: "🌎", title: "James Monroe — 5th President", fact: "James Monroe issued the Monroe Doctrine in 1823, warning European countries to stay out of the Americas. He was the 5th President." },
+    { emoji: "🏛️", title: "The White House", fact: "The White House at 1600 Pennsylvania Avenue has been the home of every president since John Adams in 1800. George Washington never lived there!" },
+  ],
+
+  "pres-famous": [
+    { emoji: "🎩", title: "Abraham Lincoln — 16th President", fact: "Lincoln led the country through the Civil War and signed the Emancipation Proclamation in 1863, freeing enslaved people. He is on the penny and $5 bill." },
+    { emoji: "🗒️", title: "The Gettysburg Address", fact: "Lincoln's Gettysburg Address (1863) is one of the most famous speeches in American history. He gave it to honor soldiers who died in the Battle of Gettysburg." },
+    { emoji: "🐻", title: "Theodore Roosevelt — 26th President", fact: "Teddy Roosevelt was a conservation hero who protected 230 million acres of land and created 5 national parks. Teddy bears are named after him!" },
+    { emoji: "🌊", title: "Franklin D. Roosevelt — 32nd President", fact: "FDR led America through the Great Depression and World War II. He was elected 4 times — the only president to serve more than 2 terms." },
+    { emoji: "🕊️", title: "John F. Kennedy — 35th President", fact: "JFK was the 35th President. He inspired a nation with his famous words: 'Ask not what your country can do for you — ask what you can do for your country.'" },
+    { emoji: "⭐", title: "Barack Obama — 44th President", fact: "Barack Obama was elected in 2008 as the first African American president of the United States. He served two terms until 2017." },
+    { emoji: "🏔️", title: "Mount Rushmore", fact: "Mount Rushmore in South Dakota features the carved faces of four great presidents: George Washington, Thomas Jefferson, Theodore Roosevelt, and Abraham Lincoln." },
+  ],
+
+  "pres-facts": [
+    { emoji: "⏱️", title: "Presidential Terms", fact: "A presidential term is 4 years long. Thanks to the 22nd Amendment (1951), presidents can only be elected twice — a maximum of 8 years in office." },
+    { emoji: "🎂", title: "Age Requirement", fact: "To become president, you must be at least 35 years old, born in the United States, and have lived in the U.S. for at least 14 years." },
+    { emoji: "🐻", title: "The Teddy Bear", fact: "In 1902, Teddy Roosevelt refused to shoot a captive bear on a hunting trip. A toymaker created a stuffed 'Teddy's Bear' — the original teddy bear!" },
+    { emoji: "📅", title: "Amazing Coincidence", fact: "On July 4, 1826 — the 50th anniversary of the Declaration of Independence — both John Adams (2nd) AND Thomas Jefferson (3rd) died on the SAME day!" },
+    { emoji: "🚀", title: "NASA", fact: "President Dwight D. Eisenhower created NASA in 1958. Shortly after, President Kennedy challenged the nation to land on the Moon — and we did, in 1969!" },
+    { emoji: "👆", title: "Line of Succession", fact: "If the president cannot serve, the Vice President takes over. This has happened 9 times in U.S. history." },
+    { emoji: "📺", title: "Commander-in-Chief", fact: "The U.S. Constitution makes the president the Commander-in-Chief of the armed forces. They have the authority to lead the military." },
+  ],
+
+  "pres-order": [
+    { emoji: "1️⃣", title: "1st — George Washington", fact: "George Washington was inaugurated as the 1st President on April 30, 1789. He served two terms and set many traditions still followed today." },
+    { emoji: "2️⃣", title: "2nd — John Adams", fact: "John Adams was the 2nd President (1797–1801). He was the first president to live in the White House." },
+    { emoji: "3️⃣", title: "3rd — Thomas Jefferson", fact: "Thomas Jefferson was the 3rd President (1801–1809). He doubled the size of the U.S. with the Louisiana Purchase in 1803!" },
+    { emoji: "1️⃣6️⃣", title: "16th — Abraham Lincoln", fact: "Abraham Lincoln was the 16th President (1861–1865). He led the country through the Civil War and helped end slavery." },
+    { emoji: "2️⃣6️⃣", title: "26th — Theodore Roosevelt", fact: "Theodore Roosevelt was the 26th President (1901–1909). He was the youngest person to become president, at age 42." },
+    { emoji: "3️⃣2️⃣", title: "32nd — Franklin D. Roosevelt", fact: "Franklin D. Roosevelt was the 32nd President, serving from 1933 to 1945. He was elected 4 times — more than any other president." },
+    { emoji: "3️⃣5️⃣", title: "35th — John F. Kennedy", fact: "John F. Kennedy was the 35th President (1961–1963). He was the youngest person ever elected president, at 43 years old." },
+    { emoji: "4️⃣4️⃣", title: "44th — Barack Obama", fact: "Barack Obama was the 44th President (2009–2017) and the first African American to hold the office." },
+  ],
 };
