@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Star, Flame, Sparkles, ArrowRight, Trophy, CheckCircle2, ChevronDown } from "lucide-react";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Star, Flame, Sparkles, ArrowRight, Trophy, CheckCircle2 } from "lucide-react";
 import {
   useAllBadges,
   useDailyChallenge,
@@ -46,7 +44,6 @@ function useCompletedBySubject() {
 
 export default function HomePage() {
   useLevel(); // subscribe to level changes so this view re-renders
-  const [subjectsOpen, setSubjectsOpen] = useState(false);
   const { data: subjects, isLoading: subjectsLoading } = useSubjects();
   const { data: progress } = useProgress();
   const { data: daily, isLoading: dailyLoading } = useDailyChallenge();
@@ -103,38 +100,25 @@ export default function HomePage() {
 
       {/* Subjects */}
       <section>
-        {/* Mobile: collapsible header */}
-        <Collapsible open={subjectsOpen} onOpenChange={setSubjectsOpen} className="sm:contents">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-xl md:text-2xl font-extrabold tracking-tight">Pick a Subject</h2>
-            <div className="flex items-center gap-3">
-              <Link to="/progress" className="text-sm font-semibold text-primary hover:underline inline-flex items-center gap-1">
-                See my progress <ArrowRight className="size-3.5" />
-              </Link>
-              {/* Toggle only visible on mobile */}
-              <CollapsibleTrigger className="sm:hidden inline-flex items-center gap-1 rounded-full border border-border px-2.5 py-1 text-xs font-semibold text-muted-foreground hover:bg-muted transition-colors">
-                {subjectsOpen ? "Hide" : "Show"}
-                <ChevronDown className={`size-3.5 transition-transform ${subjectsOpen ? "rotate-180" : ""}`} />
-              </CollapsibleTrigger>
-            </div>
-          </div>
-          {/* Always visible on sm+; collapsible on mobile */}
-          <CollapsibleContent className="sm:!block">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {subjectsLoading || !subjects
-                ? Array.from({ length: 4 }).map((_, i) => <SubjectCardSkeleton key={i} />)
-                : subjects.map((s) => (
-                  <SubjectCard
-                    key={s.id}
-                    subject={s}
-                    completed={completedBySubject[s.id].size}
-                    total={totalActivitiesForSubject(s.id)}
-                    stars={starsBySubject[s.id]}
-                  />
-                ))}
-            </div>
-          </CollapsibleContent>
-        </Collapsible>
+        <div className="flex items-end justify-between mb-3">
+          <h2 className="text-xl md:text-2xl font-extrabold tracking-tight">Pick a Subject</h2>
+          <Link to="/progress" className="text-sm font-semibold text-primary hover:underline inline-flex items-center gap-1">
+            See my progress <ArrowRight className="size-3.5" />
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {subjectsLoading || !subjects
+            ? Array.from({ length: 4 }).map((_, i) => <SubjectCardSkeleton key={i} />)
+            : subjects.map((s) => (
+              <SubjectCard
+                key={s.id}
+                subject={s}
+                completed={completedBySubject[s.id].size}
+                total={totalActivitiesForSubject(s.id)}
+                stars={starsBySubject[s.id]}
+              />
+            ))}
+        </div>
       </section>
 
       {/* Daily challenge + Recent badges */}
