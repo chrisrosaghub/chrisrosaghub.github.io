@@ -64,8 +64,10 @@
   --radius: 1.1rem;
 
   /* Brainy Buddies palette — cheerful, kid-friendly */
-  --background: oklch(0.985 0.02 95);            /* warm cream */
-  --foreground: oklch(0.22 0.04 280);            /* deep indigo ink */
+  --background: oklch(0.985 0.02 95);
+  /* warm cream */
+  --foreground: oklch(0.22 0.04 280);
+  /* deep indigo ink */
 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.22 0.04 280);
@@ -73,16 +75,19 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.22 0.04 280);
 
-  --primary: oklch(0.66 0.21 295);               /* playful purple */
+  --primary: oklch(0.66 0.21 295);
+  /* playful purple */
   --primary-foreground: oklch(0.99 0 0);
 
-  --secondary: oklch(0.92 0.06 95);              /* soft sunny */
+  --secondary: oklch(0.92 0.06 95);
+  /* soft sunny */
   --secondary-foreground: oklch(0.30 0.06 285);
 
   --muted: oklch(0.96 0.02 95);
   --muted-foreground: oklch(0.50 0.04 280);
 
-  --accent: oklch(0.85 0.16 195);                /* sky teal */
+  --accent: oklch(0.85 0.16 195);
+  /* sky teal */
   --accent-foreground: oklch(0.22 0.06 260);
 
   --destructive: oklch(0.65 0.23 27);
@@ -92,12 +97,18 @@
   --ring: oklch(0.66 0.21 295);
 
   /* Subject hues — also useful for charts */
-  --chart-1: oklch(0.74 0.18 50);                /* math: tangerine */
-  --chart-2: oklch(0.74 0.17 145);               /* science: leaf green */
-  --chart-3: oklch(0.66 0.21 295);               /* history: purple */
-  --chart-4: oklch(0.72 0.16 220);               /* geography: sky blue */
-  --chart-5: oklch(0.78 0.18 95);                /* sunny accent */
-  --chart-6: oklch(0.72 0.17 175);               /* states: teal */
+  --chart-1: oklch(0.74 0.18 50);
+  /* math: tangerine */
+  --chart-2: oklch(0.74 0.17 145);
+  /* science: leaf green */
+  --chart-3: oklch(0.66 0.21 295);
+  /* history: purple */
+  --chart-4: oklch(0.72 0.16 220);
+  /* geography: sky blue */
+  --chart-5: oklch(0.78 0.18 95);
+  /* sunny accent */
+  --chart-6: oklch(0.72 0.17 175);
+  /* states: teal */
 
   --sidebar: oklch(0.985 0.02 95);
   --sidebar-foreground: oklch(0.22 0.04 280);
@@ -160,6 +171,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -173,29 +185,71 @@
 
 @layer utilities {
   @keyframes pop-in {
-    0% { transform: scale(0.6); opacity: 0; }
-    60% { transform: scale(1.08); opacity: 1; }
-    100% { transform: scale(1); }
+    0% {
+      transform: scale(0.6);
+      opacity: 0;
+    }
+
+    60% {
+      transform: scale(1.08);
+      opacity: 1;
+    }
+
+    100% {
+      transform: scale(1);
+    }
   }
-  .animate-pop-in { animation: pop-in 360ms var(--ease-emphasized-decel) both; }
+
+  .animate-pop-in {
+    animation: pop-in 360ms var(--ease-emphasized-decel) both;
+  }
 
   @keyframes wiggle {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-6deg); }
-    75% { transform: rotate(6deg); }
+
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+
+    25% {
+      transform: rotate(-6deg);
+    }
+
+    75% {
+      transform: rotate(6deg);
+    }
   }
-  .animate-wiggle { animation: wiggle 600ms var(--ease-standard) both; }
+
+  .animate-wiggle {
+    animation: wiggle 600ms var(--ease-standard) both;
+  }
 
   @keyframes float-up {
-    0% { transform: translateY(8px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
+    0% {
+      transform: translateY(8px);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
-  .animate-float-up { animation: float-up 400ms var(--ease-emphasized-decel) both; }
+
+  .animate-float-up {
+    animation: float-up 400ms var(--ease-emphasized-decel) both;
+  }
 
   @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
+    0% {
+      background-position: -200% 0;
+    }
+
+    100% {
+      background-position: 200% 0;
+    }
   }
+
   .animate-shimmer {
     background: linear-gradient(90deg, transparent, oklch(0.9 0.04 280 / 0.6), transparent);
     background-size: 200% 100%;

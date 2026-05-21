@@ -46,6 +46,12 @@ export interface Question {
   explanation?: string;
   /** Optional image URL shown above the question prompt (e.g. state location map). */
   image?: string;
+  /**
+   * Optional group key. When set, buildActivityRound will pick at most one
+   * question per group, ensuring both directions of the same fact are never
+   * asked in the same round.
+   */
+  group?: string;
 }
 
 export interface Activity {
@@ -946,12 +952,37 @@ export function pickRandom<T>(pool: T[], count: number): T[] {
  * Build a randomized round for a regular activity — picks
  * `QUESTIONS_PER_ROUND` questions from the activity's full pool.
  * Each call returns a different sample (good for re-doing activities).
+ *
+ * When questions carry a `group` key (e.g. states activities where each state
+ * has both a capital→state and state→capital question), at most one question
+ * per group is included so the same fact is never tested twice in one round.
  */
 export function buildActivityRound(activity: Activity): Activity {
-  return {
-    ...activity,
-    questions: pickRandom(activity.questions, activity.questionsPerRound ?? QUESTIONS_PER_ROUND),
-  };
+  const target = activity.questionsPerRound ?? QUESTIONS_PER_ROUND;
+  const hasGroups = activity.questions.some((q) => q.group != null);
+
+  let picked: Question[];
+  if (hasGroups) {
+    // Group questions by their group key (ungrouped questions each form their own singleton).
+    const groupMap = new Map<string, Question[]>();
+    activity.questions.forEach((q, i) => {
+      const key = q.group ?? `__ungrouped_${i}`;
+      const bucket = groupMap.get(key) ?? [];
+      bucket.push(q);
+      groupMap.set(key, bucket);
+    });
+    // Shuffle the group order, then for each group pick one question at random.
+    const groups = shuffle([...groupMap.values()]);
+    picked = groups
+      .slice(0, Math.min(target, groups.length))
+      .map((bucket) => bucket[Math.floor(Math.random() * bucket.length)]);
+    // Shuffle the final set so question order is random too.
+    picked = shuffle(picked);
+  } else {
+    picked = pickRandom(activity.questions, target);
+  }
+
+  return { ...activity, questions: picked };
 }
 
 /**

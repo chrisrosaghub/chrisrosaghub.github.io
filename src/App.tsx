@@ -7,6 +7,8 @@ import { AppProviders } from "@/components/system/AppProviders";
 import HomePage from "./pages/index";
 import NotFoundPage from "./pages/not-found";
 import SubjectPage from "./pages/subject";
+import StatesPage from "./pages/states";
+import StatesLearnPage from "./pages/states-learn";
 import ActivityPage from "./pages/activity";
 import ProgressPage from "./pages/progress";
 import DailyChallengePage from "./pages/daily";
@@ -41,7 +43,8 @@ function App() {
                   <Route path="activity/:activityId" element={<ActivityPage />} />
                   <Route path="daily" element={<DailyChallengePage />} />
                   <Route path="progress" element={<ProgressPage />} />
-                  <Route path="states" element={<SubjectPage subjectId="states" />} />
+                  <Route path="states" element={<StatesPage />} />
+                  <Route path="states/learn/:groupId" element={<StatesLearnPage />} />
                   <Route path="about" element={<AboutPage />} />
                   {/* NOTE(ai): DO NOT REMOVE — catch-all 404 page */}
                   <Route path="*" element={<NotFoundPage />} />
