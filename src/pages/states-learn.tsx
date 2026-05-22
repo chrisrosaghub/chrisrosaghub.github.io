@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, RotateCcw } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, RotateCcw, Volume2, VolumeX } from "lucide-react";
 import { LEARN_GROUPS } from "@/lib/brainy-data-states";
+import { useTTS } from "@/lib/use-tts";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +13,7 @@ export default function StatesLearnPage() {
     const [index, setIndex] = useState(0);
     const [revealed, setRevealed] = useState(false);
     const [finished, setFinished] = useState(false);
+    const { speak, stop, isSupported, isSpeaking, autoRead, toggleAutoRead } = useTTS();
 
     if (!group) return <Navigate to="/states" replace />;
 
@@ -19,12 +21,31 @@ export default function StatesLearnPage() {
     const isLast = index + 1 >= group.states.length;
     const progressPct = ((index + (revealed ? 1 : 0)) / group.states.length) * 100;
 
+    // Auto-read state name when card changes
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+        if (autoRead) speak(state.name + ". What is the capital?");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [index, autoRead]);
+
+    // Auto-read capital when revealed
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+        if (autoRead && revealed) {
+            const text = "The capital of " + state.name + " is " + state.capital +
+                (state.explanation ? ". " + state.explanation : "");
+            speak(text);
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [revealed, autoRead]);
+
     function handleReveal() {
         setRevealed(true);
     }
 
     function handleNext() {
         if (isLast) {
+            stop();
             setFinished(true);
         } else {
             setIndex((i) => i + 1);
@@ -33,6 +54,7 @@ export default function StatesLearnPage() {
     }
 
     function handleRestart() {
+        stop();
         setIndex(0);
         setRevealed(false);
         setFinished(false);
@@ -86,17 +108,34 @@ export default function StatesLearnPage() {
     return (
         <div className="max-w-xl mx-auto space-y-4">
             {/* Breadcrumb */}
-            <div className="flex items-center gap-2 text-sm">
+            <div className="flex items-center justify-between gap-2 text-sm flex-wrap">
                 <Link
                     to="/states"
                     className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
                 >
                     <ArrowLeft className="size-3.5" /> States &amp; Capitals
                 </Link>
-                <span className="text-muted-foreground/40">›</span>
-                <span className="font-semibold">
-                    {group.emoji} {group.title} — Learn Mode
-                </span>
+                <div className="flex items-center gap-2">
+                    {isSupported && (
+                        <button
+                            onClick={toggleAutoRead}
+                            aria-label={autoRead ? "Turn off read aloud" : "Turn on read aloud"}
+                            title={autoRead ? "Read Aloud: ON" : "Read Aloud: OFF"}
+                            className={cn(
+                                "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold border transition-colors",
+                                autoRead
+                                    ? "bg-primary text-primary-foreground border-primary"
+                                    : "bg-muted text-muted-foreground border-transparent hover:bg-muted/80",
+                            )}
+                        >
+                            {autoRead ? <Volume2 className="size-3.5" /> : <VolumeX className="size-3.5" />}
+                            Read Aloud
+                        </button>
+                    )}
+                    <span className="font-semibold text-xs text-muted-foreground">
+                        {group.emoji} {group.title}
+                    </span>
+                </div>
             </div>
 
             {/* Progress bar */}
@@ -136,6 +175,23 @@ export default function StatesLearnPage() {
                         <div className="text-sm text-slate-500">What is the capital?</div>
                     </div>
 
+                    {/* Manual read button — before reveal */}
+                    {!revealed && isSupported && (
+                        <button
+                            onClick={() => speak(state.name + ". What is the capital?")}
+                            aria-label="Read state name aloud"
+                            className={cn(
+                                "mx-auto flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold border transition-colors",
+                                isSpeaking
+                                    ? "bg-primary/10 text-primary border-primary/20"
+                                    : "bg-white/80 text-slate-500 border-slate-200 hover:text-primary hover:border-primary/30",
+                            )}
+                        >
+                            <Volume2 className="size-3" />
+                            {isSpeaking ? "Reading…" : "Read aloud"}
+                        </button>
+                    )}
+
                     {/* Reveal / revealed state */}
                     {!revealed ? (
                         <button
@@ -159,6 +215,26 @@ export default function StatesLearnPage() {
                                 <div className="rounded-2xl bg-amber-50 border border-amber-100 p-3 text-sm text-amber-900 leading-relaxed">
                                     💡 {state.explanation}
                                 </div>
+                            )}
+
+                            {/* Manual read button — after reveal */}
+                            {isSupported && (
+                                <button
+                                    onClick={() => speak(
+                                        "The capital of " + state.name + " is " + state.capital +
+                                        (state.explanation ? ". " + state.explanation : "")
+                                    )}
+                                    aria-label="Read capital and fact aloud"
+                                    className={cn(
+                                        "mx-auto flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold border transition-colors",
+                                        isSpeaking
+                                            ? "bg-primary/10 text-primary border-primary/20"
+                                            : "bg-white/80 text-slate-500 border-slate-200 hover:text-primary hover:border-primary/30",
+                                    )}
+                                >
+                                    <Volume2 className="size-3" />
+                                    {isSpeaking ? "Reading…" : "Read aloud"}
+                                </button>
                             )}
 
                             {/* Next / finish */}

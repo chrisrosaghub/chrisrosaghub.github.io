@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, RotateCcw } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, RotateCcw, Volume2, VolumeX } from "lucide-react";
 import { ACTIVITY_LEARN_DATA } from "@/lib/activity-learn-data";
 import { ACTIVITIES } from "@/lib/brainy-data";
+import { useTTS } from "@/lib/use-tts";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 
@@ -14,6 +15,23 @@ export default function LearnPage() {
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [finished, setFinished] = useState(false);
+  const { speak, stop, isSupported, isSpeaking, autoRead, toggleAutoRead } = useTTS();
+
+  // Auto-read the title when the card changes
+  useEffect(() => {
+    if (autoRead && items.length > 0) {
+      speak(items[index].title);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index, autoRead]);
+
+  // Auto-read the full fact when revealed
+  useEffect(() => {
+    if (autoRead && revealed && items.length > 0) {
+      speak(items[index].title + ". " + items[index].fact);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [revealed, autoRead]);
 
   // No learn data — send straight to the quiz
   if (!activityId || items.length === 0) {
@@ -32,6 +50,7 @@ export default function LearnPage() {
 
   function handleNext() {
     if (isLast) {
+      stop();
       setFinished(true);
     } else {
       setIndex((i) => i + 1);
@@ -40,6 +59,7 @@ export default function LearnPage() {
   }
 
   function handleRestart() {
+    stop();
     setIndex(0);
     setRevealed(false);
     setFinished(false);
@@ -100,9 +120,27 @@ export default function LearnPage() {
         >
           <ArrowLeft className="size-3.5" /> {backLabel}
         </Link>
-        <span className="text-xs font-bold text-muted-foreground">
-          {index + 1} / {items.length}
-        </span>
+        <div className="flex items-center gap-2">
+          {isSupported && (
+            <button
+              onClick={toggleAutoRead}
+              aria-label={autoRead ? "Turn off read aloud" : "Turn on read aloud"}
+              title={autoRead ? "Read Aloud: ON" : "Read Aloud: OFF"}
+              className={cn(
+                "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold border transition-colors",
+                autoRead
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-muted text-muted-foreground border-transparent hover:bg-muted/80",
+              )}
+            >
+              {autoRead ? <Volume2 className="size-3.5" /> : <VolumeX className="size-3.5" />}
+              Read Aloud
+            </button>
+          )}
+          <span className="text-xs font-bold text-muted-foreground">
+            {index + 1} / {items.length}
+          </span>
+        </div>
       </div>
 
       {/* Progress bar */}
@@ -138,6 +176,23 @@ export default function LearnPage() {
             )}
           </div>
 
+          {/* Manual read button (title only — shown before reveal) */}
+          {!revealed && isSupported && (
+            <button
+              onClick={() => speak(item.title)}
+              aria-label="Read title aloud"
+              className={cn(
+                "mx-auto flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold border transition-colors",
+                isSpeaking
+                  ? "bg-primary/10 text-primary border-primary/20"
+                  : "bg-white/80 text-slate-500 border-slate-200 hover:text-primary hover:border-primary/30",
+              )}
+            >
+              <Volume2 className="size-3" />
+              {isSpeaking ? "Reading…" : "Read aloud"}
+            </button>
+          )}
+
           {/* Reveal button / revealed fact */}
           {!revealed ? (
             <button
@@ -154,6 +209,23 @@ export default function LearnPage() {
                   {item.fact}
                 </p>
               </div>
+
+              {/* Manual read button (full fact) */}
+              {isSupported && (
+                <button
+                  onClick={() => speak(item.title + ". " + item.fact)}
+                  aria-label="Read fact aloud"
+                  className={cn(
+                    "mx-auto flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold border transition-colors",
+                    isSpeaking
+                      ? "bg-primary/10 text-primary border-primary/20"
+                      : "bg-white/80 text-slate-500 border-slate-200 hover:text-primary hover:border-primary/30",
+                  )}
+                >
+                  <Volume2 className="size-3" />
+                  {isSpeaking ? "Reading…" : "Read aloud"}
+                </button>
+              )}
 
               {/* Next / finish */}
               <button
