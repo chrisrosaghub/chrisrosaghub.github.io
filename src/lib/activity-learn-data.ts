@@ -732,7 +732,8 @@ export const ACTIVITY_LEARN_DATA: Record<string, { emoji: string; title: string;
     { emoji: "🏆", title: "won / one", fact: "WON = past tense of win ('we won!'). ONE = the number 1. Tip: WON sounds like 'fun' — winning IS fun!" },
     { emoji: "🍐", title: "pear / pair / pare", fact: "PEAR = a fruit 🍐. PAIR = two matching things ('a pair of shoes'). PARE = to peel or trim ('pare an apple'). Three words, one sound!" },
   ],
-};
+
+  // ─── AMERICAN PRESIDENTS ──────────────────────────────────────────────────
   "pres-founders": [
     { emoji: "🎩", title: "George Washington — 1st President", fact: "George Washington was America's first president, elected in 1789. He is called the 'Father of Our Country' and appears on the $1 bill and the quarter." },
     { emoji: "📜", title: "John Adams — 2nd President", fact: "John Adams was the first Vice President before becoming the 2nd President. He was the first to live in the White House, moving in during 1800." },
