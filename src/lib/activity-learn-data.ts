@@ -704,13 +704,22 @@ export const ACTIVITY_LEARN_DATA: Record<string, { emoji: string; title: string;
   ],
 
   "lang-greek-roots": [
-    { emoji: "🏛️", title: "Greek Roots in English", fact: "Thousands of English words come from Ancient Greek! Once you learn a root, you can unlock the meaning of many words at once." },
+    { emoji: "🏛️", title: "Greek Roots in English", fact: "Thousands of English words come from Ancient Greek! Once you learn a root, you unlock the meaning of many words at once. It's like having a secret decoder ring!" },
     { emoji: "🌿", title: "bio = Life", fact: "Bio means LIFE. Biology = study of life. Biography = the life story of a person. Antibiotic = medicine that fights living bacteria." },
     { emoji: "🌍", title: "geo = Earth", fact: "Geo means EARTH. Geography = writing about Earth's features. Geology = study of Earth's rocks. Geometry = measuring Earth (shapes)." },
     { emoji: "💧", title: "hydro = Water", fact: "Hydro means WATER. Hydrogen = an element in water (H₂O). Hydroelectric = electricity made by water. Hydration = keeping water in your body." },
-    { emoji: "📸", title: "photo = Light", fact: "Photo means LIGHT. Photography = capturing light to make images. Photosynthesis = plants using light to make food." },
+    { emoji: "📸", title: "photo = Light", fact: "Photo means LIGHT. Photography = capturing light to make images. Photosynthesis = plants using light to make food. Photon = a tiny particle of light." },
     { emoji: "🔭", title: "tele = Far / Distance", fact: "Tele means FAR or DISTANCE. Telephone = sound from far away. Telescope = tool to see far away. Television = see things from a distance." },
     { emoji: "🔬", title: "micro = Small", fact: "Micro means SMALL. Microscope = tool to see tiny things. Microphone = amplifies small sounds. Microwave = very short (micro) waves of energy." },
+    { emoji: "✍️", title: "graph = Write / Record", fact: "Graph means WRITE or RECORD. Autograph = your own signature. Photograph = image written with light. Paragraph = a written section of text." },
+    { emoji: "🤖", title: "auto = Self", fact: "Auto means SELF. Autobiography = a story you write about yourself. Automatic = works by itself. Automobile = a vehicle that moves on its own." },
+    { emoji: "🔊", title: "phon = Sound / Voice", fact: "Phon means SOUND or VOICE. Microphone = makes small sounds louder. Phonics = learning the sounds of letters. Symphony = beautiful sounds played together." },
+    { emoji: "🌡️", title: "therm = Heat", fact: "Therm means HEAT. Thermometer = instrument that measures heat (temperature). Thermostat = device that controls how warm a room gets. Thermos = keeps drinks hot." },
+    { emoji: "⏱️", title: "chron = Time", fact: "Chron means TIME. Chronological = arranged in order of time. Chronicle = a record of events over time. Synchronize = make things happen at the same time." },
+    { emoji: "⭐", title: "astro / aster = Star", fact: "Astro/aster means STAR. Astronomy = the study of stars and space. Astronaut = a 'star sailor' who travels to space. Asteroid = a rocky 'star-shaped' object in space." },
+    { emoji: "🗳️", title: "demo = People", fact: "Demo means PEOPLE. Democracy = government ruled by the people. Demographics = facts and data about groups of people. Epidemic = disease spreading among people." },
+    { emoji: "🔢", title: "poly = Many  |  mono = One", fact: "Poly means MANY: polygon = many-sided shape, polyglot = speaks many languages. Mono means ONE: monotone = one flat tone, monologue = one person speaking." },
+    { emoji: "🔍", title: "scope = Look At / Examine", fact: "Scope means LOOK AT or EXAMINE. Telescope = look at things far away. Microscope = look at tiny things. Stethoscope = listen to (examine) the chest." },
   ],
 
   "lang-latin-roots": [
