@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { Sparkles, Home, Flame, Star, BookOpenCheck, Globe2, FlaskConical, Calculator, Landmark, Trophy, GraduationCap, BookA, UserRound, Map } from "lucide-react";
+import { Sparkles, Home, Flame, Star, BookOpenCheck, Globe2, FlaskConical, Calculator, Landmark, Trophy, GraduationCap, BookA, UserRound, Map, Crown, Languages, ChevronDown } from "lucide-react";
 import { useLevel, useProgress, useSetLevel } from "@/lib/brainy-hooks";
 import { LEVELS, type Level } from "@/lib/brainy-data";
 import { cn } from "@/lib/utils";
@@ -14,6 +15,8 @@ const NAV_ITEMS = [
   { to: "/history", label: "History", icon: Landmark },
   { to: "/geography", label: "Geography", icon: Globe2 },
   { to: "/states", label: "States & Capitals", icon: Map },
+  { to: "/presidents", label: "Presidents", icon: Crown },
+  { to: "/language", label: "Language Arts", icon: Languages },
   { to: "/reading", label: "Sight Words", icon: BookA, levels: ["kindergarten"] as Level[] },
   { to: "/daily", label: "Daily Challenge", icon: Trophy },
   { to: "/progress", label: "My Progress", icon: BookOpenCheck },
@@ -64,6 +67,13 @@ export default function Layout() {
   const stars = progress?.totalStars ?? 0;
   const streak = progress?.streakDays ?? 0;
 
+  const [navOpen, setNavOpen] = useState(false);
+  const isHome = location.pathname === "/";
+  const navCollapsed = !isHome && !navOpen;
+
+  // Collapse nav on every navigation
+  useEffect(() => { setNavOpen(false); }, [location.pathname]);
+
   return (
     <div className="text-foreground flex flex-col min-h-svh">
       <header className="border-b sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-background/70 bg-background/85">
@@ -106,35 +116,67 @@ export default function Layout() {
           </div>
         </div>
 
-        <nav aria-label="Primary" className="border-t bg-background/60">
-          <div className="mx-auto w-full max-w-7xl px-2 md:px-6">
-            <ul className="flex flex-wrap gap-1 py-2 overflow-x-auto">
-              {NAV_ITEMS.filter((item) => !item.levels || item.levels.includes(level)).map((item) => {
-                const Icon = item.icon;
-                return (
-                  <li key={item.to}>
-                    <NavLink
-                      to={item.to}
-                      end={item.end}
-                      className={({ isActive }) =>
-                        cn(
-                          "inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold transition-all",
-                          "hover:bg-white/70 hover:shadow-sm",
-                          isActive
-                            ? "bg-white text-primary shadow-sm ring-2 ring-primary/30"
-                            : "text-muted-foreground",
-                        )
-                      }
-                    >
-                      <Icon className="size-4" />
-                      <span>{item.label}</span>
-                    </NavLink>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </nav>
+        {/* Nav — collapses on any non-home page, expands on hover/tap */}
+        <div
+          onMouseEnter={() => setNavOpen(true)}
+          onMouseLeave={() => setNavOpen(false)}
+        >
+          {/* Animated nav body using grid-template-rows trick */}
+          <nav
+            aria-label="Primary"
+            className="bg-background/60 grid overflow-hidden"
+            style={{
+              gridTemplateRows: navCollapsed ? "0fr" : "1fr",
+              transition: "grid-template-rows 0.25s ease",
+            }}
+          >
+            <div className="min-h-0 overflow-hidden">
+              <div className="border-t">
+                <div className="mx-auto w-full max-w-7xl px-2 md:px-6">
+                  <ul className="flex flex-wrap gap-1 py-2 overflow-x-auto">
+                    {NAV_ITEMS.filter((item) => !item.levels || item.levels.includes(level)).map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <li key={item.to}>
+                          <NavLink
+                            to={item.to}
+                            end={item.end}
+                            className={({ isActive }) =>
+                              cn(
+                                "inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold transition-all",
+                                "hover:bg-white/70 hover:shadow-sm",
+                                isActive
+                                  ? "bg-white text-primary shadow-sm ring-2 ring-primary/30"
+                                  : "text-muted-foreground",
+                              )
+                            }
+                          >
+                            <Icon className="size-4" />
+                            <span>{item.label}</span>
+                          </NavLink>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+          {/* Collapse handle — visible only when nav is collapsed */}
+          <button
+            aria-label="Show navigation"
+            onClick={() => setNavOpen((o) => !o)}
+            className={cn(
+              "w-full border-t flex items-center justify-center gap-1.5 py-1 text-[11px] text-muted-foreground/60 hover:text-muted-foreground transition-all duration-200",
+              navCollapsed ? "opacity-100" : "opacity-0 pointer-events-none h-0 py-0",
+            )}
+          >
+            <ChevronDown className="size-3" />
+            <span>Subjects</span>
+            <ChevronDown className="size-3" />
+          </button>
+        </div>
       </header>
 
       <main
