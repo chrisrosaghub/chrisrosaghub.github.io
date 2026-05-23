@@ -68,11 +68,19 @@ export default function Layout() {
   const streak = progress?.streakDays ?? 0;
 
   const [navOpen, setNavOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const isHome = location.pathname === "/";
-  const navCollapsed = !isHome && !navOpen;
+  const navCollapsed = (scrolled || !isHome) && !navOpen;
 
   // Collapse nav on every navigation
   useEffect(() => { setNavOpen(false); }, [location.pathname]);
+
+  // Collapse nav when user scrolls down
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <div className="text-foreground flex flex-col min-h-svh">
