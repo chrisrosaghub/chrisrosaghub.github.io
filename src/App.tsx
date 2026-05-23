@@ -19,6 +19,9 @@ import { AppErrorBoundary } from "./components/system/AppErrorBoundary";
 // NOTE(ai): DO NOT REMOVE — (ROUTER BASE) keep this or deep links for playback under /<id>/ in bizchat break.
 function getBase(pathname: string): string {
   const parts = pathname.split("/").filter(Boolean);
+  // Only treat first segment as base when: trailing slash (subdirectory load) or multiple segments (deep link in subdir).
+  // Single segment without trailing slash means it's a route on root deployment (e.g. /presidents after SPA redirect).
+  if (parts.length <= 1 && !pathname.endsWith('/')) return '/';
   return parts.length ? `/${parts[0]}/` : "/";
 }
 // NOTE(ai): DO NOT REMOVE - used by Router
