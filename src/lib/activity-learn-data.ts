@@ -690,7 +690,11 @@ export const ACTIVITY_LEARN_DATA: Record<string, { emoji: string; title: string;
     { emoji: "📅", title: "pre- = Before", fact: "pre- means BEFORE. Preschool = school before kindergarten. Preheat = heat before cooking. Preview = see before the official showing." },
     { emoji: "🚫", title: "dis- = Not / Opposite", fact: "dis- means NOT or the OPPOSITE. Dislike = not like. Disagree = not agree. Disconnect = not connected. Dishonest = not honest." },
     { emoji: "⚠️", title: "mis- = Wrongly", fact: "mis- means WRONGLY or BADLY. Misspell = spell wrongly. Misread = read incorrectly. Misbehave = behave badly. Mistake = an action done wrong." },
-    { emoji: "💡", title: "Why Prefixes Matter", fact: "Knowing one prefix unlocks dozens of words! If you know un- means NOT, you can figure out: unhelpful, unfinished, unexpected, unnecessary." },
+    { emoji: "�", title: "super- = Above / Beyond", fact: "super- means ABOVE or BEYOND normal. Superhero = hero with abilities beyond humans. Supernatural = beyond nature. Supermarket = bigger than a regular market." },
+    { emoji: "🚇", title: "sub- = Under / Below", fact: "sub- means UNDER or BELOW. Submarine = vessel that travels under the water. Subway = train that runs below the street. Subzero = below zero degrees." },
+    { emoji: "🌏", title: "inter- = Between / Among", fact: "inter- means BETWEEN or AMONG. International = between nations. Interact = act between each other. Internet = a network connecting between computers." },
+    { emoji: "🚫", title: "non- = Not / No", fact: "non- means NOT or NO. Nonfiction = not fiction (real facts). Nonstop = without stopping. Nonprofit = not for making money." },
+    { emoji: "➡️", title: "trans- = Across / Through", fact: "trans- means ACROSS or THROUGH. Transport = carry across. Transform = change completely. Translate = carry words across languages." },
   ],
 
   "lang-suffixes": [
@@ -730,6 +734,13 @@ export const ACTIVITY_LEARN_DATA: Record<string, { emoji: string; title: string;
     { emoji: "🗣️", title: "dict = Say / Speak", fact: "Dict means SAY or SPEAK. Dictionary = book of word meanings. Dictate = speak aloud for someone to write. Predict = say what will happen before it does." },
     { emoji: "👂", title: "aud = Hear", fact: "Aud means HEAR. Audience = people who listen and watch. Auditorium = a large hall to hear performances. Audio = relating to sound." },
     { emoji: "👁️", title: "vis / vid = See", fact: "Vis/vid means SEE. Visible = able to be seen. Vision = the ability to see. Video = something you watch. Evidence = what you can see that proves something." },
+    { emoji: "🏗️", title: "struct = Build", fact: "Struct means BUILD. Construct = build together. Structure = something that has been built. Instruct = build knowledge in someone (teach them)." },
+    { emoji: "🔷", title: "form = Shape", fact: "Form means SHAPE. Transform = change shape completely. Uniform = one shape/style for everyone. Reform = reshape or make better. Formula = a set form." },
+    { emoji: "🔍", title: "spec / spect = Look / See", fact: "Spec/spect means LOOK or SEE. Inspect = look closely at something. Spectator = a person who looks on. Spectacular = so amazing it's worth seeing!" },
+    { emoji: "🌍", title: "terr = Earth / Land", fact: "Terr means EARTH or LAND. Territory = an area of land. Terrain = the type of land in a region. Terrarium = a glass container with soil and living things." },
+    { emoji: "🧭", title: "duc / duct = Lead / Guide", fact: "Duc/duct means LEAD or GUIDE. Conduct = lead together. Educate = lead knowledge out (teach). Introduce = lead someone into a new situation." },
+    { emoji: "📨", title: "mit / miss = Send", fact: "Mit/miss means SEND. Transmit = send across. Dismiss = send away. Mission = a task you are sent to do. Admit = send in (allow to enter)." },
+    { emoji: "⏳", title: "temp = Time", fact: "Temp means TIME. Temporary = lasting only a short time. Contemporary = existing at the same time. Tempo = the timing and speed of music." },
   ],
 
   "lang-homophones": [
