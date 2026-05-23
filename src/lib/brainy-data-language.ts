@@ -1,0 +1,191 @@
+/**
+ * Language Arts — activity data.
+ * All activities available at every grade level (allLevels: true).
+ * Topics: synonyms, antonyms, prefixes, suffixes, Greek roots, Latin roots, homophones.
+ */
+import type { Activity } from "@/lib/brainy-data";
+
+export const LANGUAGE_ACTIVITIES: Activity[] = [
+
+  // ── Synonyms ─────────────────────────────────────────────────────────────
+  {
+    id: "lang-synonyms",
+    subjectId: "language",
+    title: "Synonyms",
+    description: "Find words that share the same meaning.",
+    emoji: "🟰",
+    allLevels: true,
+    questions: [
+      { id: "q1", prompt: "Which word means the same as \"happy\"?", choices: ["angry", "joyful", "tired", "slow"], answer: 1, explanation: "Joyful is a synonym for happy — both mean feeling great!" },
+      { id: "q2", prompt: "Which word is a synonym for \"big\"?", choices: ["tiny", "quick", "large", "cold"], answer: 2, explanation: "Large and big both describe something of great size." },
+      { id: "q3", prompt: "Which word means the same as \"fast\"?", choices: ["slow", "quick", "loud", "calm"], answer: 1, explanation: "Quick is a synonym for fast — both mean moving with speed." },
+      { id: "q4", prompt: "Which word is a synonym for \"angry\"?", choices: ["happy", "mad", "tired", "sleepy"], answer: 1, explanation: "Mad and angry both describe feeling upset or furious." },
+      { id: "q5", prompt: "Which word means the same as \"tired\"?", choices: ["bright", "cold", "sleepy", "loud"], answer: 2, explanation: "Sleepy is a synonym for tired — both mean needing rest." },
+      { id: "q6", prompt: "Which word is a synonym for \"begin\"?", choices: ["end", "wait", "start", "stop"], answer: 2, explanation: "Start and begin both mean to get going on something." },
+      { id: "q7", prompt: "\"Difficult\" means the same as...", choices: ["easy", "hard", "soft", "slow"], answer: 1, explanation: "Hard and difficult both describe something that is not easy to do." },
+      { id: "q8", prompt: "Which word is a synonym for \"small\"?", choices: ["tall", "round", "tiny", "loud"], answer: 2, explanation: "Tiny is a synonym for small — both describe something not very big." },
+      { id: "q9", prompt: "\"Beautiful\" means the same as...", choices: ["ugly", "boring", "quiet", "pretty"], answer: 3, explanation: "Pretty is a synonym for beautiful — both mean pleasing to look at." },
+      { id: "q10", prompt: "Which word means the same as \"friend\"?", choices: ["bully", "stranger", "enemy", "pal"], answer: 3, explanation: "Pal is a synonym for friend — both mean someone you like and trust." },
+      { id: "q11", prompt: "Which word is a synonym for \"shout\"?", choices: ["whisper", "yell", "hum", "mumble"], answer: 1, explanation: "Yell and shout both mean to speak in a very loud voice." },
+      { id: "q12", prompt: "\"Scared\" means the same as...", choices: ["brave", "bored", "afraid", "happy"], answer: 2, explanation: "Afraid is a synonym for scared — both mean feeling fear." },
+      { id: "q13", prompt: "Which word is a synonym for \"reply\"?", choices: ["question", "listen", "answer", "speak"], answer: 2, explanation: "Answer and reply both mean to respond to what someone said." },
+      { id: "q14", prompt: "\"Unhappy\" means the same as...", choices: ["cheerful", "excited", "grumpy", "sad"], answer: 3, explanation: "Sad is a synonym for unhappy — both mean not feeling good inside." },
+    ],
+  },
+
+  // ── Antonyms ──────────────────────────────────────────────────────────────
+  {
+    id: "lang-antonyms",
+    subjectId: "language",
+    title: "Antonyms",
+    description: "Match words to their exact opposite.",
+    emoji: "↔️",
+    allLevels: true,
+    questions: [
+      { id: "q1", prompt: "What is the opposite of \"hot\"?", choices: ["warm", "cold", "bright", "fast"], answer: 1, explanation: "Cold is the antonym of hot — they are complete opposites in temperature." },
+      { id: "q2", prompt: "What is the opposite of \"happy\"?", choices: ["excited", "tired", "sad", "joyful"], answer: 2, explanation: "Sad is the antonym of happy — one is a good feeling, the other is not." },
+      { id: "q3", prompt: "What is the opposite of \"fast\"?", choices: ["quick", "large", "slow", "rough"], answer: 2, explanation: "Slow is the antonym of fast — they describe opposite speeds." },
+      { id: "q4", prompt: "What is the opposite of \"day\"?", choices: ["sun", "bright", "morning", "night"], answer: 3, explanation: "Night is the antonym of day — when the sun is down, night begins." },
+      { id: "q5", prompt: "What is the opposite of \"up\"?", choices: ["over", "down", "high", "across"], answer: 1, explanation: "Down is the antonym of up — they are opposite directions." },
+      { id: "q6", prompt: "What is the antonym of \"open\"?", choices: ["wide", "large", "locked", "closed"], answer: 3, explanation: "Closed is the antonym of open — a door is either open or closed." },
+      { id: "q7", prompt: "What is the opposite of \"push\"?", choices: ["move", "shove", "carry", "pull"], answer: 3, explanation: "Pull is the antonym of push — you pull a door open and push it closed." },
+      { id: "q8", prompt: "What is the opposite of \"quiet\"?", choices: ["calm", "peaceful", "loud", "soft"], answer: 2, explanation: "Loud is the antonym of quiet — a library is quiet; a concert is loud." },
+      { id: "q9", prompt: "What is the antonym of \"heavy\"?", choices: ["large", "solid", "light", "full"], answer: 2, explanation: "Light is the antonym of heavy — a feather is light; a rock is heavy." },
+      { id: "q10", prompt: "What is the opposite of \"friend\"?", choices: ["stranger", "enemy", "partner", "buddy"], answer: 1, explanation: "Enemy is the antonym of friend — one is someone you care about, the other is not." },
+      { id: "q11", prompt: "What is the opposite of \"begin\"?", choices: ["pause", "wait", "start", "end"], answer: 3, explanation: "End is the antonym of begin — a story begins at the start and ends at the finish." },
+      { id: "q12", prompt: "What is the antonym of \"always\"?", choices: ["sometimes", "often", "never", "usually"], answer: 2, explanation: "Never is the antonym of always — always means every time; never means not one time." },
+      { id: "q13", prompt: "What is the opposite of \"inside\"?", choices: ["between", "around", "across", "outside"], answer: 3, explanation: "Outside is the antonym of inside — you are inside your house or outside of it." },
+      { id: "q14", prompt: "What is the antonym of \"brave\"?", choices: ["strong", "cowardly", "careful", "calm"], answer: 1, explanation: "Cowardly is the antonym of brave — brave means facing your fears; cowardly means running away from them." },
+    ],
+  },
+
+  // ── Prefixes ──────────────────────────────────────────────────────────────
+  {
+    id: "lang-prefixes",
+    subjectId: "language",
+    title: "Prefixes",
+    description: "Discover how prefixes change the meaning of words.",
+    emoji: "⬅️",
+    allLevels: true,
+    questions: [
+      { id: "q1", prompt: "The prefix \"un-\" means...", choices: ["again", "before", "not", "wrong"], answer: 2, explanation: "Un- means NOT. Unhappy = not happy. Unkind = not kind. Unfair = not fair." },
+      { id: "q2", prompt: "\"Unhappy\" means...", choices: ["very happy", "not happy", "happy again", "happy before"], answer: 1, explanation: "The prefix un- changes happy to its opposite: NOT happy." },
+      { id: "q3", prompt: "The prefix \"re-\" means...", choices: ["before", "not", "again", "under"], answer: 2, explanation: "Re- means AGAIN. Redo = do again. Replay = play again. Reread = read again." },
+      { id: "q4", prompt: "If you \"redo\" your homework, you...", choices: ["start it for the first time", "do it again", "skip it", "do it before school"], answer: 1, explanation: "Re- means again, so redo means to do something one more time." },
+      { id: "q5", prompt: "The prefix \"pre-\" means...", choices: ["after", "not", "again", "before"], answer: 3, explanation: "Pre- means BEFORE. Preview = see before. Preheat = heat before. Preschool = school before kindergarten." },
+      { id: "q6", prompt: "\"Preheat the oven\" means you heat the oven...", choices: ["after cooking", "without electricity", "before cooking", "while eating"], answer: 2, explanation: "Pre- means before, so preheat means to heat before you start cooking." },
+      { id: "q7", prompt: "The prefix \"dis-\" means...", choices: ["again", "not or opposite", "before", "under"], answer: 1, explanation: "Dis- means NOT or the OPPOSITE. Dislike = not like. Disagree = not agree. Dishonest = not honest." },
+      { id: "q8", prompt: "\"Disagree\" means...", choices: ["agree strongly", "agree again", "not agree", "agree before"], answer: 2, explanation: "Dis- flips the meaning: disagree means to NOT agree with someone." },
+      { id: "q9", prompt: "The prefix \"mis-\" means...", choices: ["wrongly or badly", "before", "again", "under"], answer: 0, explanation: "Mis- means WRONGLY. Misspell = spell wrongly. Misread = read wrongly. Mistake = a wrong action." },
+      { id: "q10", prompt: "If you \"misread\" the instructions, you...", choices: ["read them perfectly", "read them again", "read them before class", "read them incorrectly"], answer: 3, explanation: "Mis- means wrongly, so misread means you did not read it correctly." },
+      { id: "q11", prompt: "Which prefix would change \"kind\" to mean \"not kind\"?", choices: ["re-", "pre-", "un-", "mis-"], answer: 2, explanation: "Un- + kind = unkind. Un- is the most common prefix meaning NOT." },
+      { id: "q12", prompt: "Which word uses the prefix \"over-\" to mean \"too much\"?", choices: ["undo", "preview", "overflow", "misplace"], answer: 2, explanation: "Over- means too much. Overflow = flow over the top. Overdo = do too much." },
+      { id: "q13", prompt: "\"Preschool\" is the school you attend...", choices: ["after first grade", "before kindergarten", "on weekends", "in middle school"], answer: 1, explanation: "Pre- means before, so preschool is the school you attend BEFORE kindergarten." },
+      { id: "q14", prompt: "Which prefix means \"again\"?", choices: ["un-", "dis-", "pre-", "re-"], answer: 3, explanation: "Re- means again: redo, replay, rewrite, reread — all done a second time." },
+    ],
+  },
+
+  // ── Suffixes ──────────────────────────────────────────────────────────────
+  {
+    id: "lang-suffixes",
+    subjectId: "language",
+    title: "Suffixes",
+    description: "See how suffixes attached to the end of words change their meaning.",
+    emoji: "➡️",
+    allLevels: true,
+    questions: [
+      { id: "q1", prompt: "The suffix \"-ful\" means...", choices: ["without", "full of", "the act of", "one who"], answer: 1, explanation: "-ful means FULL OF. Joyful = full of joy. Careful = full of care. Helpful = full of help." },
+      { id: "q2", prompt: "\"Careful\" means...", choices: ["without care", "full of care", "care again", "very caring person"], answer: 1, explanation: "-ful means full of, so careful means full of care — paying close attention." },
+      { id: "q3", prompt: "The suffix \"-less\" means...", choices: ["full of", "again", "without", "like"], answer: 2, explanation: "-less means WITHOUT. Careless = without care. Hopeless = without hope. Useless = without use." },
+      { id: "q4", prompt: "\"Hopeless\" means...", choices: ["full of hope", "hoping again", "without hope", "a hopeful person"], answer: 2, explanation: "-less means without, so hopeless means without any hope." },
+      { id: "q5", prompt: "The suffix \"-ness\" turns an adjective into...", choices: ["a verb (action)", "an adjective (describing word)", "a noun (a thing)", "an adverb (how)"], answer: 2, explanation: "-ness creates a noun from an adjective: happy → happiness, kind → kindness, dark → darkness." },
+      { id: "q6", prompt: "\"Kindness\" comes from the root word...", choices: ["kind", "kin", "king", "kindle"], answer: 0, explanation: "Kind + -ness = kindness. The -ness suffix turns the adjective 'kind' into a noun." },
+      { id: "q7", prompt: "The suffix \"-ly\" tells us...", choices: ["full of", "how something is done", "without", "the most"], answer: 1, explanation: "-ly turns an adjective into an adverb: quick → quickly, slow → slowly, loud → loudly." },
+      { id: "q8", prompt: "\"Quickly\" is formed from \"quick\" + which suffix?", choices: ["-ful", "-less", "-ness", "-ly"], answer: 3, explanation: "Quick + -ly = quickly. The -ly suffix means 'in a way', so quickly means 'in a quick way'." },
+      { id: "q9", prompt: "The suffix \"-er\" is used to...", choices: ["make a noun", "compare two things", "mean without", "mean again"], answer: 1, explanation: "-er compares two things: tall → taller (than someone else), fast → faster." },
+      { id: "q10", prompt: "The suffix \"-est\" means...", choices: ["more than one other", "less than all", "the most of all", "done again"], answer: 2, explanation: "-est means THE MOST of all: tallest = the most tall, fastest = the most fast." },
+      { id: "q11", prompt: "The suffix \"-able\" means...", choices: ["full of", "without", "can be done", "the act of"], answer: 2, explanation: "-able means CAN BE DONE. Readable = can be read. Lovable = can be loved. Washable = can be washed." },
+      { id: "q12", prompt: "\"Enjoyable\" means...", choices: ["without enjoyment", "enjoyed again", "able to be enjoyed", "full of enjoyment"], answer: 2, explanation: "Enjoy + -able = enjoyable. Something enjoyable is something you can enjoy!" },
+      { id: "q13", prompt: "Which word uses the suffix \"-ment\" to mean \"the result of\"?", choices: ["quickly", "careless", "movement", "joyful"], answer: 2, explanation: "Move + -ment = movement. -ment creates a noun showing the result: excitement, payment, enjoyment." },
+      { id: "q14", prompt: "Which suffix would you add to \"sad\" to create the noun \"sadness\"?", choices: ["-ful", "-less", "-ness", "-able"], answer: 2, explanation: "Sad + -ness = sadness. The -ness suffix turns describing words into naming words (nouns)." },
+    ],
+  },
+
+  // ── Greek Roots ───────────────────────────────────────────────────────────
+  {
+    id: "lang-greek-roots",
+    subjectId: "language",
+    title: "Greek Word Roots",
+    description: "Unlock the meaning of hundreds of words by learning Greek roots.",
+    emoji: "🏛️",
+    allLevels: true,
+    questions: [
+      { id: "q1", prompt: "The Greek root \"bio\" means...", choices: ["earth", "light", "life", "water"], answer: 2, explanation: "Bio = LIFE. Biology = study of life. Biography = the story of someone's life." },
+      { id: "q2", prompt: "\"Biology\" is the study of...", choices: ["rocks and earth", "stars and planets", "living things", "weather"], answer: 2, explanation: "Bio (life) + -ology (study of) = biology, the science of all living things." },
+      { id: "q3", prompt: "The Greek root \"geo\" means...", choices: ["water", "earth", "far", "small"], answer: 1, explanation: "Geo = EARTH. Geography = writing about earth. Geology = study of the earth. Geometry = measuring earth." },
+      { id: "q4", prompt: "The Greek root \"hydro\" means...", choices: ["fire", "earth", "air", "water"], answer: 3, explanation: "Hydro = WATER. Hydrogen is part of water (H₂O). Hydroplane = skim over water." },
+      { id: "q5", prompt: "The Greek root \"photo\" means...", choices: ["sound", "light", "write", "earth"], answer: 1, explanation: "Photo = LIGHT. Photography = writing with light. Photosynthesis = plants using light to make food." },
+      { id: "q6", prompt: "A \"photograph\" captures an image using...", choices: ["ink", "sound", "light", "water"], answer: 2, explanation: "Photo (light) + graph (write/record) = photograph. A camera captures light to make an image." },
+      { id: "q7", prompt: "The Greek root \"tele\" means...", choices: ["small", "sound", "far/distance", "write"], answer: 2, explanation: "Tele = FAR or DISTANCE. Telephone = sound from far away. Telescope = see far away. Television = see from far." },
+      { id: "q8", prompt: "A \"telescope\" helps you see...", choices: ["tiny objects", "inside your body", "things that are far away", "underwater"], answer: 2, explanation: "Tele (far) + scope (look at) = telescope. It lets you see distant stars and planets!" },
+      { id: "q9", prompt: "The Greek root \"micro\" means...", choices: ["large", "far", "small", "many"], answer: 2, explanation: "Micro = SMALL. Microscope = tool to see very small things. Microphone = amplifies tiny sounds." },
+      { id: "q10", prompt: "A \"microscope\" is used to see...", choices: ["distant planets", "the weather", "very small things", "inside the human body"], answer: 2, explanation: "Micro (small) + scope (look at) = microscope. Scientists use it to see bacteria and cells." },
+      { id: "q11", prompt: "The Greek root \"-ology\" means...", choices: ["the love of", "the fear of", "the study of", "the opposite of"], answer: 2, explanation: "-ology = STUDY OF. Biology, geology, zoology, psychology — all are studies of something." },
+      { id: "q12", prompt: "The Greek root \"graph\" means...", choices: ["see/look", "water", "write/record", "earth"], answer: 2, explanation: "Graph = WRITE or RECORD. Paragraph = written beside. Photograph = write with light. Autograph = self-writing." },
+      { id: "q13", prompt: "The Greek root \"auto\" means...", choices: ["self", "again", "many", "around"], answer: 0, explanation: "Auto = SELF. Autobiography = story you write about yourself. Automatic = works by itself." },
+      { id: "q14", prompt: "\"Microphone\" comes from the Greek roots micro (small) and phone (sound/voice). A microphone...", choices: ["makes sounds smaller", "makes small sounds louder", "records video", "measures distance"], answer: 1, explanation: "A microphone captures (even small/quiet) sounds and makes them loud enough for everyone to hear." },
+    ],
+  },
+
+  // ── Latin Roots ───────────────────────────────────────────────────────────
+  {
+    id: "lang-latin-roots",
+    subjectId: "language",
+    title: "Latin Word Roots",
+    description: "Learn Latin roots to decode and understand thousands of English words.",
+    emoji: "📜",
+    allLevels: true,
+    questions: [
+      { id: "q1", prompt: "The Latin root \"aqua\" means...", choices: ["fire", "earth", "air", "water"], answer: 3, explanation: "Aqua = WATER. Aquarium = a tank of water. Aquatic = living in water. Aqueduct = channel for water." },
+      { id: "q2", prompt: "An \"aquarium\" is a place that holds...", choices: ["birds", "land animals", "fish and water creatures", "rocks and minerals"], answer: 2, explanation: "Aqua (water) + arium (place for) = aquarium. It's filled with water and aquatic animals." },
+      { id: "q3", prompt: "The Latin root \"port\" means...", choices: ["sail", "carry", "open", "build"], answer: 1, explanation: "Port = CARRY. Transport = carry across. Portable = able to be carried. Import = carry into a country." },
+      { id: "q4", prompt: "\"Portable\" means...", choices: ["able to be built", "able to be seen", "able to be carried", "able to be heard"], answer: 2, explanation: "Port (carry) + -able (can be done) = portable. A portable device can be carried anywhere." },
+      { id: "q5", prompt: "The Latin root \"rupt\" means...", choices: ["build", "grow", "break", "flow"], answer: 2, explanation: "Rupt = BREAK. Erupt = break out (like a volcano). Interrupt = break into a conversation. Corrupt = break down." },
+      { id: "q6", prompt: "When a volcano \"erupts,\" it...", choices: ["goes dormant", "fills with water", "breaks open and releases lava", "grows taller"], answer: 2, explanation: "E + rupt (break) = erupt. The volcano 'breaks' open and lava bursts out." },
+      { id: "q7", prompt: "The Latin root \"dict\" means...", choices: ["hear", "see", "write", "say/speak"], answer: 3, explanation: "Dict = SAY or SPEAK. Dictionary = a book of words and their meanings. Predict = say before. Dictate = speak aloud." },
+      { id: "q8", prompt: "A \"dictionary\" is a book that...", choices: ["tells stories", "shows maps", "lists words and their meanings", "tracks the weather"], answer: 2, explanation: "Dict (say/word) + -ionary (relating to) = dictionary, a reference book of words." },
+      { id: "q9", prompt: "The Latin root \"aud\" means...", choices: ["see", "speak", "hear", "carry"], answer: 2, explanation: "Aud = HEAR. Audience = people listening. Auditorium = place to hear performances. Audio = relating to sound." },
+      { id: "q10", prompt: "The \"audience\" at a performance is there to...", choices: ["perform on stage", "listen and watch", "write reviews", "sell tickets"], answer: 1, explanation: "Aud (hear) + -ience = audience. The audience is the group of people who listen and watch." },
+      { id: "q11", prompt: "The Latin root \"vis\" (or \"vid\") means...", choices: ["hear", "feel", "smell", "see"], answer: 3, explanation: "Vis/vid = SEE. Visible = able to be seen. Video = something you see. Vision = the ability to see." },
+      { id: "q12", prompt: "Something that is \"visible\" can be...", choices: ["heard", "smelled", "touched", "seen"], answer: 3, explanation: "Vis (see) + -ible (able to) = visible. If it's visible, your eyes can see it." },
+      { id: "q13", prompt: "The Latin root \"scrib\" or \"script\" means...", choices: ["speak", "write", "build", "move"], answer: 1, explanation: "Scrib/script = WRITE. Describe = write about. Manuscript = hand-written document. Inscription = written words." },
+      { id: "q14", prompt: "\"Predict\" uses the Latin root \"dict\" (say). \"Predict\" means to...", choices: ["say it again", "say it wrong", "say what will happen before it does", "refuse to say"], answer: 2, explanation: "Pre (before) + dict (say) = predict. To predict is to say what you think will happen BEFORE it does." },
+    ],
+  },
+
+  // ── Homophones ────────────────────────────────────────────────────────────
+  {
+    id: "lang-homophones",
+    subjectId: "language",
+    title: "Homophones",
+    description: "Words that sound the same but have different spellings and meanings.",
+    emoji: "👂",
+    allLevels: true,
+    questions: [
+      { id: "q1", prompt: "Which word completes this sentence? \"There ___ four apples on the table.\" (to exist/be)", choices: ["are", "our", "or", "oar"], answer: 0, explanation: "'Are' shows existence. 'Our' means belonging to us. They sound different but 'are' fits here." },
+      { id: "q2", prompt: "\"Two,\" \"to,\" and \"too\" all sound alike. \"I have ___ cats.\" (the number)", choices: ["to", "too", "two", "tu"], answer: 2, explanation: "'Two' = the number 2. 'To' = a direction. 'Too' = also or very (like 'too hot')." },
+      { id: "q3", prompt: "\"The book is over _____.\" (that place, not this place)", choices: ["their", "they're", "there", "thear"], answer: 2, explanation: "'There' points to a place. 'Their' shows ownership. 'They're' = they are." },
+      { id: "q4", prompt: "\"_____ going to the park!\" (they are)", choices: ["There", "Their", "They're", "Thare"], answer: 2, explanation: "'They're' is a contraction of 'they are'. Always read contractions fully to check." },
+      { id: "q5", prompt: "\"I can _____ the music.\" (using your ears)", choices: ["here", "hear", "heer", "heir"], answer: 1, explanation: "'Hear' uses your ears to receive sound. 'Here' is a place (come here, I'm here)." },
+      { id: "q6", prompt: "\"She is coming, _____!\" (also)", choices: ["two", "to", "too", "tew"], answer: 2, explanation: "'Too' means also or very ('me too!', 'too loud'). 'To' shows direction ('I went to school')." },
+      { id: "q7", prompt: "\"Please _____ your name on the paper.\" (use a pen/pencil)", choices: ["right", "wright", "rite", "write"], answer: 3, explanation: "'Write' = put words on paper. 'Right' = correct or a direction. They sound identical!" },
+      { id: "q8", prompt: "\"I _____ the answer to that question.\" (to be aware of)", choices: ["no", "now", "know", "new"], answer: 2, explanation: "'Know' = to have knowledge. 'No' = the opposite of yes. 'Now' = this moment." },
+      { id: "q9", prompt: "\"The team _____ the championship game!\" (past tense of win)", choices: ["one", "wan", "wun", "won"], answer: 3, explanation: "'Won' is the past tense of win. 'One' is the number 1. They are homophones!" },
+      { id: "q10", prompt: "\"Can you _____ me this book at the store?\" (purchase)", choices: ["by", "bye", "buy", "bi"], answer: 2, explanation: "'Buy' = to purchase something. 'By' = near or by whom. 'Bye' = goodbye. All three sound the same!" },
+      { id: "q11", prompt: "\"A _____ of socks\" (a set of two matching items)", choices: ["pear", "pare", "pair", "pier"], answer: 2, explanation: "'Pair' = two matching items. 'Pear' = a fruit. They sound identical but mean completely different things." },
+      { id: "q12", prompt: "\"I feel _____ this week.\" (not strong or energetic)", choices: ["week", "wick", "weak", "weke"], answer: 2, explanation: "'Weak' = not strong. 'Week' = seven days. These homophones are spelled differently but sound the same." },
+      { id: "q13", prompt: "\"The _____ in the sky is very bright today.\" (our star)", choices: ["son", "sen", "sun", "sone"], answer: 2, explanation: "'Sun' = the star our Earth orbits. 'Son' = a male child. They are homophones — same sound, different meanings." },
+      { id: "q14", prompt: "\"I _____ my shoe.\" (past tense of lose)", choices: ["lost", "lossed", "losed", "lust"], answer: 0, explanation: "Lost is the past tense of lose. This tests irregular past tense, not a true homophone — but tests careful word choice." },
+    ],
+  },
+];

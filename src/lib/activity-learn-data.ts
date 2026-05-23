@@ -664,7 +664,75 @@ export const ACTIVITY_LEARN_DATA: Record<string, { emoji: string; title: string;
   ...SCIENCE_LEARN_ITEMS,
   ...EXTRA,
 
-  // ─── AMERICAN PRESIDENTS ──────────────────────────────────────────────────
+  // ─── LANGUAGE ARTS ────────────────────────────────────────────────────────
+  "lang-synonyms": [
+    { emoji: "🟰", title: "What Is a Synonym?", fact: "A synonym is a word that means the same (or nearly the same) as another word. Happy and joyful are synonyms. Big and large are synonyms." },
+    { emoji: "😊", title: "Synonyms for Happy", fact: "Happy, joyful, glad, cheerful, delighted, and pleased all mean a good, positive feeling. Use different ones to make your writing more interesting!" },
+    { emoji: "🐢", title: "Synonyms for Slow", fact: "Slow, sluggish, gradual, and lazy can all mean moving without much speed. A turtle is slow. A snail is sluggish." },
+    { emoji: "📣", title: "Synonyms for Big", fact: "Big, large, huge, enormous, gigantic, and massive all mean having a great size. An elephant is big. A mountain is enormous." },
+    { emoji: "✍️", title: "Using Synonyms in Writing", fact: "Instead of saying 'the big, big dog,' try 'the enormous dog.' Synonyms help you avoid repeating the same word over and over." },
+    { emoji: "📚", title: "The Thesaurus", fact: "A thesaurus is a special book (or online tool) that lists synonyms for any word you look up. Writers use it all the time!" },
+  ],
+
+  "lang-antonyms": [
+    { emoji: "↔️", title: "What Is an Antonym?", fact: "An antonym is a word that means the OPPOSITE of another word. Hot and cold are antonyms. Day and night are antonyms." },
+    { emoji: "🔥❄️", title: "Temperature Opposites", fact: "Hot ↔ Cold. Warm ↔ Cool. These are antonym pairs that describe opposite ends of temperature." },
+    { emoji: "⬆️⬇️", title: "Direction Opposites", fact: "Up ↔ Down. Left ↔ Right. In ↔ Out. North ↔ South. Directions always have an opposite!" },
+    { emoji: "😀😢", title: "Feeling Opposites", fact: "Happy ↔ Sad. Brave ↔ Cowardly. Calm ↔ Anxious. Love ↔ Hate. Feelings come in opposite pairs too." },
+    { emoji: "🌅🌑", title: "More Opposite Pairs", fact: "Day ↔ Night. Light ↔ Dark. Fast ↔ Slow. Always ↔ Never. These common word pairs are classic antonyms." },
+    { emoji: "✍️", title: "Antonyms in Writing", fact: "Antonyms help show contrast in writing. 'She was kind, but he was cruel' uses antonyms to show two opposite personalities." },
+  ],
+
+  "lang-prefixes": [
+    { emoji: "⬅️", title: "What Is a Prefix?", fact: "A prefix is a group of letters added to the BEGINNING of a word to change its meaning. Pre + fix = prefix (fix at the beginning!)." },
+    { emoji: "❌", title: "un- = Not", fact: "un- means NOT. Unhappy = not happy. Unkind = not kind. Unfair = not fair. Unlock = not locked. Add un- to reverse a word's meaning." },
+    { emoji: "🔄", title: "re- = Again", fact: "re- means AGAIN. Redo = do again. Replay = play again. Reread = read again. Rebuild = build again." },
+    { emoji: "📅", title: "pre- = Before", fact: "pre- means BEFORE. Preschool = school before kindergarten. Preheat = heat before cooking. Preview = see before the official showing." },
+    { emoji: "🚫", title: "dis- = Not / Opposite", fact: "dis- means NOT or the OPPOSITE. Dislike = not like. Disagree = not agree. Disconnect = not connected. Dishonest = not honest." },
+    { emoji: "⚠️", title: "mis- = Wrongly", fact: "mis- means WRONGLY or BADLY. Misspell = spell wrongly. Misread = read incorrectly. Misbehave = behave badly. Mistake = an action done wrong." },
+    { emoji: "💡", title: "Why Prefixes Matter", fact: "Knowing one prefix unlocks dozens of words! If you know un- means NOT, you can figure out: unhelpful, unfinished, unexpected, unnecessary." },
+  ],
+
+  "lang-suffixes": [
+    { emoji: "➡️", title: "What Is a Suffix?", fact: "A suffix is a group of letters added to the END of a word to change its meaning or its part of speech (noun, verb, adjective, adverb)." },
+    { emoji: "✨", title: "-ful = Full Of", fact: "-ful means FULL OF. Joyful = full of joy. Colorful = full of color. Helpful = full of help. Powerful = full of power." },
+    { emoji: "🚫", title: "-less = Without", fact: "-less means WITHOUT. Careless = without care. Hopeless = without hope. Sleeveless = without sleeves. Useless = without use." },
+    { emoji: "📦", title: "-ness = State of Being", fact: "-ness turns an adjective into a noun: happy → happiness, kind → kindness, dark → darkness, sad → sadness." },
+    { emoji: "🏃", title: "-ly = In a Way (Adverb)", fact: "-ly turns an adjective into an adverb: quick → quickly, slow → slowly, loud → loudly, careful → carefully." },
+    { emoji: "🏆", title: "-er and -est = Comparing", fact: "-er compares two things (taller, faster, smarter). -est means the most of all (tallest, fastest, smartest of the whole group)." },
+    { emoji: "✅", title: "-able = Can Be Done", fact: "-able means CAN BE DONE. Readable = can be read. Washable = can be washed. Breakable = can be broken. Lovable = can be loved." },
+  ],
+
+  "lang-greek-roots": [
+    { emoji: "🏛️", title: "Greek Roots in English", fact: "Thousands of English words come from Ancient Greek! Once you learn a root, you can unlock the meaning of many words at once." },
+    { emoji: "🌿", title: "bio = Life", fact: "Bio means LIFE. Biology = study of life. Biography = the life story of a person. Antibiotic = medicine that fights living bacteria." },
+    { emoji: "🌍", title: "geo = Earth", fact: "Geo means EARTH. Geography = writing about Earth's features. Geology = study of Earth's rocks. Geometry = measuring Earth (shapes)." },
+    { emoji: "💧", title: "hydro = Water", fact: "Hydro means WATER. Hydrogen = an element in water (H₂O). Hydroelectric = electricity made by water. Hydration = keeping water in your body." },
+    { emoji: "📸", title: "photo = Light", fact: "Photo means LIGHT. Photography = capturing light to make images. Photosynthesis = plants using light to make food." },
+    { emoji: "🔭", title: "tele = Far / Distance", fact: "Tele means FAR or DISTANCE. Telephone = sound from far away. Telescope = tool to see far away. Television = see things from a distance." },
+    { emoji: "🔬", title: "micro = Small", fact: "Micro means SMALL. Microscope = tool to see tiny things. Microphone = amplifies small sounds. Microwave = very short (micro) waves of energy." },
+  ],
+
+  "lang-latin-roots": [
+    { emoji: "📜", title: "Latin Roots in English", fact: "More than half of all English words come from Latin! Latin was the language of the ancient Roman Empire. Learning Latin roots is like having a secret decoder ring." },
+    { emoji: "🌊", title: "aqua = Water", fact: "Aqua means WATER. Aquarium = a tank of water for fish. Aquatic = living in or near water. Aqueduct = an ancient Roman channel for carrying water." },
+    { emoji: "🎒", title: "port = Carry", fact: "Port means CARRY. Portable = able to be carried. Transport = carry across. Import = carry goods into a country. Export = carry goods out of a country." },
+    { emoji: "💥", title: "rupt = Break", fact: "Rupt means BREAK. Erupt = break out (volcano). Interrupt = break into a conversation. Corrupt = break down morally. Disrupt = break apart order." },
+    { emoji: "🗣️", title: "dict = Say / Speak", fact: "Dict means SAY or SPEAK. Dictionary = book of word meanings. Dictate = speak aloud for someone to write. Predict = say what will happen before it does." },
+    { emoji: "👂", title: "aud = Hear", fact: "Aud means HEAR. Audience = people who listen and watch. Auditorium = a large hall to hear performances. Audio = relating to sound." },
+    { emoji: "👁️", title: "vis / vid = See", fact: "Vis/vid means SEE. Visible = able to be seen. Vision = the ability to see. Video = something you watch. Evidence = what you can see that proves something." },
+  ],
+
+  "lang-homophones": [
+    { emoji: "👂", title: "What Are Homophones?", fact: "Homophones are words that SOUND the same when spoken but have different spellings and completely different meanings." },
+    { emoji: "📍", title: "there / their / they're", fact: "THERE = a place ('over there'). THEIR = belongs to them ('their dog'). THEY'RE = they are ('they're running'). Tip: they're = they are — expand it to check!" },
+    { emoji: "2️⃣", title: "to / too / two", fact: "TO = direction or purpose ('I go to school'). TOO = also or very ('me too!', 'too loud'). TWO = the number 2. Tip: two has a 'w' like the word 'twice'." },
+    { emoji: "👂", title: "here / hear", fact: "HERE = a place ('come here'). HEAR = use your ears ('I hear music'). Tip: HEAR has the word EAR inside it — ears are for hearing!" },
+    { emoji: "✏️", title: "right / write", fact: "RIGHT = correct, or the direction ('turn right'). WRITE = to put words on paper ('write your name'). Tip: WRITE has a W, like a pen's wiggling motion." },
+    { emoji: "🏆", title: "won / one", fact: "WON = past tense of win ('we won!'). ONE = the number 1. Tip: WON sounds like 'fun' — winning IS fun!" },
+    { emoji: "🍐", title: "pear / pair / pare", fact: "PEAR = a fruit 🍐. PAIR = two matching things ('a pair of shoes'). PARE = to peel or trim ('pare an apple'). Three words, one sound!" },
+  ],
+};
   "pres-founders": [
     { emoji: "🎩", title: "George Washington — 1st President", fact: "George Washington was America's first president, elected in 1789. He is called the 'Father of Our Country' and appears on the $1 bill and the quarter." },
     { emoji: "📜", title: "John Adams — 2nd President", fact: "John Adams was the first Vice President before becoming the 2nd President. He was the first to live in the White House, moving in during 1800." },

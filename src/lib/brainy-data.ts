@@ -12,8 +12,9 @@ import { GRADE3_ACTIVITIES } from "@/lib/brainy-data-grade3";
 import { STATES_ACTIVITIES } from "@/lib/brainy-data-states";
 import { SIGHT_WORDS_ACTIVITIES } from "@/lib/brainy-data-sight-words";
 import { PRESIDENTS_ACTIVITIES } from "@/lib/brainy-data-presidents";
+import { LANGUAGE_ACTIVITIES } from "@/lib/brainy-data-language";
 
-export type SubjectId = "math" | "science" | "history" | "geography" | "reading" | "states" | "presidents";
+export type SubjectId = "math" | "science" | "history" | "geography" | "reading" | "states" | "presidents" | "language";
 export type Level = "kindergarten" | "grade1" | "grade2" | "grade3";
 export const LEVELS: { id: Level; label: string; shortLabel: string; emoji: string }[] = [
   { id: "kindergarten", label: "Kindergarten", shortLabel: "K", emoji: "\u{1F33C}" },
@@ -192,6 +193,18 @@ export const SUBJECTS: Subject[] = [
     textClass: "text-indigo-700",
     bgSoftClass: "bg-indigo-100",
     chartVar: "var(--chart-1)",
+  },
+  {
+    id: "language",
+    name: "Language Arts",
+    emoji: "✏️",
+    mascot: "Lila the Parrot",
+    tagline: "Synonyms, roots, prefixes & the power of words",
+    gradientClass: "from-amber-300 via-yellow-300 to-lime-300",
+    ringClass: "ring-yellow-300",
+    textClass: "text-amber-700",
+    bgSoftClass: "bg-amber-100",
+    chartVar: "var(--chart-2)",
   },
 ];
 
@@ -899,6 +912,7 @@ export const ACTIVITIES: Activity[] = [
   ...GRADE3_ACTIVITIES,
   ...STATES_ACTIVITIES,
   ...PRESIDENTS_ACTIVITIES,
+  ...LANGUAGE_ACTIVITIES,
   ...GRADE2_ACTIVITIES.map((a) => ({ ...a, level: "grade2" as Level })),
   ...GRADE1_ACTIVITIES,
   ...KINDERGARTEN_ACTIVITIES,
