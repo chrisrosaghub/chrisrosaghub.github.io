@@ -31,7 +31,7 @@ function useChartData(): ChartDatum[] {
   return useMemo(() => {
     if (!subjects) return [];
     const completed: Record<SubjectId, Set<string>> = {
-      math: new Set(), science: new Set(), history: new Set(), geography: new Set(), reading: new Set(), states: new Set(),
+      math: new Set(), science: new Set(), history: new Set(), geography: new Set(), reading: new Set(), states: new Set(), presidents: new Set(), language: new Set(),
     };
     progress?.results.forEach((r) => { if (r.activityId !== DAILY_CHALLENGE_ID) completed[r.subjectId].add(r.activityId); });
     return subjects.map((s) => ({
