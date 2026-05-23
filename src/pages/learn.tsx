@@ -13,25 +13,16 @@ export default function LearnPage() {
   const activity = ACTIVITIES.find((a) => a.id === activityId);
 
   const [index, setIndex] = useState(0);
-  const [revealed, setRevealed] = useState(false);
   const [finished, setFinished] = useState(false);
   const { speak, stop, isSupported, isSpeaking, autoRead, toggleAutoRead } = useTTS();
 
-  // Auto-read the title when the card changes
+  // Auto-read the full card when it changes
   useEffect(() => {
     if (autoRead && items.length > 0) {
-      speak(items[index].title);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, autoRead]);
-
-  // Auto-read the full fact when revealed
-  useEffect(() => {
-    if (autoRead && revealed && items.length > 0) {
       speak(items[index].title + ". " + items[index].fact);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [revealed, autoRead]);
+  }, [index, autoRead]);
 
   // No learn data — send straight to the quiz
   if (!activityId || items.length === 0) {
@@ -40,13 +31,9 @@ export default function LearnPage() {
 
   const item = items[index];
   const isLast = index + 1 >= items.length;
-  const progressPct = ((index + (revealed ? 1 : 0)) / items.length) * 100;
+  const progressPct = (index / items.length) * 100;
   const backHref = activity ? `/${activity.subjectId}` : "/";
   const backLabel = activity ? `Back to ${activity.subjectId === "states" ? "States & Capitals" : activity.subjectId.charAt(0).toUpperCase() + activity.subjectId.slice(1)}` : "Back";
-
-  function handleReveal() {
-    setRevealed(true);
-  }
 
   function handleNext() {
     if (isLast) {
@@ -54,14 +41,12 @@ export default function LearnPage() {
       setFinished(true);
     } else {
       setIndex((i) => i + 1);
-      setRevealed(false);
     }
   }
 
   function handleRestart() {
     stop();
     setIndex(0);
-    setRevealed(false);
     setFinished(false);
   }
 
@@ -171,16 +156,20 @@ export default function LearnPage() {
             <h2 className="text-xl md:text-2xl font-extrabold tracking-tight text-slate-900">
               {item.title}
             </h2>
-            {!revealed && (
-              <p className="text-sm text-slate-500">Tap to learn more</p>
-            )}
           </div>
 
-          {/* Manual read button (title only — shown before reveal) */}
-          {!revealed && isSupported && (
+          {/* Fact */}
+          <div className="rounded-2xl bg-white/90 border border-slate-100 p-4 shadow-sm">
+            <p className="text-base md:text-lg text-slate-800 leading-relaxed text-center">
+              {item.fact}
+            </p>
+          </div>
+
+          {/* Read aloud button */}
+          {isSupported && (
             <button
-              onClick={() => speak(item.title)}
-              aria-label="Read title aloud"
+              onClick={() => speak(item.title + ". " + item.fact)}
+              aria-label="Read aloud"
               className={cn(
                 "mx-auto flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold border transition-colors",
                 isSpeaking
@@ -193,62 +182,26 @@ export default function LearnPage() {
             </button>
           )}
 
-          {/* Reveal button / revealed fact */}
-          {!revealed ? (
-            <button
-              onClick={handleReveal}
-              className="w-full rounded-2xl bg-primary text-primary-foreground py-3 font-bold text-sm hover:opacity-90 active:scale-[0.98] transition-all shadow"
-            >
-              Show Me!
-            </button>
-          ) : (
-            <div className="space-y-3 animate-in fade-in slide-in-from-bottom-2 duration-300">
-              {/* Fact */}
-              <div className="rounded-2xl bg-white/90 border border-slate-100 p-4 shadow-sm">
-                <p className="text-base md:text-lg text-slate-800 leading-relaxed text-center">
-                  {item.fact}
-                </p>
-              </div>
-
-              {/* Manual read button (full fact) */}
-              {isSupported && (
-                <button
-                  onClick={() => speak(item.title + ". " + item.fact)}
-                  aria-label="Read fact aloud"
-                  className={cn(
-                    "mx-auto flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold border transition-colors",
-                    isSpeaking
-                      ? "bg-primary/10 text-primary border-primary/20"
-                      : "bg-white/80 text-slate-500 border-slate-200 hover:text-primary hover:border-primary/30",
-                  )}
-                >
-                  <Volume2 className="size-3" />
-                  {isSpeaking ? "Reading…" : "Read aloud"}
-                </button>
-              )}
-
-              {/* Next / finish */}
-              <button
-                onClick={handleNext}
-                className={cn(
-                  "w-full inline-flex items-center justify-center gap-2 rounded-2xl py-3 font-bold text-sm shadow transition-colors active:scale-[0.98]",
-                  isLast
-                    ? "bg-emerald-600 text-white hover:bg-emerald-700"
-                    : "bg-slate-900 text-white hover:bg-slate-800",
-                )}
-              >
-                {isLast ? (
-                  <>
-                    <CheckCircle2 className="size-4" /> All done — Take the Quiz!
-                  </>
-                ) : (
-                  <>
-                    Got it! Next <ArrowRight className="size-4" />
-                  </>
-                )}
-              </button>
-            </div>
-          )}
+          {/* Next / finish */}
+          <button
+            onClick={handleNext}
+            className={cn(
+              "w-full inline-flex items-center justify-center gap-2 rounded-2xl py-3 font-bold text-sm shadow transition-colors active:scale-[0.98]",
+              isLast
+                ? "bg-emerald-600 text-white hover:bg-emerald-700"
+                : "bg-slate-900 text-white hover:bg-slate-800",
+            )}
+          >
+            {isLast ? (
+              <>
+                <CheckCircle2 className="size-4" /> All done — Take the Quiz!
+              </>
+            ) : (
+              <>
+                Got it! Next <ArrowRight className="size-4" />
+              </>
+            )}
+          </button>
         </div>
       </div>
 
