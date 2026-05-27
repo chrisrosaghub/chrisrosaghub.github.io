@@ -664,6 +664,134 @@ export const ACTIVITY_LEARN_DATA: Record<string, { emoji: string; title: string;
   ...SCIENCE_LEARN_ITEMS,
   ...EXTRA,
 
+  // ─── GRADE 4 MATH ─────────────────────────────────────────────────────────
+  "g4-math-mult": [
+    { emoji: "✖️", title: "Multi-Digit Multiplication", fact: "To multiply 23 × 4: multiply the ones (4×3=12, write 2 carry 1), then the tens (4×2=8, add the carry = 9). Answer: 92." },
+    { emoji: "📦", title: "Area Model Strategy", fact: "Break 14 × 15 into (10+4) × (10+5). Multiply each part: 10×10=100, 10×5=50, 4×10=40, 4×5=20. Add them: 210!" },
+    { emoji: "🔟", title: "Multiply by 10 & 100", fact: "To multiply by 10, just add a zero: 45 × 10 = 450. To multiply by 100, add two zeros: 45 × 100 = 4,500." },
+    { emoji: "💡", title: "Mental Math Tricks", fact: "25 × 8: think 25 × 4 = 100, then × 2 = 200. 18 × 9: think 18 × 10 = 180, minus 18 = 162. Clever shortcuts save time!" },
+    { emoji: "🌍", title: "Real-World Multiplication", fact: "If a theater has 24 rows with 28 seats each, multiply 24 × 28 to find the total seats. Multiplication scales up repeated groups." },
+  ],
+
+  "g4-math-div": [
+    { emoji: "➗", title: "Long Division Steps", fact: "Long division: Divide → Multiply → Subtract → Bring Down. Repeat! For 126 ÷ 6: 12÷6=2, 6÷6=1, answer: 21." },
+    { emoji: "🍕", title: "Understanding Remainders", fact: "When a number doesn't divide evenly, the leftover is the remainder. 17 ÷ 5 = 3 remainder 2 (because 5×3=15, 17−15=2)." },
+    { emoji: "🔗", title: "Division & Multiplication Are Related", fact: "Every division fact has a multiplication twin! 32 ÷ 4 = 8, because 4 × 8 = 32. Use times tables to check your division." },
+    { emoji: "📊", title: "Dividing Large Numbers", fact: "256 ÷ 8: How many times does 8 go into 25? Three times (8×3=24). Subtract: 25−24=1, bring down 6 → 16. 16÷8=2. Answer: 32." },
+    { emoji: "✅", title: "Check Your Work", fact: "Always check division with multiplication. If 150 ÷ 5 = 30, verify: 30 × 5 = 150 ✓. If your check doesn't work, try again!" },
+  ],
+
+  "g4-math-fractions": [
+    { emoji: "🍕", title: "Equivalent Fractions", fact: "Equivalent fractions are different-looking but equal in value. 2/4 = 1/2 = 4/8. Multiply or divide top and bottom by the same number." },
+    { emoji: "⚖️", title: "Comparing Fractions", fact: "Same denominator? Compare the numerators. 3/8 < 5/8. Different denominators? Find a common denominator or think in decimals." },
+    { emoji: "➕", title: "Adding Fractions (Same Denominator)", fact: "Add only the numerators, keep the denominator: 2/5 + 1/5 = 3/5. Think of it like adding 2 slices and 1 slice from the same pizza." },
+    { emoji: "➖", title: "Subtracting Fractions", fact: "Same rule: subtract numerators, keep denominator. 7/8 − 3/8 = 4/8, which simplifies to 1/2." },
+    { emoji: "📏", title: "Fractions on a Number Line", fact: "Place 3/4 on a number line: divide 0 to 1 into 4 equal parts. Count 3 parts from 0. The closer to 1, the larger the fraction." },
+  ],
+
+  "g4-math-decimals": [
+    { emoji: "🔢", title: "Decimal Place Value", fact: "In 5.38: the 5 is in the ones place, 3 is in the tenths place (1/10), and 8 is in the hundredths place (1/100)." },
+    { emoji: "🔄", title: "Fractions ↔ Decimals", fact: "1/10 = 0.1, 1/4 = 0.25, 1/2 = 0.5, 3/4 = 0.75. Memorize these! They show up everywhere from money to measurements." },
+    { emoji: "🛒", title: "Decimals & Money", fact: "$4.75 means 4 dollars, 7 dimes, 5 pennies. Money IS decimals! $1 = 1.00, 50 cents = 0.50, 25 cents = 0.25." },
+    { emoji: "⚖️", title: "Comparing Decimals", fact: "Line up the decimal points! 0.9 > 0.09 because 9 tenths is much more than 9 hundredths. Zeros after a decimal don't change the value." },
+    { emoji: "🔵", title: "Rounding Decimals", fact: "Round 3.76 to the nearest tenth: look at the hundredths digit (6). Since 6 ≥ 5, round UP: 3.76 → 3.8." },
+  ],
+
+  "g4-math-geometry": [
+    { emoji: "📐", title: "Types of Angles", fact: "Acute angle: less than 90°. Right angle: exactly 90° (the little square). Obtuse angle: between 90° and 180°. Straight angle: exactly 180°." },
+    { emoji: "🔺", title: "Triangles", fact: "All triangle angles always add up to 180°. If you know two angles, subtract from 180° to find the third!" },
+    { emoji: "📏", title: "Area of a Rectangle", fact: "Area = length × width. A room 12 ft × 10 ft has area = 120 ft². Area is measured in SQUARE units (ft², cm², m²)." },
+    { emoji: "🔲", title: "Perimeter of Any Shape", fact: "Perimeter = add ALL the sides. A rectangle 8m × 5m has perimeter = 8+5+8+5 = 26m. Or use: P = 2×(length + width)." },
+    { emoji: "⏰", title: "Angles in Real Life", fact: "A clock at 3:00 shows a right angle (90°). At 6:00 it shows a straight angle (180°). The hands of a clock measure angle!" },
+  ],
+
+  // ─── GRADE 4 SCIENCE ─────────────────────────────────────────────────────
+  "g4-sci-earth": [
+    { emoji: "🌋", title: "Earth's Four Layers", fact: "Earth has 4 layers: Crust (thin, rocky outer shell), Mantle (thick, hot rock), Outer Core (liquid iron & nickel), Inner Core (solid iron & nickel)." },
+    { emoji: "🧩", title: "Tectonic Plates", fact: "Earth's crust is broken into large pieces called tectonic plates. They float on the mantle and move a few centimeters each year!" },
+    { emoji: "🌊", title: "Plate Movement Creates Landforms", fact: "When plates collide → mountains form. When plates pull apart → valleys and rift zones form. When plates slide past each other → earthquakes!" },
+    { emoji: "🌋", title: "Volcanoes", fact: "Magma (molten rock underground) can burst through the crust as lava, building up a volcano over time. Most volcanoes are near plate boundaries." },
+    { emoji: "🪨", title: "Rock Types", fact: "3 rock types: Igneous (cooled magma — like granite and basalt), Sedimentary (compressed layers — like sandstone), Metamorphic (changed by heat/pressure — like marble)." },
+    { emoji: "💨", title: "Weathering & Erosion", fact: "Weathering breaks rocks into smaller pieces (wind, water, ice). Erosion moves those pieces to new places. The Grand Canyon was carved by the Colorado River over millions of years!" },
+  ],
+
+  "g4-sci-weather": [
+    { emoji: "🌦️", title: "Weather vs. Climate", fact: "Weather = current conditions (today it's rainy). Climate = average weather patterns over 30+ years (Seattle is rainy in general). One is short-term, one is long-term." },
+    { emoji: "💧", title: "The Water Cycle", fact: "Sun heats water → Evaporation → Water vapor rises → Condensation forms clouds → Precipitation falls (rain/snow) → Water flows back to lakes/ocean. It never stops!" },
+    { emoji: "🌪️", title: "Storm Types", fact: "Thunderstorms form from warm, moist rising air. Tornadoes are spinning columns of air from powerful thunderstorms. Hurricanes are massive tropical storms powered by warm ocean water." },
+    { emoji: "🌡️", title: "Weather Instruments", fact: "Thermometer = temperature. Barometer = air pressure (falling pressure → storm coming!). Anemometer = wind speed. Rain gauge = rainfall amount." },
+    { emoji: "🌍", title: "Climate Zones", fact: "Near the equator: hot and wet (tropical). Far from equator: cold (polar). In the middle: temperate (seasons). Mountains and oceans affect local climates too!" },
+  ],
+
+  "g4-sci-electricity": [
+    { emoji: "⚡", title: "What Is Electricity?", fact: "Electricity is the flow of tiny particles called electrons. When electrons move through a wire, they create an electric current that powers lights, motors, and more." },
+    { emoji: "🔌", title: "Electric Circuits", fact: "A circuit is a complete loop for electricity to flow through. It needs: a power source (battery), wires, and a device (bulb, motor). Break the loop = no current!" },
+    { emoji: "🔗", title: "Series vs. Parallel Circuits", fact: "Series circuit: one path — if one bulb burns out, all go out. Parallel circuit: multiple paths — if one bulb burns out, the others stay on. Most home wiring is parallel." },
+    { emoji: "🧲", title: "Magnetism", fact: "All magnets have two poles: North and South. Opposite poles attract (N-S pull together). Like poles repel (N-N or S-S push apart)." },
+    { emoji: "🔋", title: "Electromagnetism", fact: "Running electricity through a coil of wire wrapped around iron creates an ELECTROMAGNET. Turn off the current and the magnetism disappears. Used in cranes, doorbells, and MRI machines!" },
+  ],
+
+  "g4-sci-body": [
+    { emoji: "🦴", title: "Skeletal System", fact: "206 bones support your body, protect organs (ribs protect heart & lungs), and allow movement. Bones also make blood cells in their centers!" },
+    { emoji: "💪", title: "Muscular System", fact: "Muscles move your body by contracting (shortening). Tendons attach muscles to bones. You have over 600 muscles — including your heart, which never stops!" },
+    { emoji: "🫀", title: "Circulatory System", fact: "The heart pumps blood through about 60,000 miles of blood vessels. Blood carries oxygen and nutrients to every cell, and removes carbon dioxide waste." },
+    { emoji: "🫁", title: "Respiratory System", fact: "You breathe in oxygen → lungs transfer it to blood → blood carries CO₂ back → you breathe it out. Your lungs can hold about 6 liters of air!" },
+    { emoji: "🧠", title: "Nervous System", fact: "The brain is the control center, connected to everything via the spinal cord and nerves. Nerve signals travel at up to 268 mph — that's why you react so fast!" },
+    { emoji: "🍎", title: "Digestive System", fact: "Digestion starts in your MOUTH (chewing + saliva). Stomach breaks food down with acid. Small intestine absorbs nutrients into blood. Large intestine removes water from waste." },
+  ],
+
+  // ─── GRADE 4 HISTORY ─────────────────────────────────────────────────────
+  "g4-hist-revolution": [
+    { emoji: "🦅", title: "Why the Revolution Happened", fact: "Britain taxed the colonies without giving them votes in Parliament. 'No taxation without representation!' became the rallying cry for independence." },
+    { emoji: "🍵", title: "The Boston Tea Party (1773)", fact: "Angry colonists dumped 342 chests of British tea into Boston Harbor to protest the Tea Act. Britain responded with harsh 'Intolerable Acts,' pushing colonies toward revolution." },
+    { emoji: "📜", title: "Declaration of Independence (1776)", fact: "Thomas Jefferson wrote that 'all men are created equal' and have rights to 'life, liberty, and the pursuit of happiness.' Signed July 4, 1776 — Independence Day!" },
+    { emoji: "🏕️", title: "Valley Forge", fact: "Washington's army spent a brutal winter at Valley Forge (1777–78) with little food or clothing. Their survival and training there turned them into a disciplined fighting force." },
+    { emoji: "🇫🇷", title: "France Joins the War", fact: "After the American victory at Saratoga (1777), France officially joined as an American ally, providing troops, ships, and money that helped win the war." },
+    { emoji: "🏳️", title: "Victory at Yorktown (1781)", fact: "With French naval support, Washington trapped British General Cornwallis at Yorktown, Virginia. Cornwallis surrendered on October 19, 1781 — effectively ending the war." },
+  ],
+
+  "g4-hist-constitution": [
+    { emoji: "🏛️", title: "Why We Needed a Constitution", fact: "After independence, the Articles of Confederation gave too little power to the national government. It couldn't collect taxes or enforce laws. The Constitution fixed this in 1787." },
+    { emoji: "⚖️", title: "Three Branches of Government", fact: "Legislative (Congress) makes laws. Executive (President) enforces laws. Judicial (Supreme Court) interprets laws. Three branches so no one person or group gets all the power." },
+    { emoji: "🔄", title: "Checks & Balances", fact: "Each branch has power to limit the others. Congress passes a law → President can veto it → Congress can override the veto. This keeps government balanced and fair." },
+    { emoji: "📋", title: "The Bill of Rights", fact: "The first 10 amendments, added in 1791. They protect key freedoms: speech, religion, press, peaceful assembly, the right to a fair trial, and more." },
+    { emoji: "🖊️", title: "James Madison — Father of the Constitution", fact: "Madison took extensive notes at the Convention and wrote much of the Constitution. He also co-authored the Federalist Papers, persuading states to ratify it." },
+  ],
+
+  "g4-hist-expansion": [
+    { emoji: "🗺️", title: "Louisiana Purchase (1803)", fact: "President Jefferson bought 828,000 square miles from France for about $15 million — roughly 3 cents per acre! It nearly doubled the size of the U.S. overnight." },
+    { emoji: "🧭", title: "Lewis & Clark Expedition (1804–06)", fact: "Meriwether Lewis and William Clark led the Corps of Discovery from Missouri to the Pacific. Sacagawea, a Shoshone woman, guided them through the Rocky Mountains." },
+    { emoji: "⭐", title: "Manifest Destiny", fact: "The 1840s belief that Americans were destined by God to settle the entire continent from coast to coast. This idea pushed millions westward — but at great cost to Native peoples." },
+    { emoji: "🏕️", title: "The Trail of Tears (1838)", fact: "The Indian Removal Act forced the Cherokee and other nations off their homelands in the Southeast. Thousands died on the forced march to Oklahoma. A dark chapter in U.S. history." },
+    { emoji: "⛏️", title: "California Gold Rush (1848–55)", fact: "Gold discovered at Sutter's Mill sparked a rush of 300,000 people to California. 'Forty-niners' came by land and sea. California's population exploded and it became a state in 1850." },
+    { emoji: "🚂", title: "Transcontinental Railroad (1869)", fact: "Central Pacific (building east from California) and Union Pacific (building west from Omaha) met at Promontory Summit, Utah. The railroad connected the country in days instead of months." },
+  ],
+
+  // ─── GRADE 4 GEOGRAPHY ───────────────────────────────────────────────────
+  "g4-geo-usregions": [
+    { emoji: "🗺️", title: "5 U.S. Regions", fact: "Northeast (original colonies, dense cities), Southeast (warm, Gulf Coast), Midwest (great plains, Great Lakes), Southwest (deserts, canyons), West (mountains, Pacific Coast)." },
+    { emoji: "🌊", title: "Great Lakes", fact: "The 5 Great Lakes (Superior, Michigan, Huron, Erie, Ontario) are in the Midwest and hold 21% of the world's surface fresh water. Use the mnemonic: HOMES!" },
+    { emoji: "🌵", title: "Southwest Region", fact: "The Southwest (Arizona, New Mexico, Texas, Oklahoma) features the Grand Canyon, Mojave and Sonoran Deserts, and Native American cultural heritage." },
+    { emoji: "🏔️", title: "Western Region", fact: "The West includes the Rocky Mountains, Sierra Nevada, Cascade Range, and Pacific Coast. Alaska has the tallest peak in North America: Denali (20,310 ft)." },
+    { emoji: "🌆", title: "Northeast & Major Cities", fact: "The Northeast is the most densely populated region. New York City, Philadelphia, Boston, and Washington D.C. are among America's most historic and important cities." },
+  ],
+
+  "g4-geo-world": [
+    { emoji: "🌍", title: "World's Longest Rivers", fact: "Nile (Africa) ~4,130 miles — longest. Amazon (South America) ~3,976 miles — largest by water volume. Mississippi (North America) ~2,340 miles." },
+    { emoji: "🏔️", title: "World's Highest Mountains", fact: "Everest (Himalayas, Asia) — 29,032 ft, highest on Earth. K2 (Pakistan) — 2nd highest. Kilimanjaro (Africa) — highest in Africa. Aconcagua (Andes) — highest in the Americas." },
+    { emoji: "🌊", title: "World's Oceans", fact: "Pacific (largest — covers 30% of Earth), Atlantic, Indian, Southern (around Antarctica), Arctic (smallest). Together they cover 71% of Earth's surface." },
+    { emoji: "🏜️", title: "Major Deserts", fact: "Sahara (Africa) — world's largest HOT desert. Gobi (Asia) — cold desert. Antarctic ice sheet — world's largest desert overall (deserts are defined by lack of precipitation, not heat!)." },
+    { emoji: "🌏", title: "Population Giants", fact: "India and China each have over 1.4 billion people — together about 36% of all humans on Earth. The United States has ~335 million people, ranking 3rd." },
+  ],
+
+  "g4-geo-latlong": [
+    { emoji: "🌐", title: "The Grid System", fact: "Latitude (horizontal lines) and longitude (vertical lines) form a grid over Earth. Any location can be pinpointed with two numbers, like a giant coordinate system." },
+    { emoji: "📏", title: "Latitude: North & South", fact: "Latitude measures degrees north or south of the equator (0°). The North Pole is 90° N. The South Pole is 90° S. The closer to 0°, the hotter the climate." },
+    { emoji: "📏", title: "Longitude: East & West", fact: "Longitude measures degrees east or west of the Prime Meridian (0°), which runs through Greenwich, England. The opposite side is 180° — the International Date Line." },
+    { emoji: "📍", title: "Finding Locations", fact: "Coordinates are written as (latitude, longitude). New York City is about 41° N, 74° W. Paris is 49° N, 2° E. Always latitude FIRST, then longitude." },
+    { emoji: "🕐", title: "Time Zones", fact: "Earth has 24 time zones, one for every hour of the day. Each zone is 15° of longitude wide (360° ÷ 24 = 15°). As you travel east, clocks go forward. West = clocks go back." },
+  ],
+
   // ─── LANGUAGE ARTS ────────────────────────────────────────────────────────
   "lang-synonyms": [
     { emoji: "🟰", title: "What Is a Synonym?", fact: "A synonym is a word that means the same (or nearly the same) as another word. Happy and joyful are synonyms. Big and large are synonyms." },
