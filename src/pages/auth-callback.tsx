@@ -1,44 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
-import { supabase } from "@/lib/supabase";
+import { useSession } from "@/lib/auth-context";
 
 /**
- * Dedicated OAuth callback page (outside AuthGuard).
- * NOTE(ai): With PKCE + detectSessionInUrl:false we exchange the ?code=
- * parameter explicitly here. This avoids all event-timing races — the result
- * is a direct async return value, not an event subscription.
+ * Fallback OAuth callback page (outside AuthGuard).
+ * NOTE(ai): Primary auth flow redirects to origin root (not here).
+ * This page handles edge cases where /auth-callback is the redirect target.
  */
 export default function AuthCallbackPage() {
     const navigate = useNavigate();
-    const [error, setError] = useState<string | null>(null);
+    const { session, loading } = useSession();
 
     useEffect(() => {
-        const code = new URLSearchParams(window.location.search).get("code");
-
-        if (!code) {
-            // No code param — user landed here directly, send to login.
-            navigate("/login", { replace: true });
-            return;
-        }
-
-        supabase.auth.exchangeCodeForSession(code).then(({ data, error }) => {
-            if (error || !data.session) {
-                setError(error?.message ?? "Authentication failed.");
-                setTimeout(() => navigate("/login", { replace: true }), 3000);
-            } else {
-                navigate("/", { replace: true });
-            }
-        });
-    }, [navigate]);
-
-    if (error) {
-        return (
-            <div className="min-h-svh flex items-center justify-center bg-gradient-to-br from-violet-50 via-fuchsia-50 to-sky-50">
-                <p className="text-sm text-red-500">{error}</p>
-            </div>
-        );
-    }
+        if (!loading) navigate(session ? "/" : "/login", { replace: true });
+    }, [session, loading, navigate]);
 
     return (
         <div className="min-h-svh flex items-center justify-center bg-gradient-to-br from-violet-50 via-fuchsia-50 to-sky-50">

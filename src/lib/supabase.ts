@@ -13,10 +13,11 @@ if (!supabaseUrl || supabaseUrl.includes("YOUR_PROJECT_ID")) {
 
 // Fall back to placeholder values so createClient doesn't throw on missing env vars.
 // The app will show the login page; all DB calls will fail gracefully until real values are set.
-// NOTE(ai): flowType 'pkce' + detectSessionInUrl:false — we exchange the code
-// manually in /auth-callback so there are no event-timing races.
+// NOTE(ai): flowType 'pkce' + detectSessionInUrl:true (default). Supabase auto-exchanges
+// the ?code= param at the root URL. We redirect to window.location.origin (root) so
+// GitHub Pages serves index.html directly — bypassing 404.html which would corrupt the URL.
 export const supabase = createClient<Database>(
   supabaseUrl || "https://placeholder.supabase.co",
   supabaseAnonKey || "placeholder-anon-key",
-  { auth: { flowType: "pkce", detectSessionInUrl: false } },
+  { auth: { flowType: "pkce" } },
 );

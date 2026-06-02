@@ -6,11 +6,11 @@ import { supabase } from "@/lib/supabase";
 
 /** Opens the Google OAuth popup/redirect flow. */
 export async function signInWithGoogle(): Promise<void> {
-    // NOTE(ai): redirectTo uses /auth-callback (single path segment) so that
-    // APP_BASENAME stays "/" — multi-segment paths would break React Router.
+    // NOTE(ai): redirectTo root origin so GitHub Pages serves index.html directly.
+    // Any sub-path (e.g. /auth-callback) triggers 404.html which corrupts ?code= params.
     await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: { redirectTo: `${window.location.origin}/auth-callback` },
+        options: { redirectTo: window.location.origin + "/" },
     });
 }
 
