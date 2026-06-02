@@ -20,19 +20,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Subscribe first so we never miss an event.
+        // NOTE(ai): Do NOT call getSession() here. It resolves immediately with
+        // null before Supabase finishes parsing the OAuth hash, which sets
+        // loading=false too early and causes auth-callback to redirect to /login.
+        // onAuthStateChange fires INITIAL_SESSION only after the hash is fully
+        // processed — it is the single source of truth for initial session state.
         const { data: { subscription } } = supabase.auth.onAuthStateChange(
             (_event, newSession) => {
                 setSession(newSession);
                 setLoading(false);
             },
         );
-
-        // Also read the current session in case INITIAL_SESSION already fired.
-        supabase.auth.getSession().then(({ data }) => {
-            setSession(prev => prev ?? data.session);
-            setLoading(false);
-        });
 
         return () => subscription.unsubscribe();
     }, []);
