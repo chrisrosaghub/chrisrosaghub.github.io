@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { Sparkles, Home, Flame, Star, BookOpenCheck, Globe2, FlaskConical, Calculator, Landmark, Trophy, GraduationCap, BookA, UserRound, Map, Crown, Languages, ChevronDown } from "lucide-react";
+import { Sparkles, Home, Flame, Star, BookOpenCheck, Globe2, FlaskConical, Calculator, Landmark, Trophy, GraduationCap, BookA, UserRound, Map, Crown, Languages, ChevronDown, LogOut } from "lucide-react";
 import { useLevel, useProgress, useSetLevel } from "@/lib/brainy-hooks";
 import { LEVELS, type Level } from "@/lib/brainy-data";
+import { ProfileSwitcher } from "@/components/brainy/ProfileSwitcher";
+import { signOut } from "@/lib/auth-hooks";
 import { cn } from "@/lib/utils";
 
 // NOTE(ai): App name lives only in the header; do not repeat in page bodies.
@@ -20,6 +22,7 @@ const NAV_ITEMS = [
   { to: "/reading", label: "Sight Words", icon: BookA, levels: ["kindergarten"] as Level[] },
   { to: "/daily", label: "Daily Challenge", icon: Trophy },
   { to: "/progress", label: "My Progress", icon: BookOpenCheck },
+  { to: "/profiles", label: "Profiles", icon: UserRound },
 ];
 
 function LevelSwitcher() {
@@ -105,6 +108,7 @@ export default function Layout() {
           </div>
 
           <div className="order-2 sm:order-3 ml-auto flex items-center gap-2">
+            <ProfileSwitcher />
             <div
               className="hidden sm:flex items-center gap-1.5 rounded-full bg-amber-100 text-amber-800 px-3 py-1.5 text-sm font-bold shadow-sm ring-1 ring-amber-200"
               aria-label={`${stars} stars earned`}
@@ -121,6 +125,15 @@ export default function Layout() {
               <Flame className="size-4 text-orange-500" />
               <span>{streak}</span>
             </div>
+            <button
+              type="button"
+              onClick={signOut}
+              aria-label="Sign out"
+              title="Sign out"
+              className="inline-flex items-center justify-center rounded-full bg-slate-100 text-slate-500 p-2 hover:bg-slate-200 hover:text-slate-700 transition-colors"
+            >
+              <LogOut className="size-4" />
+            </button>
           </div>
         </div>
 

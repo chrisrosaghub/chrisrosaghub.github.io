@@ -1,6 +1,7 @@
-import { useCallback, useState, useSyncExternalStore } from "react";
+import { useCallback, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { memory } from "@/lib/memory-store";
+import { supabase } from "@/lib/supabase";
+import { getActiveProfileId, useActiveProfileId } from "@/lib/profiles";
 import {
   ACTIVITIES,
   BADGES,
@@ -21,52 +22,70 @@ import {
   type SubjectId,
 } from "@/lib/brainy-data";
 
-const PROGRESS_KEY = "brainy:progress";
-const LEVEL_KEY = "brainy:level";
-const SIM_DELAY = 220; // ms — small delay so shimmers show up briefly
+const SIM_DELAY = 220;
 
 // ---------------------------------------------------------------------------
-// Level (Kindergarten / 2nd Grade) — kept in the in-memory store with a
-// tiny pub/sub so components re-render when the selected level changes.
+// Level — stored on the profile row in Supabase.
+// A localStorage cache makes getStoredLevel() available synchronously for
+// non-hook helpers (e.g. totalActivitiesForSubject).
 // ---------------------------------------------------------------------------
+const LEVEL_LS_CACHE = "brainy:level:cache";
 
-const levelListeners = new Set<() => void>();
-function emitLevelChange() {
-  levelListeners.forEach((l) => l());
-}
-function subscribeLevel(listener: () => void) {
-  levelListeners.add(listener);
-  return () => {
-    levelListeners.delete(listener);
-  };
-}
 function getStoredLevel(): Level {
-  const v = memory.get<Level>(LEVEL_KEY);
-  return v ?? "grade2";
+  try {
+    return (localStorage.getItem(LEVEL_LS_CACHE) as Level) ?? "grade2";
+  } catch {
+    return "grade2";
+  }
+}
+
+function cacheLevel(level: Level): void {
+  try {
+    localStorage.setItem(LEVEL_LS_CACHE, level);
+  } catch { }
 }
 
 export function useLevel(): Level {
-  return useSyncExternalStore(subscribeLevel, getStoredLevel, getStoredLevel);
+  const profileId = useActiveProfileId();
+  const { data } = useQuery<Level>({
+    queryKey: ["profile-level", profileId],
+    queryFn: async () => {
+      if (!profileId) return "grade2";
+      const { data } = await supabase
+        .from("profiles")
+        .select("level")
+        .eq("id", profileId)
+        .maybeSingle();
+      const level = (data?.level as Level) ?? "grade2";
+      cacheLevel(level);
+      return level;
+    },
+    enabled: Boolean(profileId),
+    staleTime: 5 * 60 * 1000,
+  });
+  return data ?? getStoredLevel();
 }
 
 export function useSetLevel() {
   const qc = useQueryClient();
+  const profileId = useActiveProfileId();
   return useCallback(
-    (level: Level) => {
-      memory.put(LEVEL_KEY, level);
-      emitLevelChange();
-      // Invalidate level-dependent queries so they refetch with the new pool.
+    async (level: Level) => {
+      cacheLevel(level);
+      if (profileId) {
+        await supabase.from("profiles").update({ level }).eq("id", profileId);
+      }
+      qc.invalidateQueries({ queryKey: ["profile-level", profileId] });
       qc.invalidateQueries({ queryKey: ["activities"] });
       qc.invalidateQueries({ queryKey: ["daily-challenge"] });
     },
-    [qc],
+    [profileId, qc],
   );
 }
 
 // ---------------------------------------------------------------------------
-// Progress storage
+// Progress default
 // ---------------------------------------------------------------------------
-
 function defaultProgress(): ProgressState {
   return {
     totalStars: 0,
@@ -79,25 +98,13 @@ function defaultProgress(): ProgressState {
   };
 }
 
-function getProgress(): ProgressState {
-  const p = memory.ensure<ProgressState>(PROGRESS_KEY, defaultProgress);
-  if (p.lastDailyChallengeDate === undefined) p.lastDailyChallengeDate = null;
-  if (p.dailyChallengesCompleted === undefined) p.dailyChallengesCompleted = 0;
-  return p;
-}
-
-function setProgress(next: ProgressState) {
-  memory.put(PROGRESS_KEY, next);
-}
-
 function wait<T>(value: T, ms = SIM_DELAY): Promise<T> {
   return new Promise((resolve) => setTimeout(() => resolve(value), ms));
 }
 
 // ---------------------------------------------------------------------------
-// Subjects & activities — all reads filter by the currently selected level.
+// Subjects & activities — static data, filtered by level.
 // ---------------------------------------------------------------------------
-
 export function useSubjects() {
   const level = useLevel();
   return useQuery<Subject[]>({
@@ -129,11 +136,6 @@ export function useActivities(subjectId?: SubjectId) {
   });
 }
 
-/**
- * Fetches an activity. The `roundKey` parameter forces React Query to treat
- * each "round" as a unique fetch so re-doing an activity (or navigating back
- * to it) will randomly sample a fresh set of questions from the pool.
- */
 export function useActivity(id: string | undefined, roundKey: number = 0) {
   const level = useLevel();
   return useQuery<Activity | undefined>({
@@ -157,37 +159,72 @@ export function useRoundKey() {
   return { roundKey, nextRound };
 }
 
-/**
- * Daily-challenge state key — namespaced per level so each grade level
- * gets its own "once per day" challenge.
- */
 function dailyKey(level: Level): string {
   return `${dateKey(Date.now())}|${level}`;
 }
 
-/** Today's daily challenge — random sample of 3 questions per subject. */
+// ---------------------------------------------------------------------------
+// Daily challenge — completedToday checked against Supabase
+// ---------------------------------------------------------------------------
 export function useDailyChallenge() {
   const level = useLevel();
+  const profileId = useActiveProfileId();
   const today = dailyKey(level);
   return useQuery<{ activity: Activity; today: string; completedToday: boolean; level: Level }>({
-    queryKey: ["daily-challenge", today],
+    queryKey: ["daily-challenge", today, profileId],
     queryFn: async () => {
-      const progress = getProgress();
+      let completedToday = false;
+      if (profileId) {
+        const { data } = await supabase
+          .from("profile_progress")
+          .select("last_daily_challenge_date")
+          .eq("profile_id", profileId)
+          .maybeSingle();
+        completedToday = data?.last_daily_challenge_date === today;
+      }
       const activity = buildDailyChallenge(today, level);
-      return wait({
-        activity,
-        today,
-        level,
-        completedToday: progress.lastDailyChallengeDate === today,
-      });
+      return { activity, today, level, completedToday };
     },
   });
 }
 
+// ---------------------------------------------------------------------------
+// Progress — fetched from Supabase (profile_progress + activity_results + earned_badges)
+// ---------------------------------------------------------------------------
 export function useProgress() {
+  const profileId = useActiveProfileId();
   return useQuery<ProgressState>({
-    queryKey: ["progress"],
-    queryFn: () => wait(getProgress()),
+    queryKey: ["progress", profileId],
+    queryFn: async () => {
+      if (!profileId) return defaultProgress();
+
+      const [progressRes, resultsRes, badgesRes] = await Promise.all([
+        supabase.from("profile_progress").select("*").eq("profile_id", profileId).maybeSingle(),
+        supabase.from("activity_results").select("*").eq("profile_id", profileId).order("completed_at", { ascending: false }).limit(100),
+        supabase.from("earned_badges").select("badge_id").eq("profile_id", profileId),
+      ]);
+
+      const progressRow = progressRes.data;
+      const results: ActivityResult[] = (resultsRes.data ?? []).map((r) => ({
+        activityId: r.activity_id,
+        subjectId: r.subject_id as SubjectId,
+        correct: r.correct,
+        total: r.total,
+        starsEarned: r.stars_earned,
+        completedAt: Number(r.completed_at),
+      }));
+
+      return {
+        totalStars: progressRow?.total_stars ?? 0,
+        streakDays: progressRow?.streak_days ?? 1,
+        lastActivityAt: progressRow?.last_activity_at ? Number(progressRow.last_activity_at) : null,
+        results,
+        earnedBadgeIds: (badgesRes.data ?? []).map((b) => b.badge_id),
+        lastDailyChallengeDate: progressRow?.last_daily_challenge_date ?? null,
+        dailyChallengesCompleted: progressRow?.daily_challenges_completed ?? 0,
+      };
+    },
+    enabled: Boolean(profileId),
   });
 }
 
@@ -198,22 +235,17 @@ export function useAllBadges() {
   });
 }
 
+// ---------------------------------------------------------------------------
+// Badge evaluation (pure, client-side)
+// ---------------------------------------------------------------------------
 function evaluateBadges(progress: ProgressState, level: Level): string[] {
   const completedBySubject: Record<SubjectId, Set<string>> = {
-    math: new Set(),
-    science: new Set(),
-    history: new Set(),
-    geography: new Set(),
-    reading: new Set(),
-    states: new Set(),
-    presidents: new Set(),
-    language: new Set(),
+    math: new Set(), science: new Set(), history: new Set(), geography: new Set(),
+    reading: new Set(), states: new Set(), presidents: new Set(), language: new Set(),
   };
   let perfectExists = false;
   for (const r of progress.results) {
-    if (r.activityId !== DAILY_CHALLENGE_ID) {
-      completedBySubject[r.subjectId].add(r.activityId);
-    }
+    if (r.activityId !== DAILY_CHALLENGE_ID) completedBySubject[r.subjectId].add(r.activityId);
     if (r.correct === r.total && r.total > 0) perfectExists = true;
   }
 
@@ -222,26 +254,22 @@ function evaluateBadges(progress: ProgressState, level: Level): string[] {
     if (earned.has(badge.id)) continue;
     const r: any = badge.rule;
     let qualifies = false;
-    if (r.kind === "firstActivity") {
-      qualifies = progress.results.length > 0;
-    } else if (r.kind === "perfectActivity") {
-      qualifies = perfectExists;
-    } else if (r.kind === "totalStars") {
-      qualifies = progress.totalStars >= r.amount;
-    } else if (r.kind === "subjectComplete") {
-      // "complete" is judged for the currently-active level.
+    if (r.kind === "firstActivity") qualifies = progress.results.length > 0;
+    else if (r.kind === "perfectActivity") qualifies = perfectExists;
+    else if (r.kind === "totalStars") qualifies = progress.totalStars >= r.amount;
+    else if (r.kind === "subjectComplete") {
       const total = totalActivitiesForSubjectAndLevel(r.subjectId, level);
       qualifies = completedBySubject[r.subjectId as SubjectId].size >= total && total > 0;
-    } else if (r.kind === "streakDays") {
-      qualifies = progress.streakDays >= r.days;
-    } else if (r.kind === "dailyChallenge") {
-      qualifies = progress.dailyChallengesCompleted > 0;
-    }
+    } else if (r.kind === "streakDays") qualifies = progress.streakDays >= r.days;
+    else if (r.kind === "dailyChallenge") qualifies = progress.dailyChallengesCompleted > 0;
     if (qualifies) earned.add(badge.id);
   }
   return Array.from(earned);
 }
 
+// ---------------------------------------------------------------------------
+// Complete activity — writes to Supabase
+// ---------------------------------------------------------------------------
 export interface CompleteActivityInput {
   activityId: string;
   subjectId: SubjectId;
@@ -258,13 +286,8 @@ export interface CompleteActivityResult {
 }
 
 function sameDay(a: number, b: number) {
-  const da = new Date(a);
-  const db = new Date(b);
-  return (
-    da.getFullYear() === db.getFullYear() &&
-    da.getMonth() === db.getMonth() &&
-    da.getDate() === db.getDate()
-  );
+  const da = new Date(a), db = new Date(b);
+  return da.getFullYear() === db.getFullYear() && da.getMonth() === db.getMonth() && da.getDate() === db.getDate();
 }
 
 function isYesterday(prev: number, now: number) {
@@ -278,7 +301,10 @@ export function useCompleteActivity() {
   const level = useLevel();
   return useMutation<CompleteActivityResult, Error, CompleteActivityInput>({
     mutationFn: async (input) => {
-      const progress = getProgress();
+      const profileId = getActiveProfileId();
+      if (!profileId) throw new Error("No active profile selected.");
+
+      const progress = qc.getQueryData<ProgressState>(["progress", profileId]) ?? defaultProgress();
       const now = Date.now();
 
       const isPerfect = input.correct === input.total && input.total > 0;
@@ -289,14 +315,39 @@ export function useCompleteActivity() {
       if (progress.lastActivityAt == null) {
         streakDays = 1;
       } else if (sameDay(progress.lastActivityAt, now)) {
-        // same day: keep streak
+        // same day — keep streak unchanged
       } else if (isYesterday(progress.lastActivityAt, now)) {
-        streakDays = streakDays + 1;
+        streakDays += 1;
       } else {
         streakDays = 1;
       }
 
-      const result: ActivityResult = {
+      const today = dailyKey(level);
+      const newTotalStars = progress.totalStars + starsEarned;
+
+      const { error: insertErr } = await supabase.from("activity_results").insert({
+        profile_id: profileId,
+        activity_id: input.activityId,
+        subject_id: input.subjectId,
+        correct: input.correct,
+        total: input.total,
+        stars_earned: starsEarned,
+        completed_at: now,
+      });
+      if (insertErr) throw insertErr;
+
+      const { error: upsertErr } = await supabase.from("profile_progress").upsert({
+        profile_id: profileId,
+        total_stars: newTotalStars,
+        streak_days: streakDays,
+        last_activity_at: now,
+        last_daily_challenge_date: input.isDaily ? today : progress.lastDailyChallengeDate,
+        daily_challenges_completed: progress.dailyChallengesCompleted + (input.isDaily ? 1 : 0),
+        updated_at: new Date().toISOString(),
+      });
+      if (upsertErr) throw upsertErr;
+
+      const newResult: ActivityResult = {
         activityId: input.activityId,
         subjectId: input.subjectId,
         correct: input.correct,
@@ -304,38 +355,32 @@ export function useCompleteActivity() {
         starsEarned,
         completedAt: now,
       };
-
-      const today = dailyKey(level);
       const nextProgress: ProgressState = {
-        totalStars: progress.totalStars + starsEarned,
+        totalStars: newTotalStars,
         streakDays,
         lastActivityAt: now,
-        results: [result, ...progress.results].slice(0, 100),
+        results: [newResult, ...progress.results].slice(0, 100),
         earnedBadgeIds: progress.earnedBadgeIds,
         lastDailyChallengeDate: input.isDaily ? today : progress.lastDailyChallengeDate,
-        dailyChallengesCompleted:
-          progress.dailyChallengesCompleted + (input.isDaily ? 1 : 0),
+        dailyChallengesCompleted: progress.dailyChallengesCompleted + (input.isDaily ? 1 : 0),
       };
 
       const previouslyEarned = new Set(progress.earnedBadgeIds);
       const updatedBadgeIds = evaluateBadges(nextProgress, level);
-      nextProgress.earnedBadgeIds = updatedBadgeIds;
-      const newBadges = BADGES.filter(
-        (b) => updatedBadgeIds.includes(b.id) && !previouslyEarned.has(b.id),
-      );
+      const newBadgeIds = updatedBadgeIds.filter((id) => !previouslyEarned.has(id));
 
-      setProgress(nextProgress);
-      await wait(null, 280);
+      if (newBadgeIds.length > 0) {
+        await supabase.from("earned_badges").upsert(
+          newBadgeIds.map((badge_id) => ({ profile_id: profileId, badge_id })),
+        );
+      }
 
-      return {
-        starsEarned,
-        newBadges,
-        totalStars: nextProgress.totalStars,
-        streakDays: nextProgress.streakDays,
-      };
+      const newBadges = BADGES.filter((b) => newBadgeIds.includes(b.id));
+      return { starsEarned, newBadges, totalStars: newTotalStars, streakDays };
     },
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["progress"] });
+      const profileId = getActiveProfileId();
+      qc.invalidateQueries({ queryKey: ["progress", profileId] });
       qc.invalidateQueries({ queryKey: ["activities"] });
       qc.invalidateQueries({ queryKey: ["daily-challenge"] });
     },
@@ -353,18 +398,10 @@ export function getSubject(id: SubjectId): Subject {
   return SUBJECTS.find((s) => s.id === id) as Subject;
 }
 
-/**
- * Count of activities for a subject in the currently selected level.
- * (Replaces the old level-agnostic helper; callers still pass a SubjectId.)
- */
 export function totalActivitiesForSubject(id: SubjectId): number {
-  // Note: this is now a hook-free helper that defaults to the stored level.
-  // Components inside the React tree should prefer the level-aware version
-  // below; this remains for compatibility with non-hook callers.
   return totalActivitiesForSubjectAndLevel(id, getStoredLevel());
 }
 
-/** Hook variant that re-renders when the level changes. */
 export function useTotalActivitiesForSubject(id: SubjectId): number {
   const level = useLevel();
   return totalActivitiesForSubjectAndLevel(id, level);

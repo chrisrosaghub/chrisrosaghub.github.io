@@ -14,6 +14,7 @@ import { STATES_ACTIVITIES } from "@/lib/brainy-data-states";
 import { SIGHT_WORDS_ACTIVITIES } from "@/lib/brainy-data-sight-words";
 import { PRESIDENTS_ACTIVITIES } from "@/lib/brainy-data-presidents";
 import { LANGUAGE_ACTIVITIES } from "@/lib/brainy-data-language";
+import { EUROPE_ACTIVITIES } from "@/lib/brainy-data-europe";
 
 export type SubjectId = "math" | "science" | "history" | "geography" | "reading" | "states" | "presidents" | "language";
 export type Level = "kindergarten" | "grade1" | "grade2" | "grade3" | "grade4";
@@ -914,6 +915,7 @@ export const ACTIVITIES: Activity[] = [
   ...GRADE4_ACTIVITIES,
   ...GRADE3_ACTIVITIES,
   ...STATES_ACTIVITIES,
+  ...EUROPE_ACTIVITIES,
   ...PRESIDENTS_ACTIVITIES,
   ...LANGUAGE_ACTIVITIES,
   ...GRADE2_ACTIVITIES.map((a) => ({ ...a, level: "grade2" as Level })),
