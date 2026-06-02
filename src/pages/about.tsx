@@ -1,4 +1,4 @@
-import { Linkedin, Github, Globe, BrainCircuit, Rocket, BarChart3, Shield } from "lucide-react";
+import { Linkedin, Github, Globe, BrainCircuit, Rocket, BarChart3, Shield, Car, Sparkles, Gamepad2, BookOpen } from "lucide-react";
 
 const FOCUS_AREAS = [
     {
@@ -30,6 +30,26 @@ const FOCUS_AREAS = [
         bg: "bg-sky-50",
     },
 ];
+
+function StoryStep({ icon: Icon, color, bg, title, body }: {
+    icon: React.ElementType;
+    color: string;
+    bg: string;
+    title: string;
+    body: string;
+}) {
+    return (
+        <div className="flex gap-4 rounded-2xl border bg-card p-5 shadow-sm">
+            <div className={`mt-0.5 shrink-0 rounded-xl ${bg} p-2.5`}>
+                <Icon className={`size-5 ${color}`} />
+            </div>
+            <div>
+                <h3 className="font-bold text-foreground">{title}</h3>
+                <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{body}</p>
+            </div>
+        </div>
+    );
+}
 
 export default function AboutPage() {
     return (
@@ -95,9 +115,61 @@ export default function AboutPage() {
                     </p>
                     <p>
                         Outside of work, I'm passionate about education and making learning fun. Brainy Buddies
-                        started as a personal project to create an engaging, ad-free learning experience for
-                        kids — and I hope it brings a little joy (and a lot of stars ⭐) to every session.
+                        started as a late-night project with my son — and it's grown into something we're both
+                        really proud of.
                     </p>
+                </div>
+            </section>
+
+            {/* Origin story */}
+            <section className="space-y-5">
+                <h2 className="text-2xl font-extrabold tracking-tight">The Story Behind Brainy Buddies</h2>
+
+                {/* Hero quote card */}
+                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-400 via-orange-400 to-fuchsia-500 text-white shadow-lg px-7 py-8">
+                    <div className="absolute -right-6 -bottom-4 text-[7rem] opacity-20 select-none" aria-hidden>🚗</div>
+                    <p className="relative text-xl md:text-2xl font-extrabold leading-snug max-w-lg">
+                        "Dad, do you think I could move up to 3rd grade math?"
+                    </p>
+                    <p className="relative mt-2 text-sm font-medium text-white/80">— The question that started it all, on the way to school one morning</p>
+                </div>
+
+                {/* Story steps */}
+                <div className="flex flex-col gap-4">
+                    <StoryStep
+                        icon={Car}
+                        color="text-amber-600"
+                        bg="bg-amber-50"
+                        title="One morning car ride"
+                        body="On the way to school, my son asked if he could be moved up to 3rd grade math. Instead of just saying yes — we decided to build something to prove it."
+                    />
+                    <StoryStep
+                        icon={BrainCircuit}
+                        color="text-violet-600"
+                        bg="bg-violet-50"
+                        title="Building together"
+                        body="That night, we started building Brainy Buddies together. After multiple iterations on the math section, he was testing quizzes before they even had a proper UI."
+                    />
+                    <StoryStep
+                        icon={BookOpen}
+                        color="text-sky-600"
+                        bg="bg-sky-50"
+                        title="Growing subject by subject"
+                        body="Math was just the beginning. Science, History, Geography, States & Capitals, Presidents — we kept adding subjects that matched what he was learning in school."
+                    />
+                    <StoryStep
+                        icon={Gamepad2}
+                        color="text-emerald-600"
+                        bg="bg-emerald-50"
+                        title="Earning real rewards"
+                        body="Now Brainy Buddies supplements his schoolwork every week. Completing learning modules and quizzes earns him extra device time or Xbox time — making every star count."
+                    />
+                </div>
+
+                <div className="rounded-2xl border border-violet-100 bg-violet-50/60 px-5 py-4 text-sm text-violet-800 leading-relaxed">
+                    <Sparkles className="inline size-4 mr-1.5 text-violet-500" aria-hidden />
+                    Brainy Buddies is built with love for curious kids everywhere — and the parents who want to
+                    make learning feel like an adventure, not a chore.
                 </div>
             </section>
 
