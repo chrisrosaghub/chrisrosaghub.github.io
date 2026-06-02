@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { Sparkles, Home, Flame, Star, BookOpenCheck, Globe2, FlaskConical, Calculator, Landmark, Trophy, GraduationCap, BookA, UserRound, Map, Crown, Languages, ChevronDown, LogOut } from "lucide-react";
+import { Sparkles, Home, Flame, Star, BookOpenCheck, Globe2, FlaskConical, Calculator, Landmark, Trophy, GraduationCap, BookA, UserRound, Map, Crown, Languages, ChevronDown } from "lucide-react";
 import { useLevel, useProgress, useSetLevel } from "@/lib/brainy-hooks";
 import { LEVELS, type Level } from "@/lib/brainy-data";
 import { ProfileSwitcher } from "@/components/brainy/ProfileSwitcher";
-import { signOut } from "@/lib/auth-hooks";
 import { cn } from "@/lib/utils";
 
 // NOTE(ai): App name lives only in the header; do not repeat in page bodies.
@@ -127,12 +126,11 @@ export default function Layout() {
             </div>
             <button
               type="button"
-              onClick={signOut}
-              aria-label="Sign out"
-              title="Sign out"
+              onClick={() => setNavOpen(v => !v)}
+              aria-label="Toggle navigation"
               className="inline-flex items-center justify-center rounded-full bg-slate-100 text-slate-500 p-2 hover:bg-slate-200 hover:text-slate-700 transition-colors"
             >
-              <LogOut className="size-4" />
+              <ChevronDown className={cn("size-4 transition-transform", navOpen && "rotate-180")} />
             </button>
           </div>
         </div>
