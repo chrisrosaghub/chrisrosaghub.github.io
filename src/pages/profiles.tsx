@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Plus, Pencil, Trash2, Check, X, Star, Flame, Loader2, AlertCircle } from "lucide-react";
+import { useSearchParams, Link } from "react-router-dom";
+import { Plus, Pencil, Trash2, Check, X, Star, Flame, Loader2, AlertCircle, CloudOff } from "lucide-react";
+import { useSession } from "@/lib/auth-context";
 import {
     useProfiles,
     useActiveProfileId,
@@ -239,6 +240,7 @@ export default function ProfilesPage() {
     const updateProfile = useUpdateProfile();
     const deleteProfile = useDeleteProfile();
 
+    const { session } = useSession();
     const [showCreate, setShowCreate] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
     const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -260,7 +262,11 @@ export default function ProfilesPage() {
             <div className="flex items-center justify-between gap-4">
                 <div>
                     <h1 className="text-2xl font-extrabold text-slate-800">Profiles</h1>
-                    <p className="text-sm text-slate-500 mt-0.5">Each profile keeps its own progress, grade level, and stars — saved to the cloud.</p>
+                    <p className="text-sm text-slate-500 mt-0.5">
+                        {session
+                            ? "Each profile keeps its own progress, grade level, and stars — saved to the cloud."
+                            : "Each profile keeps its own progress, grade level, and stars — saved on this device."}
+                    </p>
                 </div>
                 {!showCreate && (
                     <button type="button" onClick={() => setShowCreate(true)}
@@ -269,6 +275,19 @@ export default function ProfilesPage() {
                     </button>
                 )}
             </div>
+
+            {/* Guest mode banner */}
+            {!session && (
+                <div className="flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm">
+                    <CloudOff className="size-4 text-amber-500 mt-0.5 shrink-0" />
+                    <div className="flex-1">
+                        <p className="font-semibold text-amber-800">Progress saves on this device only</p>
+                        <p className="text-amber-700 mt-0.5">Profiles and stars are stored in your browser. To back them up and access across devices,{" "}
+                            <Link to="/login" className="underline font-semibold hover:text-amber-900">sign in with Google</Link>.
+                        </p>
+                    </div>
+                </div>
+            )}
 
             {showCreate && (
                 <ProfileForm
