@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { supabase } from "@/lib/supabase";
+import { supabase, IS_OAUTH_CALLBACK } from "@/lib/supabase";
 
 interface AuthContextValue {
     session: Session | null;
@@ -20,13 +20,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // NOTE(ai): Do NOT call getSession() here. It resolves immediately with
-        // null before Supabase finishes parsing the OAuth hash, which sets
-        // loading=false too early and causes auth-callback to redirect to /login.
-        // onAuthStateChange fires INITIAL_SESSION only after the hash is fully
-        // processed — it is the single source of truth for initial session state.
+        // NOTE(ai): INITIAL_SESSION fires with null BEFORE Supabase finishes parsing
+        // the OAuth hash. IS_OAUTH_CALLBACK is captured at module load time (before
+        // createClient clears the hash). When we're mid-callback and get null, keep
+        // loading:true so auth-callback page doesn't prematurely redirect to /login.
+        // SIGNED_IN will fire with the real session moments later.
         const { data: { subscription } } = supabase.auth.onAuthStateChange(
-            (_event, newSession) => {
+            (event, newSession) => {
+                if (event === "INITIAL_SESSION" && !newSession && IS_OAUTH_CALLBACK) {
+                    // Stay loading — SIGNED_IN is coming.
+                    return;
+                }
                 setSession(newSession);
                 setLoading(false);
             },
