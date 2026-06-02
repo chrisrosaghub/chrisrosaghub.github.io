@@ -47,6 +47,7 @@ function App() {
                   <Route path="reading" element={<SubjectPage subjectId="reading" />} />
                   <Route path="presidents" element={<SubjectPage subjectId="presidents" />} />
                   <Route path="language" element={<SubjectPage subjectId="language" />} />
+                  <Route path="sel" element={<SubjectPage subjectId="sel" />} />
                   <Route path="activity/:activityId" element={<ActivityPage />} />
                   <Route path="daily" element={<DailyChallengePage />} />
                   <Route path="progress" element={<ProgressPage />} />

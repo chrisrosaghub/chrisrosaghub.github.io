@@ -15,8 +15,9 @@ import { SIGHT_WORDS_ACTIVITIES } from "@/lib/brainy-data-sight-words";
 import { PRESIDENTS_ACTIVITIES } from "@/lib/brainy-data-presidents";
 import { LANGUAGE_ACTIVITIES } from "@/lib/brainy-data-language";
 import { EUROPE_ACTIVITIES } from "@/lib/brainy-data-europe";
+import { SEL_ACTIVITIES } from "@/lib/brainy-data-sel";
 
-export type SubjectId = "math" | "science" | "history" | "geography" | "reading" | "states" | "presidents" | "language";
+export type SubjectId = "math" | "science" | "history" | "geography" | "reading" | "states" | "presidents" | "language" | "sel";
 export type Level = "kindergarten" | "grade1" | "grade2" | "grade3" | "grade4";
 export const LEVELS: { id: Level; label: string; shortLabel: string; emoji: string }[] = [
   { id: "kindergarten", label: "Kindergarten", shortLabel: "K", emoji: "\u{1F33C}" },
@@ -208,6 +209,18 @@ export const SUBJECTS: Subject[] = [
     textClass: "text-amber-700",
     bgSoftClass: "bg-amber-100",
     chartVar: "var(--chart-2)",
+  },
+  {
+    id: "sel",
+    name: "Social & Emotional Learning",
+    emoji: "🧠",
+    mascot: "Sage the Owl",
+    tagline: "Feelings, friendships, and making good choices",
+    gradientClass: "from-rose-300 via-pink-300 to-fuchsia-300",
+    ringClass: "ring-rose-300",
+    textClass: "text-rose-700",
+    bgSoftClass: "bg-rose-100",
+    chartVar: "var(--chart-3)",
   },
 ];
 
@@ -922,6 +935,7 @@ export const ACTIVITIES: Activity[] = [
   ...GRADE1_ACTIVITIES,
   ...KINDERGARTEN_ACTIVITIES,
   ...SIGHT_WORDS_ACTIVITIES,
+  ...SEL_ACTIVITIES,
 ];
 
 /** Return all activities matching the given level (default: grade2). */

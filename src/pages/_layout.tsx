@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { Sparkles, Home, Flame, Star, BookOpenCheck, Globe2, FlaskConical, Calculator, Landmark, Trophy, GraduationCap, BookA, UserRound, Map, Crown, Languages, ChevronDown } from "lucide-react";
+import { Sparkles, Home, Flame, Star, BookOpenCheck, Globe2, FlaskConical, Calculator, Landmark, Trophy, GraduationCap, BookA, UserRound, Map, Crown, Languages, ChevronDown, Heart } from "lucide-react";
 import { useLevel, useProgress, useSetLevel } from "@/lib/brainy-hooks";
 import { LEVELS, type Level } from "@/lib/brainy-data";
 import { ProfileSwitcher } from "@/components/brainy/ProfileSwitcher";
@@ -18,6 +18,7 @@ const NAV_ITEMS = [
   { to: "/states", label: "States & Capitals", icon: Map },
   { to: "/presidents", label: "Presidents", icon: Crown },
   { to: "/language", label: "Language Arts", icon: Languages },
+  { to: "/sel", label: "SEL", icon: Heart },
   { to: "/reading", label: "Sight Words", icon: BookA, levels: ["kindergarten"] as Level[] },
   { to: "/daily", label: "Daily Challenge", icon: Trophy },
   { to: "/progress", label: "My Progress", icon: BookOpenCheck },
