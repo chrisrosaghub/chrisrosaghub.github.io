@@ -16,6 +16,7 @@ import DailyChallengePage from "./pages/daily";
 import AboutPage from "./pages/about";
 import ProfilesPage from "./pages/profiles";
 import LoginPage from "./pages/login";
+import AuthCallbackPage from "./pages/auth-callback";
 import { AuthGuard } from "./components/system/AuthGuard";
 import { AppErrorBoundary } from "./components/system/AppErrorBoundary";
 
@@ -40,8 +41,9 @@ function App() {
           <AppErrorBoundary>
             <Suspense fallback={<div className="p-4 text-sm text-muted-foreground">Loading…</div>}>
               <Routes>
-                {/* Public: login page */}
+                {/* Public: login and OAuth callback pages */}
                 <Route path="login" element={<LoginPage />} />
+                <Route path="auth-callback" element={<AuthCallbackPage />} />
                 {/* Protected: everything else requires a Google sign-in */}
                 <Route element={<AuthGuard />}>
                   <Route path="/" element={<Layout />}>
