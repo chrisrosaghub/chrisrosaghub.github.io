@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import Layout from "./pages/_layout";
 import { queryClient } from "./lib/query-client";
 import { AppProviders } from "@/components/system/AppProviders";
+import { AuthProvider } from "@/lib/auth-context";
 import HomePage from "./pages/index";
 import NotFoundPage from "./pages/not-found";
 import SubjectPage from "./pages/subject";
@@ -34,6 +35,7 @@ const APP_BASENAME = getBase(window.location.pathname);
 function App() {
   return (
     <AppProviders>
+      <AuthProvider>
       <QueryClientProvider client={queryClient}>
         {/* NOTE(ai): DO NOT REMOVE - Single router lives here. Do not wrap App elsewhere. Do not modify basename */}
         <Router basename={APP_BASENAME}>
@@ -72,6 +74,7 @@ function App() {
           </AppErrorBoundary>
         </Router>
       </QueryClientProvider>
+      </AuthProvider>
     </AppProviders>
   );
 }

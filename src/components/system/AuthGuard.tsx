@@ -1,6 +1,6 @@
 import { Loader2 } from "lucide-react";
 import { Navigate, Outlet } from "react-router-dom";
-import { useSession } from "@/lib/auth-hooks";
+import { useSession } from "@/lib/auth-context";
 
 /**
  * Wraps all authenticated routes. Redirects to /login when no session exists.
