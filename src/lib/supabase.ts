@@ -11,19 +11,12 @@ if (!supabaseUrl || supabaseUrl.includes("YOUR_PROJECT_ID")) {
   );
 }
 
-// NOTE(ai): Capture the hash NOW — at module evaluation time — before createClient()
-// asynchronously clears it. React components and useEffects run AFTER this, so
-// reading the hash inside a component or useEffect is always too late.
-export const IS_OAUTH_CALLBACK =
-  typeof window !== "undefined" &&
-  (window.location.hash.includes("access_token") ||
-    window.location.hash.includes("error_description"));
-
 // Fall back to placeholder values so createClient doesn't throw on missing env vars.
 // The app will show the login page; all DB calls will fail gracefully until real values are set.
-// NOTE(ai): flowType 'implicit' avoids PKCE code-exchange requirement — tokens arrive in hash and are auto-detected.
+// NOTE(ai): flowType 'pkce' + detectSessionInUrl:false — we exchange the code
+// manually in /auth-callback so there are no event-timing races.
 export const supabase = createClient<Database>(
   supabaseUrl || "https://placeholder.supabase.co",
   supabaseAnonKey || "placeholder-anon-key",
-  { auth: { flowType: "implicit" } },
+  { auth: { flowType: "pkce", detectSessionInUrl: false } },
 );
