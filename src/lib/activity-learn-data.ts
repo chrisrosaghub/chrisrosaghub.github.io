@@ -921,4 +921,162 @@ export const ACTIVITY_LEARN_DATA: Record<string, { emoji: string; title: string;
     { emoji: "3️⃣5️⃣", title: "35th — John F. Kennedy", fact: "John F. Kennedy was the 35th President (1961–1963). He was the youngest person ever elected president, at 43 years old." },
     { emoji: "4️⃣4️⃣", title: "44th — Barack Obama", fact: "Barack Obama was the 44th President (2009–2017) and the first African American to hold the office." },
   ],
+
+  // ─── SOCIAL & EMOTIONAL LEARNING (SEL) ───────────────────────────────────
+
+  // Kindergarten
+  "sel-k-feelings": [
+    { emoji: "😊", title: "Happy", fact: "Happy is a feeling of joy and excitement. You might feel happy on your birthday, when you see a friend, or when you do something fun!" },
+    { emoji: "😢", title: "Sad", fact: "Sad is a feeling of hurt or missing something. Everyone feels sad sometimes — it's okay to cry or talk to someone you trust." },
+    { emoji: "😠", title: "Angry", fact: "Angry is a strong feeling when something feels unfair or wrong. It's normal to feel angry, but we should express it without hurting others." },
+    { emoji: "😨", title: "Scared", fact: "Scared is a feeling that warns us when something might not be safe. It's okay to feel scared — brave people feel scared too!" },
+    { emoji: "😮", title: "Surprised", fact: "Surprised is what you feel when something unexpected happens. Surprises can be happy (a gift!) or a little startling (a loud noise)." },
+    { emoji: "🥱", title: "Bored", fact: "Bored is the feeling of having nothing interesting to do. When you're bored, try asking for help finding something new to do!" },
+    { emoji: "🤩", title: "Excited", fact: "Excited is a big, bubbly feeling when something wonderful is about to happen — like a trip, a party, or meeting a new puppy!" },
+    { emoji: "😌", title: "Proud", fact: "Proud is the great feeling you get after working hard or doing something well. It's okay to feel proud of yourself!" },
+  ],
+
+  "sel-k-kindness": [
+    { emoji: "💛", title: "What Is Kindness?", fact: "Kindness means doing things that help others feel good, safe, and included. A small kind act can make someone's whole day better!" },
+    { emoji: "🤝", title: "Sharing", fact: "Sharing means letting others use something you have. When you share, everyone gets to enjoy more — and you make a friend feel valued." },
+    { emoji: "🙏", title: "Thank You & Please", fact: "'Thank you' shows you appreciate someone's help. 'Please' shows you are respectful when you ask for something. These magic words spread kindness everywhere!" },
+    { emoji: "🤗", title: "Helping Others", fact: "Helping means using your energy and abilities to make things easier for someone else. You can help by picking up something they dropped or holding a door open." },
+    { emoji: "😔", title: "Saying Sorry", fact: "When you make a mistake or hurt someone's feelings, saying 'I'm sorry' shows you care. A real apology means trying not to do it again." },
+    { emoji: "🎉", title: "Encouraging Others", fact: "Encouraging means cheering someone on! Saying 'You can do it!' or 'Great job!' helps others feel confident and supported." },
+    { emoji: "😊", title: "How Kindness Feels", fact: "Being kind doesn't just help others — it makes YOU feel good too! Scientists say being kind releases happy feelings in your brain." },
+  ],
+
+  "sel-k-calmdown": [
+    { emoji: "🌬️", title: "Deep Breathing", fact: "Take a slow, deep breath in through your nose, then blow it out slowly through your mouth. Do this 3–5 times to help your body feel calm." },
+    { emoji: "🔢", title: "Count to 10", fact: "When you feel upset, counting slowly to 10 gives your brain a pause. By the time you reach 10, you'll often feel a little calmer." },
+    { emoji: "🏃", title: "Move Your Body", fact: "Sometimes our bodies hold feelings inside. Jumping, stretching, or going for a walk can help let those feelings out in a healthy way." },
+    { emoji: "🎨", title: "Draw or Color", fact: "Drawing or coloring how you feel is a safe way to express big emotions. You don't have to show anyone — it's just for you!" },
+    { emoji: "🧸", title: "Hug Something Soft", fact: "Squeezing a stuffed animal, pillow, or blanket can help calm your body when feelings get really big. It's totally okay to do this!" },
+    { emoji: "🧑‍🏫", title: "Talk to a Trusted Adult", fact: "If your feelings feel too big to handle alone, finding a trusted adult — a parent, teacher, or counselor — is always a brave and smart choice." },
+    { emoji: "🌈", title: "Think of a Happy Place", fact: "Close your eyes and imagine your favorite, most peaceful place — the beach, your bedroom, a garden. Picturing calm places helps your brain relax." },
+  ],
+
+  // Grade 1
+  "sel-g1-emotions": [
+    { emoji: "🎭", title: "Many Feelings at Once", fact: "You can feel more than one emotion at a time! You might feel excited AND nervous about a school play. That's completely normal." },
+    { emoji: "🌡️", title: "Feelings Have Intensity", fact: "Emotions can be big or small. You might feel a little annoyed or very furious — it's the same type of feeling, just at different levels." },
+    { emoji: "😮‍💨", title: "Calm Your Body First", fact: "Big emotions make our hearts beat faster. Slowing down your breathing helps calm your whole body so you can think more clearly." },
+    { emoji: "🗣️", title: "Name Your Feelings", fact: "Finding the right word for how you feel — 'I'm frustrated' or 'I'm disappointed' — helps you and others understand what you need." },
+    { emoji: "🔄", title: "Feelings Change", fact: "Emotions don't last forever. Even when you feel very sad or angry, the feeling will pass. It helps to remember: 'This won't last forever.'" },
+    { emoji: "👂", title: "Feelings Give Us Information", fact: "Feeling nervous tells you something important is coming. Feeling hurt tells you your needs aren't being met. Pay attention to what your feelings are trying to tell you!" },
+    { emoji: "🤝", title: "Feelings & Choices", fact: "Feelings are never wrong, but some choices we make because of feelings CAN hurt others. We can feel angry AND still choose to respond kindly." },
+  ],
+
+  "sel-g1-friendship": [
+    { emoji: "🤝", title: "What Makes a Good Friend?", fact: "Good friends listen to each other, are honest, help when something is wrong, and make each other feel safe and valued." },
+    { emoji: "👂", title: "Active Listening", fact: "Active listening means giving your full attention — looking at the person, nodding, and not interrupting. It shows your friend they matter." },
+    { emoji: "🔄", title: "Taking Turns", fact: "Friends take turns talking, choosing activities, and going first. Taking turns is a sign of fairness and respect." },
+    { emoji: "🤝", title: "Apologizing & Forgiving", fact: "Even good friends disagree sometimes. Saying sorry — and forgiving when someone apologizes — helps friendships stay strong and grow." },
+    { emoji: "🎁", title: "Being Loyal", fact: "Loyal friends stick up for each other and don't share secrets or say mean things about their friends to others." },
+    { emoji: "🌱", title: "Making New Friends", fact: "Making a new friend can be as easy as smiling, saying hi, and asking a question like 'What do you like to do?' Everyone is looking for kindness." },
+    { emoji: "💛", title: "Different Kinds of Friends", fact: "Some friends are close and know everything about you. Some are friendly faces you see at school. Both kinds of friendships are valuable!" },
+  ],
+
+  "sel-g1-selfcontrol": [
+    { emoji: "⏸️", title: "What Is Self-Control?", fact: "Self-control means pausing before you act, even when you really want to do something. It's the skill of thinking before reacting." },
+    { emoji: "🧠", title: "Your Thinking Brain", fact: "The front part of your brain helps you think, plan, and make decisions. When you pause and breathe, you give your thinking brain time to help." },
+    { emoji: "🛑", title: "Stop & Think", fact: "When something makes you feel reactive, try: STOP — BREATHE — THINK. What's the best response? What might happen if you choose differently?" },
+    { emoji: "⏳", title: "Waiting & Patience", fact: "Waiting is hard, but practicing patience builds self-control. Try counting, taking breaths, or doing something else while you wait." },
+    { emoji: "🏆", title: "Self-Control Builds Success", fact: "Kids who practice self-control tend to do better in school, have stronger friendships, and feel better overall. It's a superpower you can grow!" },
+    { emoji: "🎯", title: "Impulse vs. Choice", fact: "An impulse is the first thing you feel like doing. A choice is what you decide after thinking. Self-control is the gap between impulse and choice." },
+    { emoji: "🌱", title: "Self-Control Takes Practice", fact: "Nobody is born with perfect self-control. Every time you pause and think before reacting, you're exercising and growing this important skill." },
+  ],
+
+  // Grade 2
+  "sel-g2-empathy": [
+    { emoji: "❤️", title: "What Is Empathy?", fact: "Empathy means understanding and sharing the feelings of another person. It's like stepping into their shoes and seeing the world from where they stand." },
+    { emoji: "👟", title: "Perspective-Taking", fact: "Perspective-taking means asking yourself: 'How would I feel if I were in their situation?' It's the core skill of empathy." },
+    { emoji: "👂", title: "Empathic Listening", fact: "When you listen to someone with empathy, you focus fully on them, don't interrupt, and try to understand — not just respond. Feeling truly heard is powerful." },
+    { emoji: "🧠", title: "Cognitive vs. Emotional Empathy", fact: "Cognitive empathy = understanding someone's thoughts and feelings logically. Emotional empathy = actually feeling moved by their situation. Both matter!" },
+    { emoji: "🌍", title: "Empathy Across Differences", fact: "Empathy is most important with people who are different from you — different backgrounds, experiences, or abilities. It builds bridges between people." },
+    { emoji: "💬", title: "Empathic Phrases", fact: "Saying 'That sounds really hard,' 'I can see why you're upset,' or 'How can I help?' are powerful ways to show someone you care." },
+    { emoji: "🏘️", title: "Empathy Builds Community", fact: "Classrooms and communities where people practice empathy have less conflict, more trust, and people feel safer and happier. Empathy is a superpower!" },
+  ],
+
+  "sel-g2-conflict": [
+    { emoji: "🤜🤛", title: "What Is Conflict?", fact: "A conflict is a disagreement between people. Conflicts are normal and happen in every friendship — what matters is how you handle them." },
+    { emoji: "😤", title: "Calm Down First", fact: "Before trying to solve a conflict, both people need to calm down. Trying to resolve a problem when you're still very upset rarely works well." },
+    { emoji: "🗣️", title: "Use 'I' Statements", fact: "Instead of 'You always...' try 'I feel... when...' For example: 'I feel left out when I'm not included.' This is less blaming and easier to hear." },
+    { emoji: "👂", title: "Listen to Understand", fact: "In a conflict, both sides need to feel heard. Try listening without planning what you'll say next. You might understand them better than you expected." },
+    { emoji: "⚖️", title: "Compromise", fact: "A compromise means both people give a little so both get something. It's not about winning — it's about finding a solution that feels fair to everyone." },
+    { emoji: "🏳️", title: "When to Get Help", fact: "If a conflict involves bullying, physical danger, or you've tried and can't resolve it, getting a trusted adult involved is the right and brave thing to do." },
+    { emoji: "🌱", title: "After the Conflict", fact: "After resolving a conflict, focus on rebuilding — not reminding each other who was right. Letting go and moving forward keeps friendships healthy." },
+  ],
+
+  "sel-g2-choices": [
+    { emoji: "⭐", title: "What Are Good Choices?", fact: "Good choices are ones you'd be proud of — they help you and others, align with your values, and you'd be okay with others seeing you make them." },
+    { emoji: "🔮", title: "Think About Consequences", fact: "Every choice has a consequence — a result that follows. Ask: 'What might happen because of this choice? Will I be okay with that?'" },
+    { emoji: "🧭", title: "Your Values as a Compass", fact: "Values are what you believe is right and important. They're your inner compass — use them to check if a choice feels right before you make it." },
+    { emoji: "🤝", title: "Responsibility", fact: "Responsible choices mean owning your actions, including mistakes. If a choice doesn't go well, taking responsibility is more powerful than making excuses." },
+    { emoji: "🚪", title: "Saying No to Peer Pressure", fact: "You can say no to doing something wrong and still be friendly: 'No thanks, that's not for me.' You don't owe anyone an explanation for doing the right thing." },
+    { emoji: "🔄", title: "Choices Can Be Fixed", fact: "If you make a mistake, you can often make a different choice next time. Apologizing, making amends, and learning from it shows real character." },
+    { emoji: "🌟", title: "Small Choices, Big Impact", fact: "Every day is full of small choices. The habit of making thoughtful, kind choices builds up over time into who you are as a person." },
+  ],
+
+  // Grade 3
+  "sel-g3-perspective": [
+    { emoji: "🔭", title: "What Is a Perspective?", fact: "A perspective is a viewpoint — the way someone sees and understands a situation based on their experiences, feelings, and background." },
+    { emoji: "👓", title: "Everyone Has a Lens", fact: "Like glasses with different lenses, everyone sees life through their own unique experiences. No two people see the world in exactly the same way." },
+    { emoji: "🤔", title: "Assuming vs. Understanding", fact: "When we assume we know why someone did something, we're often wrong. Asking 'What was going on for you?' gets the real story." },
+    { emoji: "🌍", title: "Culture Shapes Perspective", fact: "Where people grew up, their family traditions, language, and community all shape how they see the world. Different is not wrong — it's just different." },
+    { emoji: "🧩", title: "Conflict & Perspective", fact: "Most conflicts have at least two valid perspectives. Understanding both sides doesn't mean one is right — it means looking for common ground." },
+    { emoji: "💬", title: "Ask Curious Questions", fact: "The best way to understand someone's perspective is to ask open, curious questions: 'What was that like for you?' or 'Can you help me understand?' without judgment." },
+    { emoji: "🌱", title: "Perspective-Taking Is a Skill", fact: "Perspective-taking doesn't come naturally to everyone, but it can be practiced! Every time you wonder 'How might they see this?', you're building the skill." },
+  ],
+
+  "sel-g3-managing-emotions": [
+    { emoji: "🌊", title: "Big Feelings Are Normal", fact: "Everyone experiences intense emotions — frustration, anxiety, jealousy, grief. These are normal human experiences, not signs that something is wrong with you." },
+    { emoji: "🧠", title: "Name It to Tame It", fact: "Research shows that labeling your emotion — 'I'm feeling anxious' — actually reduces its intensity. Your brain calms down when you name what you're feeling." },
+    { emoji: "🫁", title: "Box Breathing", fact: "Breathe in for 4 counts → hold for 4 counts → breathe out for 4 counts → hold for 4 counts. This activates your body's calm system quickly." },
+    { emoji: "✏️", title: "Journaling", fact: "Writing or drawing your feelings helps process them. You don't have to show anyone — it's just a safe space to get feelings out of your head and onto the page." },
+    { emoji: "🏃", title: "Move the Emotion Out", fact: "Physical activity releases the pent-up energy that strong emotions create. A run, dance, jumping jacks — even a short walk can help shift your mood." },
+    { emoji: "🧘", title: "Mindfulness", fact: "Mindfulness means paying attention to the present moment on purpose — noticing your thoughts and feelings without judging them. It reduces anxiety and builds focus." },
+    { emoji: "🤝", title: "Reaching Out", fact: "When emotions feel too big to manage alone, talking to a trusted friend, family member, or counselor isn't weakness — it's emotional intelligence in action." },
+  ],
+
+  "sel-g3-responsibility": [
+    { emoji: "🏆", title: "What Is Responsibility?", fact: "Responsibility means being accountable for your actions, completing your commitments, and caring about how your choices affect others." },
+    { emoji: "📋", title: "Owning Mistakes", fact: "When you make a mistake, owning it honestly — 'I did that, and I'm sorry' — builds trust and shows real strength of character." },
+    { emoji: "🤝", title: "Keeping Promises", fact: "When you say you'll do something, following through matters. Keeping your word builds trust. If you can't follow through, let people know as early as possible." },
+    { emoji: "🏘️", title: "Responsibility to Community", fact: "Responsibility isn't just personal — it extends to your class, school, and community. Picking up litter, being kind to strangers, and helping out all count." },
+    { emoji: "⚖️", title: "Rights Come With Responsibilities", fact: "Having privileges — like screen time, playing with friends, joining a team — comes with responsibilities. Taking them seriously shows maturity." },
+    { emoji: "🌱", title: "Learning From Consequences", fact: "When your choices lead to a natural consequence — like losing a privilege or having to redo work — that's the world teaching you responsibility in real-time." },
+    { emoji: "🌟", title: "Responsibility Makes You Trustworthy", fact: "People who follow through on their word, own their mistakes, and do their part become someone others trust and want to count on. That's a powerful thing to be." },
+  ],
+
+  // Grade 4
+  "sel-g4-identity": [
+    { emoji: "🌟", title: "What Is Identity?", fact: "Your identity is the unique combination of who you are — your values, personality, culture, experiences, beliefs, and how you see yourself in the world." },
+    { emoji: "🧭", title: "Values: Your Inner Compass", fact: "Values are the things that matter most to you — honesty, kindness, fairness, creativity. They guide your decisions even when no one is watching." },
+    { emoji: "💪", title: "Strengths Inventory", fact: "Everyone has strengths — things they do well. Knowing your strengths (curiosity, empathy, persistence, humor) helps you build confidence and contribute to groups." },
+    { emoji: "🧠", title: "Growth Mindset", fact: "A growth mindset is the belief that your abilities can improve with effort and learning. The word 'yet' is powerful: 'I can't do this YET.'" },
+    { emoji: "🌍", title: "Culture & Identity", fact: "Your cultural background — the traditions, language, food, stories, and history of your family and community — is a rich and important part of who you are." },
+    { emoji: "🔄", title: "Identity Changes Over Time", fact: "As you grow, learn, and have new experiences, parts of your identity naturally shift. This is healthy — being open to growth is a sign of maturity." },
+    { emoji: "🪞", title: "Self-Awareness", fact: "Self-awareness is knowing your feelings, values, strengths, and how you impact others. It's the foundation of all social-emotional learning." },
+  ],
+
+  "sel-g4-peer-pressure": [
+    { emoji: "🧭", title: "What Is Peer Pressure?", fact: "Peer pressure is when people your age influence or push you to do something — sometimes positively (trying harder), sometimes negatively (risky behavior)." },
+    { emoji: "✅", title: "Positive vs. Negative Pressure", fact: "Positive: friends encourage you to try out for a team or study more. Negative: friends pressure you to exclude someone or break a rule. Know the difference!" },
+    { emoji: "🛡️", title: "Integrity Under Pressure", fact: "Integrity means sticking to your values even when it's hard or unpopular. Saying no to peer pressure IS integrity in action — it takes real courage." },
+    { emoji: "🚪", title: "Ways to Say No", fact: "'That's not for me.' 'I'll pass.' 'My parents wouldn't be okay with that.' 'I don't feel right about it.' You don't owe anyone an explanation for doing the right thing." },
+    { emoji: "🔮", title: "Thinking Ahead", fact: "Before going along with something, ask: 'How will I feel about this tomorrow? In a week? Would I be okay if my family could see me doing this?'" },
+    { emoji: "🤝", title: "Finding Your People", fact: "The people you spend time with have a big influence on who you become. Surrounding yourself with people who have good values makes staying true to yours easier." },
+    { emoji: "💡", title: "Conflicted Feelings Are a Signal", fact: "If something feels off but you can't say why, trust that instinct. That uncomfortable feeling is your values talking to you — pay attention." },
+  ],
+
+  "sel-g4-inclusion": [
+    { emoji: "🌍", title: "What Is Inclusion?", fact: "Inclusion means making sure everyone feels welcome, valued, and respected — not just tolerated. It's an active effort, not just the absence of exclusion." },
+    { emoji: "🧩", title: "Diversity Is a Strength", fact: "Groups with different perspectives, backgrounds, and abilities find more creative solutions and make better decisions. Diversity makes communities stronger." },
+    { emoji: "⚠️", title: "What Are Stereotypes?", fact: "Stereotypes are oversimplified, fixed ideas about a group. They erase individuality and can be harmful even when they seem 'positive.' Every person deserves to be seen as an individual." },
+    { emoji: "🦸", title: "Being an Upstander", fact: "An upstander is someone who takes action when they see unfairness or bullying. You don't need to be dramatic — even quietly checking in with someone left out makes a difference." },
+    { emoji: "👣", title: "Privilege & Awareness", fact: "Some people face fewer barriers because of factors they didn't choose. Recognizing this isn't about guilt — it's about using your position to make things more fair for everyone." },
+    { emoji: "🌱", title: "Inclusion Is Built Habit by Habit", fact: "Big inclusion starts with small actions: making eye contact with someone new, including the person sitting alone, speaking up when something isn't right." },
+    { emoji: "🏘️", title: "Everyone Belongs", fact: "Every person has the fundamental human need to belong — to feel like they matter and are part of something. Creating that for others is one of the most meaningful things you can do." },
+  ],
 };

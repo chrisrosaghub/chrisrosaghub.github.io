@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabase";
+import { syncLocalProgressToCloud } from "@/lib/sync-local-to-cloud";
 
 interface AuthContextValue {
     session: Session | null;
@@ -20,7 +21,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     useEffect(() => {
         const { data: { subscription } } = supabase.auth.onAuthStateChange(
-            (_event, newSession) => {
+            async (event, newSession) => {
+                // When the user signs in for the first time, migrate any guest
+                // progress from localStorage to Supabase before updating state.
+                if (event === "SIGNED_IN" && newSession) {
+                    try {
+                        await syncLocalProgressToCloud();
+                    } catch (e) {
+                        console.error("Failed to sync local progress to cloud:", e);
+                    }
+                }
                 setSession(newSession);
                 setLoading(false);
             },

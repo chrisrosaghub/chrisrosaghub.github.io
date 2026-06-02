@@ -7,6 +7,14 @@
 import { useCallback, useSyncExternalStore } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/lib/supabase";
+import { useSession } from "@/lib/auth-context";
+import {
+    getLocalProfiles,
+    createLocalProfile,
+    updateLocalProfile,
+    deleteLocalProfile,
+    isGuestId,
+} from "@/lib/local-store";
 
 // ---------------------------------------------------------------------------
 // Constants & types
@@ -72,6 +80,11 @@ function setActiveProfileIdLS(id: string | null): void {
     profileIdListeners.forEach((l) => l());
 }
 
+/** Public setter — used by the sync-on-login function. */
+export function setActiveProfileId(id: string | null): void {
+    setActiveProfileIdLS(id);
+}
+
 function subscribeProfileId(listener: () => void): () => void {
     profileIdListeners.add(listener);
     return () => profileIdListeners.delete(listener);
@@ -86,12 +99,14 @@ export function useActiveProfileId(): string | null {
 }
 
 // ---------------------------------------------------------------------------
-// Profiles — React Query + Supabase
+// Profiles — React Query + Supabase (with guest localStorage fallback)
 // ---------------------------------------------------------------------------
 export function useProfiles() {
+    const { session } = useSession();
     return useQuery<UserProfile[]>({
-        queryKey: ["profiles"],
+        queryKey: ["profiles", session?.user.id ?? "guest"],
         queryFn: async () => {
+            if (!session) return getLocalProfiles();
             const { data, error } = await supabase
                 .from("profiles")
                 .select("*")
@@ -104,10 +119,14 @@ export function useProfiles() {
 
 export function useActiveProfile() {
     const id = useActiveProfileId();
+    const { session } = useSession();
     return useQuery<UserProfile | null>({
         queryKey: ["active-profile", id],
         queryFn: async () => {
             if (!id) return null;
+            if (!session || isGuestId(id)) {
+                return getLocalProfiles().find((p) => p.id === id) ?? null;
+            }
             const { data } = await supabase
                 .from("profiles")
                 .select("*")
@@ -135,10 +154,14 @@ export function useSetActiveProfile() {
 
 export function useCreateProfile() {
     const qc = useQueryClient();
+    const { session } = useSession();
     return useMutation({
         mutationFn: async (
             profile: Pick<UserProfile, "name" | "avatar" | "color" | "level">,
         ) => {
+            if (!session) {
+                return createLocalProfile(profile);
+            }
             const { data: household, error: hErr } = await supabase
                 .from("households")
                 .select("id")
@@ -172,6 +195,10 @@ export function useUpdateProfile() {
             id: string;
             updates: Partial<Pick<UserProfile, "name" | "avatar" | "color" | "level">>;
         }) => {
+            if (isGuestId(id)) {
+                updateLocalProfile(id, updates);
+                return;
+            }
             const { error } = await supabase
                 .from("profiles")
                 .update(updates)
@@ -190,6 +217,10 @@ export function useDeleteProfile() {
     const qc = useQueryClient();
     return useMutation({
         mutationFn: async (id: string) => {
+            if (isGuestId(id)) {
+                deleteLocalProfile(id);
+                return;
+            }
             const { error } = await supabase.from("profiles").delete().eq("id", id);
             if (error) throw error;
         },

@@ -1,4 +1,5 @@
 import { Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 import { signInWithGoogle } from "@/lib/auth-hooks";
 
 export default function LoginPage() {
@@ -46,6 +47,23 @@ export default function LoginPage() {
                         Your progress is tied to your Google account. Each family member gets their own profile after sign-in.
                     </p>
                 </div>
+
+                <div className="flex items-center gap-3 w-full">
+                    <hr className="flex-1 border-slate-200" />
+                    <span className="text-xs text-slate-400 font-medium">or</span>
+                    <hr className="flex-1 border-slate-200" />
+                </div>
+
+                <Link
+                    to="/"
+                    className="flex items-center justify-center w-full rounded-2xl bg-violet-50 border border-violet-200 px-5 py-3 text-sm font-bold text-violet-700 hover:bg-violet-100 transition-all"
+                >
+                    Play as Guest
+                </Link>
+
+                <p className="text-center text-xs text-slate-400 leading-relaxed">
+                    Guest progress saves on this device only. Sign in later to move it to your account.
+                </p>
 
                 <p className="text-xs text-slate-400 text-center">
                     No password needed · Free forever · Data resets are per-session for guests
