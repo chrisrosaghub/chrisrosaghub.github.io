@@ -11,4 +11,9 @@ if (!supabaseUrl || supabaseUrl.includes("YOUR_PROJECT_ID")) {
   );
 }
 
-export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey);
+// Fall back to placeholder values so createClient doesn't throw on missing env vars.
+// The app will show the login page; all DB calls will fail gracefully until real values are set.
+export const supabase = createClient<Database>(
+  supabaseUrl || "https://placeholder.supabase.co",
+  supabaseAnonKey || "placeholder-anon-key",
+);
