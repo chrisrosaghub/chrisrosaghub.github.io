@@ -28,10 +28,9 @@ export function useSession(): { session: Session | null; loading: boolean } {
 
 /** Opens the Google OAuth popup/redirect flow. */
 export async function signInWithGoogle(): Promise<void> {
-    const redirectTo = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, "/");
     await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: { redirectTo },
+        options: { redirectTo: window.location.origin },
     });
 }
 
