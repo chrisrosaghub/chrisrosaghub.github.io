@@ -3,10 +3,20 @@
  * Shown before the quiz so kids study the concepts first.
  */
 
+export interface ElementCard {
+    symbol: string;
+    name: string;
+    number: number;
+    /** Tailwind gradient classes for the card background */
+    gradient: string;
+}
+
 export interface LearnItem {
     emoji: string;
     title: string;
     fact: string;
+    /** Optional periodic table element card shown above the fact */
+    elementCard?: ElementCard;
 }
 
 export const SCIENCE_LEARN_ITEMS: Record<string, LearnItem[]> = {

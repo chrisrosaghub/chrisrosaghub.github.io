@@ -4,9 +4,10 @@
  * Science Grade-2 items are imported from science-learn-data.ts (unchanged).
  */
 import { SCIENCE_LEARN_ITEMS } from "@/lib/science-learn-data";
+import type { LearnItem } from "@/lib/science-learn-data";
 export type { LearnItem } from "@/lib/science-learn-data";
 
-const EXTRA: Record<string, { emoji: string; title: string; fact: string }[]> = {
+const EXTRA: Record<string, LearnItem[]> = {
 
   // ─── KINDERGARTEN MATH ────────────────────────────────────────────────────
   "k-math-count": [
@@ -660,7 +661,7 @@ const EXTRA: Record<string, { emoji: string; title: string; fact: string }[]> = 
   ],
 };
 
-export const ACTIVITY_LEARN_DATA: Record<string, { emoji: string; title: string; fact: string }[]> = {
+export const ACTIVITY_LEARN_DATA: Record<string, LearnItem[]> = {
   ...SCIENCE_LEARN_ITEMS,
   ...EXTRA,
 
@@ -1082,36 +1083,121 @@ export const ACTIVITY_LEARN_DATA: Record<string, { emoji: string; title: string;
 
   // ─── PERIODIC TABLE ───────────────────────────────────────────────────────
   "sci-elements-g2": [
-    { emoji: "⚗️", title: "What Is an Element?", fact: "An element is a pure substance made of only ONE kind of atom. Gold is made of only gold atoms. Oxygen is made of only oxygen atoms. There are 118 known elements!" },
-    { emoji: "1️⃣", title: "Hydrogen — #1", fact: "Hydrogen (H) is the lightest element in the universe! It's in every water molecule (H₂O). The sun is mostly hydrogen — it burns hydrogen for energy!" },
-    { emoji: "2️⃣", title: "Helium — #2", fact: "Helium (He) is a gas that is lighter than air, so it makes balloons float! Helium is safe and won't explode. It's the second most common element in the universe." },
-    { emoji: "6️⃣", title: "Carbon — #6", fact: "Carbon (C) is the building block of all living things — plants, animals, and YOU! Pencil lead is made of carbon, and so are diamonds. Same element, different forms!" },
-    { emoji: "8️⃣", title: "Oxygen — #8", fact: "Oxygen (O) is the gas we breathe in to stay alive. It makes up about 21% of Earth's air. When you breathe out, you breathe out carbon dioxide (CO₂)." },
-    { emoji: "🥇", title: "Gold — Symbol Au", fact: "Gold's symbol 'Au' comes from the Latin word 'aurum'. Gold has been treasured for thousands of years because it's shiny and doesn't rust. It's element number 79!" },
-    { emoji: "🔩", title: "Iron — Symbol Fe", fact: "Iron's symbol 'Fe' comes from 'ferrum' in Latin. Iron is used to make steel for buildings and bridges. Your blood uses iron to carry oxygen around your body!" },
-    { emoji: "💧", title: "Water Is Two Elements!", fact: "Water (H₂O) is made from two elements: 2 hydrogen atoms + 1 oxygen atom. When elements join together they make a compound. Water is one of the most important compounds on Earth!" },
-    { emoji: "📋", title: "The Periodic Table", fact: "The Periodic Table is a special chart that lists all 118 known elements in order. Scientists use it every day! It was created by Dmitri Mendeleev in 1869." },
+    { emoji: "🧱", title: "Everything Is Made of Tiny Pieces!", fact: "Look at the table, the floor, the air, even YOU — everything is made of tiny, tiny pieces called elements! There are 118 different kinds, and they make up everything in the whole universe." },
+    {
+      emoji: "💧",
+      elementCard: { symbol: "H", name: "Hydrogen", number: 1, gradient: "from-sky-400 to-cyan-500" },
+      title: "Hydrogen — The Lightest of All",
+      fact: "Hydrogen is the lightest element there is! It is in every drop of water (H₂O just means 2 hydrogen + 1 oxygen joined together). The sun is mostly made of hydrogen — it burns hydrogen to give us light and warmth!"
+    },
+    {
+      emoji: "🎈",
+      elementCard: { symbol: "He", name: "Helium", number: 2, gradient: "from-pink-400 to-fuchsia-500" },
+      title: "Helium — The Floating Gas",
+      fact: "Helium makes balloons float up into the sky! It is lighter than the air around us, so it rises. Helium is perfectly safe — it will never explode. It's the second most common element in the whole universe!"
+    },
+    {
+      emoji: "✏️",
+      elementCard: { symbol: "C", name: "Carbon", number: 6, gradient: "from-slate-500 to-slate-700" },
+      title: "Carbon — The Building Block of Life",
+      fact: "Carbon is in every living thing — every plant, every animal, and YOU! The dark stuff in your pencil (pencil lead) is made of carbon. Diamonds are also made of carbon — same element, different shape!"
+    },
+    {
+      emoji: "🌬️",
+      elementCard: { symbol: "O", name: "Oxygen", number: 8, gradient: "from-blue-400 to-indigo-500" },
+      title: "Oxygen — The Air We Breathe",
+      fact: "Every breath you take, you breathe in oxygen! Your body needs it to work. About 1 out of every 5 breaths of air is oxygen. When you breathe OUT, you breathe out carbon dioxide (CO₂)."
+    },
+    {
+      emoji: "💍",
+      elementCard: { symbol: "Au", name: "Gold", number: 79, gradient: "from-yellow-400 to-amber-500" },
+      title: "Gold — Shiny and Special",
+      fact: "Gold's symbol 'Au' comes from an old word 'aurum'. Gold has been treasured for thousands of years! It is very shiny and never gets rusty. People use gold to make jewelry, coins, and even the wiring inside computers."
+    },
+    {
+      emoji: "🏗️",
+      elementCard: { symbol: "Fe", name: "Iron", number: 26, gradient: "from-orange-500 to-red-600" },
+      title: "Iron — Strong as Steel",
+      fact: "Iron's symbol 'Fe' comes from an old word 'ferrum'. Iron is used to build bridges, buildings, and cars — it makes the very strong material called steel! Did you know your blood uses iron to carry oxygen around your body?"
+    },
+    { emoji: "💧", title: "When Elements Team Up — Water!", fact: "Water is made of TWO elements joined together: 2 hydrogen atoms + 1 oxygen atom. We write that as H₂O. When elements join together, they make something brand new! Water is one of the most important things on Earth." },
+    { emoji: "📋", title: "The Periodic Table — A Map of Elements", fact: "The Periodic Table is like a big map that shows all 118 elements organized neatly. Every element has its own box with a symbol (1–2 letters) and a number. Scientists all over the world use the same table!" },
   ],
 
   "g3-sci-elements": [
-    { emoji: "🔢", title: "Atomic Number", fact: "Every element has an atomic number — the number of protons in one atom of that element. Hydrogen = 1 proton (atomic number 1). Carbon = 6 protons (atomic number 6). No two elements share the same atomic number!" },
-    { emoji: "⚡", title: "Metals", fact: "Metals are on the LEFT side of the periodic table. They are shiny, conduct electricity, and can be bent or stretched. Iron, copper, gold, and aluminum are all metals." },
-    { emoji: "🌬️", title: "Nonmetals", fact: "Nonmetals are on the RIGHT side of the table. Most are gases at room temperature (like oxygen and nitrogen). Carbon and sulfur are solid nonmetals. They do NOT conduct electricity well." },
-    { emoji: "🌟", title: "Noble Gases", fact: "Noble gases (the last column) are special — they almost NEVER react with other elements. Helium, Neon, Argon, Krypton, and Xenon are all noble gases. Neon makes glowing signs!" },
-    { emoji: "🧂", title: "Sodium — Na", fact: "Sodium's symbol 'Na' comes from 'Natrium' in Latin. Sodium is a soft, reactive metal. When it combines with chlorine (Cl), they form table salt — NaCl! Opposites that work great together." },
-    { emoji: "🦴", title: "Calcium — Ca", fact: "Calcium (Ca) is element number 20. Your bones and teeth are made mostly of calcium! Drinking milk gives you calcium to build strong bones. It's in many foods like cheese and broccoli." },
-    { emoji: "🌡️", title: "States at Room Temperature", fact: "Most elements are solid at room temperature (like iron and copper). 11 elements are gases (like oxygen and nitrogen). Only 2 are liquid: Mercury and Bromine — unusual elements!" },
-    { emoji: "📖", title: "Reading the Periodic Table", fact: "Each box in the table shows: the element's symbol (1–2 letters), its full name below, and its atomic number above. The first letter is ALWAYS capital; the second is always lowercase." },
+    { emoji: "�️", title: "What Is the Periodic Table?", fact: "Think of the Periodic Table like a giant library shelf that organizes all 118 elements. Each element gets its own box with a short symbol (1–2 letters), its full name, and a number that tells you where it belongs. Scientists everywhere use the exact same table!" },
+    {
+      emoji: "⚡",
+      elementCard: { symbol: "Fe", name: "Iron", number: 26, gradient: "from-orange-500 to-red-600" },
+      title: "Metals — Shiny and Strong",
+      fact: "Metals are on the LEFT side of the periodic table. They are usually shiny and very strong. They carry electricity well — that's why wires are made of metal! Iron, copper, gold, and aluminum are all metals you see every day."
+    },
+    {
+      emoji: "🌬️",
+      elementCard: { symbol: "O", name: "Oxygen", number: 8, gradient: "from-blue-400 to-indigo-500" },
+      title: "Nonmetals — Gases and More",
+      fact: "Nonmetals are on the RIGHT side of the table. Many of them are invisible gases — like the oxygen you breathe and the nitrogen that fills most of the air! Carbon and sulfur are solid nonmetals. Nonmetals don't carry electricity well."
+    },
+    {
+      emoji: "✨",
+      elementCard: { symbol: "Ne", name: "Neon", number: 10, gradient: "from-rose-400 to-pink-500" },
+      title: "Noble Gases — The Loners",
+      fact: "Noble gases are in the last column on the right. They almost NEVER join with other elements — they like to be alone! Helium (balloons), Neon (glowing signs), and Argon (inside light bulbs) are all noble gases. They are very stable and safe."
+    },
+    {
+      emoji: "🧂",
+      elementCard: { symbol: "Na", name: "Sodium", number: 11, gradient: "from-violet-400 to-purple-500" },
+      title: "Sodium — Symbol Na",
+      fact: "Sodium's symbol 'Na' comes from an old Latin word 'Natrium'. By itself, sodium is a dangerous silvery metal! But when it joins with chlorine (Cl), together they make ordinary table salt — NaCl. The very salt you put on food!"
+    },
+    {
+      emoji: "🦴",
+      elementCard: { symbol: "Ca", name: "Calcium", number: 20, gradient: "from-emerald-400 to-teal-500" },
+      title: "Calcium — Builds Strong Bones",
+      fact: "Calcium (Ca) is element number 20. Your bones and teeth are mostly made of calcium! When you drink milk or eat cheese, you are giving your body calcium to stay strong. Babies get calcium from their mothers — it's that important!"
+    },
+    { emoji: "🌡️", title: "Solid, Liquid, or Gas?", fact: "At room temperature, most elements are solid — like iron, copper, and gold. Eleven elements are gases, like oxygen and nitrogen. But only two are liquid: Mercury (the silvery stuff in old thermometers) and Bromine. Pretty unusual!" },
+    { emoji: "📖", title: "How to Read an Element Box", fact: "Every element box on the table has 3 things: the BIG symbol in the middle (1–2 letters), the full name at the bottom, and a number at the top. The first letter of the symbol is always CAPITAL; any second letter is always lowercase. So it's 'Ca' not 'CA'." },
   ],
 
   "g4-sci-elements": [
-    { emoji: "⚛️", title: "Inside an Atom", fact: "Atoms have a nucleus (center) made of protons (+) and neutrons (no charge), surrounded by electrons (-) orbiting outside. The number of protons = the atomic number = the element's identity!" },
-    { emoji: "🔬", title: "Elements vs. Compounds", fact: "An element is a pure substance made of one kind of atom. A compound is made when two or more elements CHEMICALLY BOND together. H₂O is a compound — it has different properties than hydrogen or oxygen alone!" },
-    { emoji: "💧", title: "Famous Compound: Water (H₂O)", fact: "H₂O means 2 hydrogen atoms bonded to 1 oxygen atom. Water has completely different properties from hydrogen gas (flammable!) and oxygen gas. Chemical bonding creates something NEW." },
-    { emoji: "🌬️", title: "Famous Compound: Carbon Dioxide (CO₂)", fact: "CO₂ = 1 carbon atom + 2 oxygen atoms. Plants absorb CO₂ from the air for photosynthesis. Humans breathe out CO₂ as waste. It's also what makes soda bubbly!" },
-    { emoji: "🧂", title: "Famous Compound: Salt (NaCl)", fact: "NaCl = 1 sodium atom + 1 chlorine atom. Sodium is a dangerous metal; chlorine is a toxic gas — but together they make safe, tasty table salt! Chemical bonding changes everything." },
-    { emoji: "🥗", title: "Mixtures vs. Compounds", fact: "In a MIXTURE, substances are mixed but NOT chemically bonded — you can separate them. Trail mix, salt water, and air are all mixtures. In a COMPOUND, the parts are bonded and can't be easily separated by hand." },
-    { emoji: "🌟", title: "The Noble Gases", fact: "Noble gases (Group 18: He, Ne, Ar, Kr, Xe, Rn) have full outer electron shells. That makes them super stable — they almost never bond with other elements. Helium floats, Neon glows, Argon is in light bulbs!" },
-    { emoji: "💎", title: "Carbon — The Versatile Element", fact: "Carbon (C, atomic number 6) forms more compounds than any other element. Diamonds, graphite, coal, and ALL living things contain carbon. The study of carbon compounds is called organic chemistry!" },
+    { emoji: "🔍", title: "What Is Inside an Element?", fact: "Every element is made of tiny pieces called ATOMS — so small you can't see them even with most microscopes! Each element has its own special kind of atom. Gold atoms only make gold. Oxygen atoms only make oxygen. The number of protons in the center tells us which element it is." },
+    {
+      emoji: "🔬",
+      elementCard: { symbol: "C", name: "Carbon", number: 6, gradient: "from-slate-500 to-slate-700" },
+      title: "Elements vs. Compounds",
+      fact: "An ELEMENT is a pure substance made of just one kind of atom — like carbon (C) or oxygen (O). A COMPOUND is what you get when two or more elements join together chemically. H₂O is a compound — it has totally different properties from either hydrogen or oxygen alone!"
+    },
+    {
+      emoji: "💧",
+      elementCard: { symbol: "H₂O", name: "Water", number: 0, gradient: "from-sky-400 to-blue-500" },
+      title: "Famous Compound: Water",
+      fact: "Water (H₂O) is made of 2 hydrogen atoms joined to 1 oxygen atom. Hydrogen alone is a gas that catches fire easily. Oxygen alone keeps fires burning. Put them together and you get water — which PUTS OUT fires! Compounds can be very different from the elements inside them."
+    },
+    {
+      emoji: "🫧",
+      elementCard: { symbol: "CO₂", name: "Carbon Dioxide", number: 0, gradient: "from-teal-400 to-cyan-600" },
+      title: "Famous Compound: Carbon Dioxide",
+      fact: "CO₂ = 1 carbon + 2 oxygen atoms joined together. Plants breathe it IN to make food (photosynthesis). Humans and animals breathe it OUT as waste. CO₂ is also what makes soda fizzy and bubbly!"
+    },
+    {
+      emoji: "🧂",
+      elementCard: { symbol: "NaCl", name: "Table Salt", number: 0, gradient: "from-violet-400 to-purple-600" },
+      title: "Famous Compound: Table Salt",
+      fact: "NaCl = 1 sodium atom + 1 chlorine atom. Sodium alone is a dangerous metal that explodes in water! Chlorine alone is a toxic gas used in pools. But together they make perfectly safe table salt that goes on your food. That's the magic of compounds!"
+    },
+    { emoji: "🥗", title: "Mixtures Are Different from Compounds", fact: "In a MIXTURE, things are stirred together but NOT chemically joined — you can still pick them apart. Trail mix, sand and water, and air are all mixtures. In a COMPOUND, the elements are locked together by a chemical bond and you can't separate them by hand." },
+    {
+      emoji: "✨",
+      elementCard: { symbol: "He", name: "Helium", number: 2, gradient: "from-pink-400 to-fuchsia-500" },
+      title: "Noble Gases — Almost Never React",
+      fact: "Noble gases (He, Ne, Ar, Kr, Xe) have a full outer shell of electrons — like a full backpack with no room for anything else! That makes them super stable. They almost never bond with other elements. Helium floats, Neon glows in signs, Argon protects light bulb filaments."
+    },
+    {
+      emoji: "💎",
+      elementCard: { symbol: "C", name: "Carbon", number: 6, gradient: "from-slate-500 to-slate-700" },
+      title: "Carbon — The Most Versatile Element",
+      fact: "Carbon (C) can form more different compounds than any other element — millions of them! Diamonds, pencil lead (graphite), coal, and every living creature all contain carbon. The same element arranged differently makes something completely different. Pretty amazing!"
+    },
   ],
 };

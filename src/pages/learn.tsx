@@ -165,9 +165,17 @@ export default function LearnPage() {
         <div className="p-6 md:p-8 space-y-4">
           {/* Term / topic */}
           <div className="flex flex-col items-center text-center gap-3">
-            <div className="text-6xl select-none" aria-hidden>
-              {item.emoji}
-            </div>
+            {item.elementCard ? (
+              <div className={`relative rounded-2xl bg-gradient-to-br ${item.elementCard.gradient} shadow-lg px-6 py-4 min-w-[120px] text-white text-center select-none`}>
+                <div className="text-xs font-bold opacity-80 mb-0.5">{item.elementCard.number}</div>
+                <div className="text-5xl font-black leading-none tracking-tight">{item.elementCard.symbol}</div>
+                <div className="text-sm font-bold mt-1 opacity-90">{item.elementCard.name}</div>
+              </div>
+            ) : (
+              <div className="text-6xl select-none" aria-hidden>
+                {item.emoji}
+              </div>
+            )}
             <h2 className="text-xl md:text-2xl font-extrabold tracking-tight text-slate-900">
               {item.title}
             </h2>
