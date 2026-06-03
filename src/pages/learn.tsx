@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, RotateCcw, Volume2, Volu
 import { ACTIVITY_LEARN_DATA } from "@/lib/activity-learn-data";
 import { ACTIVITIES } from "@/lib/brainy-data";
 import { useTTS } from "@/lib/use-tts";
+import { useLevel } from "@/lib/brainy-hooks";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 
@@ -15,6 +16,8 @@ export default function LearnPage() {
   const [index, setIndex] = useState(0);
   const [finished, setFinished] = useState(false);
   const { speak, stop, isSupported, isSpeaking, autoRead, toggleAutoRead } = useTTS();
+  const level = useLevel();
+  const isEarlyLearner = level === "kindergarten" || level === "grade1";
 
   // Auto-read the full card when it changes
   useEffect(() => {
@@ -112,14 +115,26 @@ export default function LearnPage() {
               aria-label={autoRead ? "Turn off read aloud" : "Turn on read aloud"}
               title={autoRead ? "Read Aloud: ON" : "Read Aloud: OFF"}
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold border transition-colors",
-                autoRead
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-muted text-muted-foreground border-transparent hover:bg-muted/80",
+                "inline-flex items-center gap-1.5 rounded-full font-bold transition-all",
+                isEarlyLearner
+                  ? cn(
+                      "px-4 py-2 text-sm shadow",
+                      autoRead
+                        ? "bg-gradient-to-r from-amber-400 to-orange-400 text-white shadow-amber-200"
+                        : "bg-amber-100 text-amber-700 border-2 border-amber-300 hover:bg-amber-200",
+                    )
+                  : cn(
+                      "px-3 py-1 text-xs border",
+                      autoRead
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "bg-muted text-muted-foreground border-transparent hover:bg-muted/80",
+                    ),
               )}
             >
-              {autoRead ? <Volume2 className="size-3.5" /> : <VolumeX className="size-3.5" />}
-              Read Aloud
+              {autoRead
+                ? <Volume2 className={isEarlyLearner ? "size-4" : "size-3.5"} />
+                : <VolumeX className={isEarlyLearner ? "size-4" : "size-3.5"} />}
+              {isEarlyLearner ? (autoRead ? "Reading!" : "Read to me!") : "Read Aloud"}
             </button>
           )}
           <span className="text-xs font-bold text-muted-foreground">
@@ -171,14 +186,24 @@ export default function LearnPage() {
               onClick={() => speak(item.title + ". " + item.fact)}
               aria-label="Read aloud"
               className={cn(
-                "mx-auto flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold border transition-colors",
-                isSpeaking
-                  ? "bg-primary/10 text-primary border-primary/20"
-                  : "bg-white/80 text-slate-500 border-slate-200 hover:text-primary hover:border-primary/30",
+                "mx-auto flex items-center gap-2 rounded-full font-bold transition-all",
+                isEarlyLearner
+                  ? cn(
+                      "px-5 py-2.5 text-sm shadow-md",
+                      isSpeaking
+                        ? "bg-gradient-to-r from-amber-400 to-orange-400 text-white"
+                        : "bg-amber-100 text-amber-700 border-2 border-amber-300 hover:bg-amber-200",
+                    )
+                  : cn(
+                      "px-3 py-1 text-xs font-semibold border",
+                      isSpeaking
+                        ? "bg-primary/10 text-primary border-primary/20"
+                        : "bg-white/80 text-slate-500 border-slate-200 hover:text-primary hover:border-primary/30",
+                    ),
               )}
             >
-              <Volume2 className="size-3" />
-              {isSpeaking ? "Reading…" : "Read aloud"}
+              <Volume2 className={isEarlyLearner ? "size-4" : "size-3"} />
+              {isSpeaking ? "Reading…" : isEarlyLearner ? "🔊 Read to me!" : "Read aloud"}
             </button>
           )}
 

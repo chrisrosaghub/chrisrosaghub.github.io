@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, ArrowRight, CheckCircle2, RotateCcw, Star, Trophy, XCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, RotateCcw, Star, Trophy, XCircle, Volume2, VolumeX } from "lucide-react";
 import {
   useActivity,
   useRoundKey,
   useCompleteActivity,
   useSubject,
+  useLevel,
 } from "@/lib/brainy-hooks";
+import { useTTS } from "@/lib/use-tts";
 import type { Badge, Question, SubjectId } from "@/lib/brainy-data";
 import { DAILY_CHALLENGE_ID } from "@/lib/brainy-data";
 import { Progress } from "@/components/ui/progress";
@@ -27,6 +29,9 @@ export default function ActivityPage() {
     isDaily ? undefined : (activity?.subjectId as SubjectId | undefined),
   );
   const completeMutation = useCompleteActivity();
+  const level = useLevel();
+  const { speak, isSpeaking, autoRead, toggleAutoRead, isSupported } = useTTS();
+  const isEarlyLearner = level === "kindergarten" || level === "grade1";
 
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -50,6 +55,16 @@ export default function ActivityPage() {
     setFinished(false);
     setSummary(null);
   }, [activityId]);
+
+  // Auto-speak question when Read Aloud is enabled
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (autoRead && question) {
+      const text = question.prompt + ". " + question.choices.map((c, i) => `${String.fromCharCode(65 + i)}: ${c}`).join(". ");
+      speak(text);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index, autoRead]);
 
   const total = activity?.questions.length ?? 0;
   const question = activity?.questions[index];
@@ -241,16 +256,46 @@ export default function ActivityPage() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-3">
         <Link
           to={backHref}
           className="inline-flex items-center gap-1 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="size-4" /> {backLabel}
         </Link>
-        <span className="text-xs font-bold text-muted-foreground">
-          Question {Math.min(index + 1, total)} of {total}
-        </span>
+        <div className="flex items-center gap-2">
+          {isSupported && (
+            <button
+              type="button"
+              onClick={toggleAutoRead}
+              aria-label={autoRead ? "Turn off read aloud" : "Turn on read aloud"}
+              className={cn(
+                "inline-flex items-center gap-1.5 rounded-full font-bold transition-all",
+                isEarlyLearner
+                  ? cn(
+                      "px-4 py-2 text-sm shadow",
+                      autoRead
+                        ? "bg-gradient-to-r from-amber-400 to-orange-400 text-white shadow-amber-200"
+                        : "bg-amber-100 text-amber-700 border-2 border-amber-300 hover:bg-amber-200",
+                    )
+                  : cn(
+                      "px-3 py-1 text-xs border",
+                      autoRead
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "bg-muted text-muted-foreground border-transparent hover:bg-muted/80",
+                    ),
+              )}
+            >
+              {autoRead
+                ? <Volume2 className={isEarlyLearner ? "size-4" : "size-3.5"} />
+                : <VolumeX className={isEarlyLearner ? "size-4" : "size-3.5"} />}
+              {isEarlyLearner ? (autoRead ? "Reading!" : "Read to me!") : "Read Aloud"}
+            </button>
+          )}
+          <span className="text-xs font-bold text-muted-foreground">
+            Question {Math.min(index + 1, total)} of {total}
+          </span>
+        </div>
       </div>
 
       <div
@@ -299,6 +344,39 @@ export default function ActivityPage() {
         <h2 className="text-xl md:text-2xl font-extrabold tracking-tight text-center">
           {question?.prompt}
         </h2>
+
+        {/* Read question aloud button */}
+        {isSupported && question && (
+          <div className="flex justify-center">
+            <button
+              type="button"
+              onClick={() => {
+                const text = question.prompt + ". " + question.choices.map((c, i) => `${String.fromCharCode(65 + i)}: ${c}`).join(". ");
+                speak(text);
+              }}
+              aria-label="Read question aloud"
+              className={cn(
+                "inline-flex items-center gap-2 rounded-full font-bold transition-all",
+                isEarlyLearner
+                  ? cn(
+                      "px-5 py-2.5 text-sm shadow-md",
+                      isSpeaking
+                        ? "bg-gradient-to-r from-amber-400 to-orange-400 text-white"
+                        : "bg-amber-100 text-amber-700 border-2 border-amber-300 hover:bg-amber-200",
+                    )
+                  : cn(
+                      "px-3 py-1.5 text-xs border",
+                      isSpeaking
+                        ? "bg-primary/10 text-primary border-primary/20"
+                        : "bg-white/80 text-slate-500 border-slate-200 hover:text-primary hover:border-primary/30",
+                    ),
+              )}
+            >
+              <Volume2 className={isEarlyLearner ? "size-4" : "size-3.5"} />
+              {isSpeaking ? "Reading…" : isEarlyLearner ? "🔊 Read to me!" : "Read aloud"}
+            </button>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {question?.choices.map((choice, idx) => {
