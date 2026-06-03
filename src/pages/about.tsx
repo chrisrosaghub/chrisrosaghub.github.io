@@ -1,35 +1,4 @@
-import { Linkedin, Github, Globe, BrainCircuit, Rocket, BarChart3, Shield, Car, Sparkles, Gamepad2, BookOpen } from "lucide-react";
-
-const FOCUS_AREAS = [
-    {
-        icon: BrainCircuit,
-        title: "AI Strategy & Implementation",
-        desc: "Enterprise AI adoption, responsible AI governance, and LLM-powered solutions.",
-        color: "text-violet-600",
-        bg: "bg-violet-50",
-    },
-    {
-        icon: Rocket,
-        title: "Business Transformation",
-        desc: "Organizational change management, process optimization, and digital transformation.",
-        color: "text-fuchsia-600",
-        bg: "bg-fuchsia-50",
-    },
-    {
-        icon: BarChart3,
-        title: "Value Realization",
-        desc: "ROI measurement, business case development, and impact analytics.",
-        color: "text-orange-600",
-        bg: "bg-orange-50",
-    },
-    {
-        icon: Shield,
-        title: "Enterprise Solutions",
-        desc: "Cloud infrastructure, data platforms, and intelligent automation on Azure.",
-        color: "text-sky-600",
-        bg: "bg-sky-50",
-    },
-];
+import { Linkedin, Github, Globe, BrainCircuit, Car, Sparkles, Gamepad2, BookOpen } from "lucide-react";
 
 function StoryStep({ icon: Icon, color, bg, title, body }: {
     icon: React.ElementType;
@@ -67,7 +36,7 @@ export default function AboutPage() {
                         Chris Rosa
                     </h1>
                     <p className="text-lg font-semibold text-white/90">
-                        Business Value Advisor · Microsoft
+                        Business Value Advisor
                     </p>
                     <p className="text-base text-white/85 max-w-xl leading-relaxed">
                         I help enterprise organizations unlock AI's potential to solve complex challenges and
@@ -94,30 +63,6 @@ export default function AboutPage() {
                             GitHub
                         </a>
                     </div>
-                </div>
-            </section>
-
-            {/* About */}
-            <section className="space-y-4">
-                <h2 className="text-2xl font-extrabold tracking-tight">About Me</h2>
-                <div className="space-y-4 text-muted-foreground leading-relaxed">
-                    <p>
-                        I'm a <strong className="text-foreground">Business Value Advisor at Microsoft</strong>,
-                        specializing in helping enterprise organizations strategically leverage AI and cloud
-                        technologies to solve their most complex business challenges. My mission is to bridge the
-                        gap between cutting-edge technology and real-world business value.
-                    </p>
-                    <p>
-                        With deep expertise in AI transformation, enterprise solutions architecture, and
-                        organizational change management, I work with C-suite executives and business leaders to
-                        develop comprehensive strategies that drive measurable ROI, operational efficiency, and
-                        competitive advantage through intelligent technology adoption.
-                    </p>
-                    <p>
-                        Outside of work, I'm passionate about education and making learning fun. Brainy Buddies
-                        started as a late-night project with my son — and it's grown into something we're both
-                        really proud of.
-                    </p>
                 </div>
             </section>
 
@@ -173,24 +118,27 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* Focus areas */}
+            {/* About */}
             <section className="space-y-4">
-                <h2 className="text-2xl font-extrabold tracking-tight">Core Focus Areas</h2>
-                <div className="grid sm:grid-cols-2 gap-4">
-                    {FOCUS_AREAS.map(({ icon: Icon, title, desc, color, bg }) => (
-                        <div
-                            key={title}
-                            className="flex gap-4 rounded-2xl border bg-card p-5 shadow-sm hover:shadow-md transition-shadow"
-                        >
-                            <div className={`mt-0.5 shrink-0 rounded-xl ${bg} p-2.5`}>
-                                <Icon className={`size-5 ${color}`} />
-                            </div>
-                            <div>
-                                <h3 className="font-bold text-foreground">{title}</h3>
-                                <p className="text-sm text-muted-foreground mt-0.5 leading-relaxed">{desc}</p>
-                            </div>
-                        </div>
-                    ))}
+                <h2 className="text-2xl font-extrabold tracking-tight">About Me</h2>
+                <div className="space-y-4 text-muted-foreground leading-relaxed">
+                    <p>
+                        I'm a <strong className="text-foreground">Business Value Advisor at Microsoft</strong>,
+                        specializing in helping enterprise organizations strategically leverage AI and cloud
+                        technologies to solve their most complex business challenges. My mission is to bridge the
+                        gap between cutting-edge technology and real-world business value.
+                    </p>
+                    <p>
+                        With deep expertise in AI transformation, enterprise solutions architecture, and
+                        organizational change management, I work with C-suite executives and business leaders to
+                        develop comprehensive strategies that drive measurable ROI, operational efficiency, and
+                        competitive advantage through intelligent technology adoption.
+                    </p>
+                    <p>
+                        Outside of work, I'm passionate about education and making learning fun. Brainy Buddies
+                        started as a late-night project with my son — and it's grown into something we're both
+                        really proud of.
+                    </p>
                 </div>
             </section>
 
