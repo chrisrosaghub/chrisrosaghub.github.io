@@ -235,6 +235,31 @@ export const GRADE4_ACTIVITIES: Activity[] = [
     ],
   },
 
+  {
+    id: "g4-sci-elements",
+    subjectId: "science",
+    level: "grade4",
+    title: "Elements & Compounds",
+    description: "Dive deeper into atoms, the periodic table, and how elements combine.",
+    emoji: "⚛️",
+    questions: [
+      { id: "q1",  prompt: "An atom's atomic number tells you the number of...", choices: ["Neutrons", "Electrons", "Protons", "Molecules"], answer: 2, explanation: "The atomic number equals the number of protons in an atom's nucleus." },
+      { id: "q2",  prompt: "An element is a pure substance that...", choices: ["Can be broken down by heating", "Cannot be broken down into simpler substances", "Is always a gas", "Is always a metal"], answer: 1 },
+      { id: "q3",  prompt: "When two or more elements chemically combine, they form a...", choices: ["Mixture", "Compound", "Solution", "Alloy"], answer: 1, explanation: "H₂O is a compound — hydrogen and oxygen chemically bonded together." },
+      { id: "q4",  prompt: "The chemical formula for water is...", choices: ["H₂", "O₂", "H₂O", "CO₂"], answer: 2 },
+      { id: "q5",  prompt: "Carbon dioxide (CO₂) is a compound made of carbon and...", choices: ["Hydrogen", "Nitrogen", "Oxygen", "Helium"], answer: 2 },
+      { id: "q6",  prompt: "Table salt (NaCl) is a compound made of Sodium and...", choices: ["Carbon", "Chlorine", "Calcium", "Chromium"], answer: 1 },
+      { id: "q7",  prompt: "In the periodic table, elements in the same COLUMN (group) have similar...", choices: ["Atomic masses", "Colors", "Chemical properties", "Densities"], answer: 2, explanation: "Elements in the same group share similar valence electron configurations." },
+      { id: "q8",  prompt: "The noble gases (Group 18) are special because they have...", choices: ["The most electrons", "A full outer electron shell and rarely react", "The highest atomic numbers", "The lowest melting points"], answer: 1 },
+      { id: "q9",  prompt: "A mixture is different from a compound because in a mixture the parts...", choices: ["Are chemically bonded", "Can be separated physically", "Form a new substance", "Always change color"], answer: 1, explanation: "Salt water is a mixture — you can evaporate the water to get the salt back." },
+      { id: "q10", prompt: "The element with atomic number 6 and symbol 'C' is...", choices: ["Calcium", "Cobalt", "Carbon", "Chromium"], answer: 2 },
+      { id: "q11", prompt: "Which two elements make up water (H₂O)?", choices: ["Hydrogen and Helium", "Hydrogen and Oxygen", "Helium and Oxygen", "Hydrogen and Nitrogen"], answer: 1 },
+      { id: "q12", prompt: "The element Iron has the symbol 'Fe'. Its atomic number is 26. This means Iron has 26...", choices: ["Neutrons", "Electrons only", "Protons", "Compounds"], answer: 2 },
+      { id: "q13", prompt: "Diamond and graphite (pencil lead) are both made entirely of which element?", choices: ["Silicon", "Oxygen", "Carbon", "Nitrogen"], answer: 2, explanation: "Different arrangements of carbon atoms create very different materials!" },
+      { id: "q14", prompt: "Which of these is a mixture (NOT a compound)?", choices: ["Water (H₂O)", "Salt (NaCl)", "Carbon dioxide (CO₂)", "Trail mix (nuts and raisins)"], answer: 3, explanation: "Trail mix is a mixture — you can pick out each part without a chemical reaction." },
+    ],
+  },
+
   // ── HISTORY ──────────────────────────────────────────────────────────────
 
   {

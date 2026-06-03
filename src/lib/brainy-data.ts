@@ -578,6 +578,27 @@ const GRADE2_ACTIVITIES: Activity[] = [
       { id: "q12", prompt: "Which would you put in the recycle bin?", choices: ["old banana", "empty soda can", "food scraps", "used napkin"], answer: 1 },
     ],
   },
+  {
+    id: "sci-elements-g2",
+    subjectId: "science",
+    title: "Meet the Elements",
+    description: "Discover the building blocks of everything around you!",
+    emoji: "⚗️",
+    questions: [
+      { id: "q1", prompt: "Everything in the universe is made of tiny building blocks called...", choices: ["planets", "elements", "seasons", "ecosystems"], answer: 1, explanation: "Elements are pure substances made of one kind of atom — like gold, oxygen, or carbon." },
+      { id: "q2", prompt: "What is the symbol for the element Gold?", choices: ["Go", "Gd", "Au", "Gl"], answer: 2, explanation: "Au comes from the Latin word 'aurum' meaning gold." },
+      { id: "q3", prompt: "The air we breathe is mostly made of which element?", choices: ["Oxygen", "Hydrogen", "Nitrogen", "Carbon"], answer: 3, explanation: "Air is about 78% nitrogen and only 21% oxygen." },
+      { id: "q4", prompt: "What gas do we breathe IN to stay alive?", choices: ["Nitrogen", "Carbon dioxide", "Oxygen", "Helium"], answer: 2 },
+      { id: "q5", prompt: "The element symbol 'H' stands for...", choices: ["Helium", "Hydrogen", "Hafnium", "Holmium"], answer: 1 },
+      { id: "q6", prompt: "Balloons that float up into the sky are usually filled with which light element?", choices: ["Oxygen", "Nitrogen", "Carbon", "Helium"], answer: 3, explanation: "Helium (He) is lighter than air, so it floats!" },
+      { id: "q7", prompt: "What is the symbol for the element Iron?", choices: ["Ir", "In", "Fe", "Io"], answer: 2, explanation: "Fe comes from the Latin word 'ferrum' meaning iron." },
+      { id: "q8", prompt: "The element Carbon makes up the graphite in your...", choices: ["eraser", "pencil lead", "desk", "backpack"], answer: 1 },
+      { id: "q9", prompt: "Water is made of hydrogen and which other element?", choices: ["Carbon", "Nitrogen", "Oxygen", "Helium"], answer: 2, explanation: "Water = H₂O — 2 hydrogen atoms + 1 oxygen atom!" },
+      { id: "q10", prompt: "The chart that lists all elements in order is called the...", choices: ["Food Chart", "Periodic Table", "Weather Map", "Solar System Chart"], answer: 1 },
+      { id: "q11", prompt: "Which of these is a real element?", choices: ["Chocolate", "Wood", "Silver", "Water"], answer: 2, explanation: "Silver (Ag) is element number 47 on the periodic table." },
+      { id: "q12", prompt: "The symbol 'O' stands for which element?", choices: ["Osmium", "Oxygen", "Oganesson", "Oxide"], answer: 1 },
+    ],
+  },
 
   // -------- HISTORY --------
   {

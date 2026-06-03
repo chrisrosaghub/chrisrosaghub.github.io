@@ -194,6 +194,28 @@ export const GRADE3_ACTIVITIES: Activity[] = [
             { id: "q10", prompt: "Two magnets facing north pole to north pole will...", choices: ["attract each other", "repel each other", "stick together", "spin in circles"], answer: 1 },
         ],
     },
+    {
+        id: "g3-sci-elements",
+        subjectId: "science",
+        level: "grade3",
+        title: "Periodic Table Basics",
+        description: "Explore elements, their symbols, and what makes them special.",
+        emoji: "🧪",
+        questions: [
+            { id: "q1", prompt: "The Periodic Table is a chart that organizes all known...", choices: ["animals", "planets", "elements", "molecules"], answer: 2, explanation: "There are 118 known elements organized on the periodic table." },
+            { id: "q2", prompt: "What number is Hydrogen (H) on the periodic table?", choices: ["1", "2", "6", "8"], answer: 0, explanation: "Hydrogen is element #1 — the lightest and most common element in the universe." },
+            { id: "q3", prompt: "What is the symbol for Oxygen?", choices: ["Ox", "Og", "O", "Om"], answer: 2 },
+            { id: "q4", prompt: "Carbon's symbol is 'C'. Carbon is the element that makes up...", choices: ["water", "air", "all living things", "rocks only"], answer: 2, explanation: "Carbon is the backbone of all life on Earth — found in every living organism." },
+            { id: "q5", prompt: "Noble gases (like Helium and Neon) are special because they...", choices: ["are very heavy", "rarely react with other elements", "always melt at high temperatures", "are all solid at room temperature"], answer: 1, explanation: "Noble gases are very stable — they don't easily bond with other elements." },
+            { id: "q6", prompt: "The element with the symbol 'Na' is...", choices: ["Nitrogen", "Neon", "Sodium", "Nickel"], answer: 2, explanation: "Na comes from 'Natrium' — the Latin name for Sodium." },
+            { id: "q7", prompt: "Metals like gold and silver are generally...", choices: ["dull and breakable", "shiny and conduct electricity", "gases at room temperature", "lighter than air"], answer: 1 },
+            { id: "q8", prompt: "The number of protons in an atom tells us its...", choices: ["mass number", "atomic number", "charge", "state of matter"], answer: 1, explanation: "Every element has a unique atomic number equal to its proton count." },
+            { id: "q9", prompt: "What is the symbol for the element Calcium?", choices: ["Ca", "C", "Cm", "Co"], answer: 0, explanation: "Calcium (Ca) is element 20. Your bones and teeth are mostly calcium!" },
+            { id: "q10", prompt: "Neon signs glow because the element Neon...", choices: ["is magnetic", "glows when electricity passes through it", "burns very hot", "reflects sunlight"], answer: 1 },
+            { id: "q11", prompt: "Which of these is a metal?", choices: ["Oxygen", "Nitrogen", "Chlorine", "Iron"], answer: 3, explanation: "Iron (Fe) is a metal — it's magnetic and found in steel." },
+            { id: "q12", prompt: "The element Helium has 2 protons. What is its atomic number?", choices: ["1", "2", "4", "6"], answer: 1 },
+        ],
+    },
 
     // -------- HISTORY --------
     {
