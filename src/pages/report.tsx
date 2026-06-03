@@ -74,7 +74,7 @@ function activityEmoji(activityId: string): string {
 export default function WeeklyReportPage() {
   const { data: progress, isLoading } = useProgress();
   const { data: allBadges } = useAllBadges();
-  const profile = useActiveProfile();
+  const { data: profile } = useActiveProfile();
   const level = useLevel();
   const { start, end } = weekRange();
 
