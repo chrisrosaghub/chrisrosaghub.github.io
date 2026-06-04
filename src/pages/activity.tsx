@@ -108,6 +108,13 @@ export default function ActivityPage() {
             setSummary(res);
             setFinished(true);
           },
+          onError: () => {
+            // Saving failed — still show finish screen with locally-computed values
+            const isPerfect = finalCorrect === activity.questions.length && activity.questions.length > 0;
+            const starsEarned = 1 + finalCorrect + (isPerfect ? 2 : 0) + (isDaily ? 5 : 0);
+            setSummary({ starsEarned, newBadges: [], totalStars: starsEarned, streakDays: 1 });
+            setFinished(true);
+          },
         },
       );
       return;
