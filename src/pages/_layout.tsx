@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { Sparkles, Home, Flame, Star, BookOpenCheck, Globe2, FlaskConical, Calculator, Landmark, Trophy, GraduationCap, BookA, UserRound, Map, Crown, Languages, ChevronDown, Heart, BarChart3 } from "lucide-react";
+import { Sparkles, Home, Flame, Star, BookOpenCheck, Globe2, FlaskConical, Calculator, Landmark, Trophy, GraduationCap, BookA, UserRound, Map, Crown, Languages, ChevronDown, Heart } from "lucide-react";
 import { useLevel, useProgress, useSetLevel } from "@/lib/brainy-hooks";
 import { LEVELS, type Level } from "@/lib/brainy-data";
 import { ProfileSwitcher } from "@/components/brainy/ProfileSwitcher";
@@ -22,7 +22,6 @@ const NAV_ITEMS = [
   { to: "/reading", label: "Sight Words", icon: BookA, levels: ["kindergarten"] as Level[] },
   { to: "/daily", label: "Daily Challenge", icon: Trophy },
   { to: "/progress", label: "My Progress", icon: BookOpenCheck },
-  { to: "/report", label: "Weekly Report", icon: BarChart3 },
   { to: "/profiles", label: "Profiles", icon: UserRound },
 ];
 
@@ -190,7 +189,7 @@ export default function Layout() {
             onClick={() => setNavOpen((o) => !o)}
             className={cn(
               "w-full border-t flex items-center justify-center gap-1.5 py-1 text-[11px] text-muted-foreground/60 hover:text-muted-foreground transition-all duration-200",
-              navCollapsed ? "opacity-100" : "opacity-0 pointer-events-none h-0 py-0",
+              navCollapsed ? "opacity-100" : "opacity-0 pointer-events-none",
             )}
           >
             <ChevronDown className="size-3" />
