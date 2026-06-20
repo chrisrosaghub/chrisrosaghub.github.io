@@ -659,6 +659,54 @@ const EXTRA: Record<string, LearnItem[]> = {
     { emoji: "🌐", title: "Longitude", fact: "Longitude lines run VERTICALLY (north-south) and measure distance EAST or WEST of the Prime Meridian (0°)." },
     { emoji: "📍", title: "Coordinates", fact: "Latitude + Longitude pinpoint any exact location on Earth! '40°N, 74°W' = New York City." },
   ],
+
+  "g3-geo-landforms": [
+    { emoji: "🏞️", title: "Plains & Plateaus", fact: "A plain is wide, flat, low land — great for farming. A plateau is flat land that is raised up HIGH, like a giant table." },
+    { emoji: "⛰️", title: "Mountains, Hills & Valleys", fact: "Mountains are very tall with steep sides and a peak. Hills are lower and rounder. A valley is the low land between them." },
+    { emoji: "🏝️", title: "Islands & Peninsulas", fact: "An island is land surrounded by water on ALL sides. A peninsula has water on THREE sides — like Florida!" },
+    { emoji: "🏜️", title: "Deserts & Canyons", fact: "A desert is dry land with little rain. A canyon is a deep, narrow valley with steep rocky walls, often carved by a river." },
+    { emoji: "🌊", title: "Coasts & Isthmuses", fact: "A coast is land along the edge of an ocean. An isthmus is a narrow strip of land that connects two larger areas of land." },
+  ],
+
+  "g3-geo-rivers": [
+    { emoji: "💧", title: "Source & Mouth", fact: "A river BEGINS at its source (often in mountains) and ENDS at its mouth, where it flows into a lake, sea, or ocean." },
+    { emoji: "⬇️", title: "Water Flows Downhill", fact: "Gravity pulls river water downhill from high land to low land — that's why rivers always flow toward the sea." },
+    { emoji: "🌎", title: "Famous Rivers", fact: "The Nile in Africa is the longest river in the world. The Mississippi is the longest in the U.S., and the Amazon carries the most water." },
+    { emoji: "🏞️", title: "Tributaries & Deltas", fact: "A tributary is a smaller stream that flows INTO a bigger river. A delta is the fan of land where a river drops soil at its mouth." },
+    { emoji: "🏔️", title: "Lakes & the Great Lakes", fact: "A lake is fresh water surrounded by land. The five Great Lakes sit between the U.S. and Canada — the largest group of freshwater lakes on Earth!" },
+  ],
+
+  "g3-geo-mountains": [
+    { emoji: "🏔️", title: "Ranges & Summits", fact: "A row of mountains is a 'range'. The very top of a mountain is its 'summit'. The Himalayas hold Mount Everest, the tallest of all!" },
+    { emoji: "🌋", title: "Magma vs. Lava", fact: "Melted rock UNDER the ground is magma. Once it erupts and flows on TOP of the ground, we call it lava." },
+    { emoji: "🔥", title: "Active, Dormant & Extinct", fact: "An active volcano can erupt now. A dormant one is 'sleeping' but could erupt again. An extinct one will not erupt anymore." },
+    { emoji: "🌎", title: "Famous Mountains", fact: "Everest (Asia) is the tallest on Earth. Kilimanjaro is Africa's tallest. The Andes is the longest range; the Rockies cross North America." },
+    { emoji: "🌐", title: "Ring of Fire", fact: "Most of Earth's volcanoes circle the Pacific Ocean in a zone called the Ring of Fire. Mountain tops are also colder and often snowy!" },
+  ],
+
+  "g3-geo-weather": [
+    { emoji: "🌦️", title: "Weather vs. Climate", fact: "Weather is what's happening RIGHT NOW (rain, sun, wind). Climate is the usual weather pattern of a place over MANY years." },
+    { emoji: "🌴", title: "Climate Zones", fact: "Places near the equator are hot. Places near the poles are cold. In between are mild, temperate zones with four seasons." },
+    { emoji: "🌳", title: "Biomes", fact: "A biome is a large area with its own plants, animals, and climate — like rainforests, deserts, grasslands, and the icy tundra." },
+    { emoji: "🌡️", title: "Measuring Weather", fact: "A thermometer measures temperature. Scientists who study and forecast the weather are called meteorologists." },
+    { emoji: "🌀", title: "Extreme Weather", fact: "A drought is a long time with little rain. A hurricane is a giant spinning storm that forms over warm ocean water." },
+  ],
+
+  "g3-geo-capitals": [
+    { emoji: "🏛️", title: "What Is a Capital?", fact: "A capital is the city where a state's or country's government works. It is NOT always the biggest city!" },
+    { emoji: "🇺🇸", title: "U.S. Capital", fact: "Washington, D.C. is the capital of the United States. 'D.C.' stands for the District of Columbia." },
+    { emoji: "⭐", title: "State Capitals", fact: "Each state has its own capital: Sacramento (California), Austin (Texas), Albany (New York), Tallahassee (Florida)." },
+    { emoji: "🌍", title: "European Capitals", fact: "Paris is the capital of France, Rome of Italy, and London of England (the United Kingdom)." },
+    { emoji: "🌏", title: "World Capitals", fact: "Ottawa is Canada's capital, Tokyo is Japan's, and Mexico City is Mexico's." },
+  ],
+
+  "g3-geo-landmarks": [
+    { emoji: "🗽", title: "U.S. Landmarks", fact: "The Statue of Liberty stands in New York City. Mount Rushmore carves four presidents' faces; the Golden Gate Bridge is in San Francisco." },
+    { emoji: "🗼", title: "European Landmarks", fact: "The Eiffel Tower is in Paris, Big Ben's clock tower in London, and the ancient Colosseum in Rome." },
+    { emoji: "🏯", title: "Asian Landmarks", fact: "The Great Wall stretches across China, and the beautiful marble Taj Mahal is in India." },
+    { emoji: "🏜️", title: "Ancient Wonders", fact: "The Pyramids of Giza in Egypt are thousands of years old and are the only ancient wonder of the world still standing." },
+    { emoji: "🌏", title: "Natural & Modern Wonders", fact: "The Grand Canyon (Arizona) and Niagara Falls (U.S.–Canada border) are natural wonders; the Sydney Opera House is in Australia." },
+  ],
 };
 
 export const ACTIVITY_LEARN_DATA: Record<string, LearnItem[]> = {

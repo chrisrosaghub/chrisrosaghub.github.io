@@ -30,6 +30,10 @@ export const LANGUAGE_ACTIVITIES: Activity[] = [
       { id: "q12", prompt: "\"Scared\" means the same as...", choices: ["brave", "bored", "afraid", "happy"], answer: 2, explanation: "Afraid is a synonym for scared — both mean feeling fear." },
       { id: "q13", prompt: "Which word is a synonym for \"reply\"?", choices: ["question", "listen", "answer", "speak"], answer: 2, explanation: "Answer and reply both mean to respond to what someone said." },
       { id: "q14", prompt: "\"Unhappy\" means the same as...", choices: ["cheerful", "excited", "grumpy", "sad"], answer: 3, explanation: "Sad is a synonym for unhappy — both mean not feeling good inside." },
+      { id: "q15", prompt: "Which word means the same as \"cold\"?", choices: ["warm", "chilly", "bright", "loud"], answer: 1, explanation: "Chilly is a synonym for cold — both describe a low temperature." },
+      { id: "q16", prompt: "Which word is a synonym for \"smart\"?", choices: ["silly", "quiet", "clever", "tall"], answer: 2, explanation: "Clever and smart both describe someone who learns and thinks well." },
+      { id: "q17", prompt: "Which word means the same as \"jump\"?", choices: ["leap", "crawl", "sit", "walk"], answer: 0, explanation: "Leap is a synonym for jump — both mean to push off the ground into the air." },
+      { id: "q18", prompt: "\"Gift\" means the same as...", choices: ["problem", "game", "story", "present"], answer: 3, explanation: "Present is a synonym for gift — both mean something you give to someone." },
     ],
   },
 
@@ -56,6 +60,10 @@ export const LANGUAGE_ACTIVITIES: Activity[] = [
       { id: "q12", prompt: "What is the antonym of \"always\"?", choices: ["sometimes", "often", "never", "usually"], answer: 2, explanation: "Never is the antonym of always — always means every time; never means not one time." },
       { id: "q13", prompt: "What is the opposite of \"inside\"?", choices: ["between", "around", "across", "outside"], answer: 3, explanation: "Outside is the antonym of inside — you are inside your house or outside of it." },
       { id: "q14", prompt: "What is the antonym of \"brave\"?", choices: ["strong", "cowardly", "careful", "calm"], answer: 1, explanation: "Cowardly is the antonym of brave — brave means facing your fears; cowardly means running away from them." },
+      { id: "q15", prompt: "What is the opposite of \"big\"?", choices: ["tall", "small", "wide", "round"], answer: 1, explanation: "Small is the antonym of big — they describe opposite sizes." },
+      { id: "q16", prompt: "What is the opposite of \"wet\"?", choices: ["damp", "moist", "dry", "cold"], answer: 2, explanation: "Dry is the antonym of wet — a towel can be wet or dry." },
+      { id: "q17", prompt: "What is the antonym of \"full\"?", choices: ["empty", "heavy", "round", "clean"], answer: 0, explanation: "Empty is the antonym of full — a glass is either full of water or empty." },
+      { id: "q18", prompt: "What is the opposite of \"first\"?", choices: ["second", "next", "middle", "last"], answer: 3, explanation: "Last is the antonym of first — the first one is at the front; the last one is at the end." },
     ],
   },
 
@@ -118,6 +126,10 @@ export const LANGUAGE_ACTIVITIES: Activity[] = [
       { id: "q12", prompt: "\"Enjoyable\" means...", choices: ["without enjoyment", "enjoyed again", "able to be enjoyed", "full of enjoyment"], answer: 2, explanation: "Enjoy + -able = enjoyable. Something enjoyable is something you can enjoy!" },
       { id: "q13", prompt: "Which word uses the suffix \"-ment\" to mean \"the result of\"?", choices: ["quickly", "careless", "movement", "joyful"], answer: 2, explanation: "Move + -ment = movement. -ment creates a noun showing the result: excitement, payment, enjoyment." },
       { id: "q14", prompt: "Which suffix would you add to \"sad\" to create the noun \"sadness\"?", choices: ["-ful", "-less", "-ness", "-able"], answer: 2, explanation: "Sad + -ness = sadness. The -ness suffix turns describing words into naming words (nouns)." },
+      { id: "q15", prompt: "The suffix \"-ish\" means...", choices: ["full of", "again", "somewhat or like", "without"], answer: 2, explanation: "-ish means SOMEWHAT or LIKE. Reddish = somewhat red. Childish = like a child. Greenish = a little green." },
+      { id: "q16", prompt: "A person who plays the piano can be called a \"pianist.\" The suffix \"-ist\" means...", choices: ["one who does something", "without", "full of", "the most"], answer: 0, explanation: "-ist means ONE WHO does something. Artist = one who makes art. Scientist = one who does science." },
+      { id: "q17", prompt: "\"Cloudy\" uses the suffix \"-y.\" It means...", choices: ["without clouds", "full of or covered with clouds", "cloud again", "the most cloud"], answer: 1, explanation: "-y means full of or having. Cloudy = full of clouds. Rainy = full of rain. Sunny = full of sun." },
+      { id: "q18", prompt: "The suffix \"-tion\" turns a verb into...", choices: ["a noun (a thing)", "an adverb (how)", "an adjective (describing word)", "a verb (action)"], answer: 0, explanation: "-tion creates a noun from a verb: act → action, celebrate → celebration, invent → invention." },
     ],
   },
 
@@ -224,6 +236,10 @@ export const LANGUAGE_ACTIVITIES: Activity[] = [
       { id: "q12", prompt: "\"I feel _____ this week.\" (not strong or energetic)", choices: ["week", "wick", "weak", "weke"], answer: 2, explanation: "'Weak' = not strong. 'Week' = seven days. These homophones are spelled differently but sound the same." },
       { id: "q13", prompt: "\"The _____ in the sky is very bright today.\" (our star)", choices: ["son", "sen", "sun", "sone"], answer: 2, explanation: "'Sun' = the star our Earth orbits. 'Son' = a male child. They are homophones — same sound, different meanings." },
       { id: "q14", prompt: "\"I _____ my shoe.\" (past tense of lose)", choices: ["lost", "lossed", "losed", "lust"], answer: 0, explanation: "Lost is the past tense of lose. This tests irregular past tense, not a true homophone — but tests careful word choice." },
+      { id: "q15", prompt: "\"We need _____ to bake the bread.\" (the powder used in baking)", choices: ["flower", "flour", "flowur", "floor"], answer: 1, explanation: "'Flour' is the powder used to bake. 'Flower' is the colorful part of a plant. They sound the same!" },
+      { id: "q16", prompt: "\"The dog wagged its _____.\" (the back part of an animal)", choices: ["tale", "tael", "tial", "tail"], answer: 3, explanation: "'Tail' is the part on the back of an animal. 'Tale' is a story. They are homophones." },
+      { id: "q17", prompt: "\"We swam in the _____.\" (the ocean)", choices: ["sea", "see", "si", "seah"], answer: 0, explanation: "'Sea' is a large body of salt water. 'See' means to look with your eyes. Same sound, different meanings." },
+      { id: "q18", prompt: "\"The brave _____ wore shining armor.\" (a warrior who served a king)", choices: ["night", "nite", "knight", "knite"], answer: 2, explanation: "'Knight' is a warrior in armor — the 'k' is silent. 'Night' is when the sky is dark. They sound identical!" },
     ],
   },
 ];

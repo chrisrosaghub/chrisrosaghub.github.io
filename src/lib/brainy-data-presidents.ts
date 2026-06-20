@@ -28,6 +28,10 @@ export const PRESIDENTS_ACTIVITIES: Activity[] = [
       { id: "q12", prompt: "George Washington was the commander of which army?", choices: ["British Army", "French Army", "Continental Army", "Union Army"], answer: 2, explanation: "Washington commanded the Continental Army during the Revolutionary War, leading the colonies to independence." },
       { id: "q13", prompt: "Thomas Jefferson founded which university in Virginia?", choices: ["Harvard University", "Yale University", "University of Virginia", "William & Mary"], answer: 2, explanation: "Jefferson founded the University of Virginia in 1819 as one of his proudest achievements." },
       { id: "q14", prompt: "The Monroe Doctrine — a warning to European powers to stay out of the Americas — was issued by which president?", choices: ["James Madison", "John Adams", "Thomas Jefferson", "James Monroe"], answer: 3, explanation: "President Monroe announced this famous foreign policy in 1823." },
+      { id: "q15", prompt: "Who served as the first Vice President under George Washington?", choices: ["Thomas Jefferson", "John Adams", "James Madison", "Alexander Hamilton"], answer: 1, explanation: "John Adams was Washington's Vice President before becoming the 2nd President himself." },
+      { id: "q16", prompt: "Which president completed the Louisiana Purchase in 1803, doubling the size of the country?", choices: ["George Washington", "John Adams", "Thomas Jefferson", "James Monroe"], answer: 2, explanation: "Thomas Jefferson bought the Louisiana Territory from France in 1803 for about $15 million." },
+      { id: "q17", prompt: "The War of 1812 was fought during whose presidency?", choices: ["James Madison", "Thomas Jefferson", "James Monroe", "John Adams"], answer: 0, explanation: "James Madison was president during the War of 1812 between the U.S. and Britain." },
+      { id: "q18", prompt: "What was the name of George Washington's home in Virginia?", choices: ["Monticello", "Montpelier", "Highland", "Mount Vernon"], answer: 3, explanation: "Washington's plantation home, Mount Vernon, sits along the Potomac River in Virginia." },
     ],
   },
 
@@ -54,6 +58,10 @@ export const PRESIDENTS_ACTIVITIES: Activity[] = [
       { id: "q12", prompt: "Franklin D. Roosevelt was the only president elected how many times?", choices: ["Once", "Twice", "Three times", "Four times"], answer: 3, explanation: "FDR was elected president in 1932, 1936, 1940, and 1944 — serving until his death in 1945." },
       { id: "q13", prompt: "Which president was the youngest to take office, becoming president at age 42 after McKinley's assassination?", choices: ["John F. Kennedy", "Bill Clinton", "Theodore Roosevelt", "Barack Obama"], answer: 2, explanation: "Theodore Roosevelt became president at 42 years old in 1901, making him the youngest ever to hold the office." },
       { id: "q14", prompt: "Abraham Lincoln led the country through which war?", choices: ["Revolutionary War", "War of 1812", "Civil War", "World War I"], answer: 2, explanation: "Lincoln was president during the Civil War (1861–1865), working to preserve the Union." },
+      { id: "q15", prompt: "Which famous Civil War general later became the 18th President?", choices: ["Robert E. Lee", "Ulysses S. Grant", "William Sherman", "George McClellan"], answer: 1, explanation: "Ulysses S. Grant led the Union Army to victory and then served as president from 1869 to 1877." },
+      { id: "q16", prompt: "Which president was a Hollywood actor before entering politics?", choices: ["Richard Nixon", "Gerald Ford", "Ronald Reagan", "Jimmy Carter"], answer: 2, explanation: "Ronald Reagan starred in many movies before becoming Governor of California and then the 40th President." },
+      { id: "q17", prompt: "Which president led the United States during most of World War I?", choices: ["Woodrow Wilson", "William Taft", "Warren Harding", "Calvin Coolidge"], answer: 0, explanation: "Woodrow Wilson was president during World War I and later helped create the League of Nations." },
+      { id: "q18", prompt: "Which World War II general led the Allied forces in Europe before becoming the 34th President?", choices: ["Harry Truman", "Douglas MacArthur", "George Patton", "Dwight D. Eisenhower"], answer: 3, explanation: "Dwight D. Eisenhower commanded the D-Day invasion and served as president from 1953 to 1961." },
     ],
   },
 
@@ -80,6 +88,10 @@ export const PRESIDENTS_ACTIVITIES: Activity[] = [
       { id: "q12", prompt: "Which was the FIRST state to vote for president, giving its electoral votes to George Washington?", choices: ["Virginia", "Pennsylvania", "Massachusetts", "All states voted for Washington unanimously"], answer: 3, explanation: "Washington was the only president elected unanimously by the Electoral College — twice!" },
       { id: "q13", prompt: "Where does the president give the annual State of the Union address?", choices: ["The White House", "The Supreme Court", "Congress (the Capitol)", "The United Nations"], answer: 2, explanation: "The president delivers the State of the Union to a joint session of Congress in the U.S. Capitol each year." },
       { id: "q14", prompt: "Which president created NASA in 1958?", choices: ["Harry Truman", "Dwight D. Eisenhower", "John F. Kennedy", "Lyndon B. Johnson"], answer: 1, explanation: "President Eisenhower signed the National Aeronautics and Space Act, creating NASA on October 1, 1958." },
+      { id: "q15", prompt: "Which president was the tallest, standing 6 feet 4 inches?", choices: ["Abraham Lincoln", "George Washington", "Theodore Roosevelt", "Andrew Jackson"], answer: 0, explanation: "Abraham Lincoln was the tallest U.S. president at 6 feet 4 inches." },
+      { id: "q16", prompt: "Today, most U.S. presidents belong to which two political parties?", choices: ["Federalist and Whig", "Democratic and Republican", "Green and Libertarian", "Tory and Labour"], answer: 1, explanation: "Since the mid-1800s, nearly all presidents have come from the Democratic or Republican parties." },
+      { id: "q17", prompt: "How many presidents are carved into Mount Rushmore?", choices: ["2", "3", "4", "5"], answer: 2, explanation: "Mount Rushmore shows the faces of four presidents: Washington, Jefferson, Lincoln, and Theodore Roosevelt." },
+      { id: "q18", prompt: "What is the name of the airplane that carries the U.S. President?", choices: ["Eagle One", "Liberty Jet", "Presidential Express", "Air Force One"], answer: 3, explanation: "Air Force One is the official air traffic call sign for any Air Force plane carrying the president." },
     ],
   },
 
@@ -106,6 +118,10 @@ export const PRESIDENTS_ACTIVITIES: Activity[] = [
       { id: "q12", prompt: "Who was the 44th President?", choices: ["George W. Bush", "Bill Clinton", "Donald Trump", "Barack Obama"], answer: 3, explanation: "Barack Obama was the 44th President (2009–2017)." },
       { id: "q13", prompt: "Harry S. Truman was the ___ President.", choices: ["31st", "32nd", "33rd", "34th"], answer: 2, explanation: "Truman became the 33rd President when FDR died in 1945." },
       { id: "q14", prompt: "Who was the 1st President?", choices: ["Benjamin Franklin", "John Adams", "Thomas Jefferson", "George Washington"], answer: 3, explanation: "George Washington was unanimously chosen as the 1st President." },
+      { id: "q15", prompt: "Ulysses S. Grant was the ___ President.", choices: ["18th", "16th", "17th", "19th"], answer: 0, explanation: "Ulysses S. Grant served as the 18th President from 1869 to 1877." },
+      { id: "q16", prompt: "Woodrow Wilson was the ___ President.", choices: ["26th", "27th", "28th", "29th"], answer: 2, explanation: "Woodrow Wilson served as the 28th President from 1913 to 1921." },
+      { id: "q17", prompt: "Who was the 32nd President?", choices: ["Herbert Hoover", "Franklin D. Roosevelt", "Harry Truman", "Dwight Eisenhower"], answer: 1, explanation: "Franklin D. Roosevelt was the 32nd President (1933–1945)." },
+      { id: "q18", prompt: "Who was the 5th President?", choices: ["John Quincy Adams", "James Madison", "John Adams", "James Monroe"], answer: 3, explanation: "James Monroe was the 5th President (1817–1825)." },
     ],
   },
 ];

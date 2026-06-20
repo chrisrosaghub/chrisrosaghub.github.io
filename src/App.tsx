@@ -15,8 +15,8 @@ import ProgressPage from "./pages/progress";
 import DailyChallengePage from "./pages/daily";
 import AboutPage from "./pages/about";
 import ProfilesPage from "./pages/profiles";
-import WeeklyReportPage from "./pages/report";
 import { AppErrorBoundary } from "./components/system/AppErrorBoundary";
+import CustomLearnPage from "./pages/custom-learn";
 
 // NOTE(ai): DO NOT REMOVE — (ROUTER BASE) keep this or deep links for playback under /<id>/ in bizchat break.
 function getBase(pathname: string): string {
@@ -57,7 +57,7 @@ function App() {
                   <Route path="learn/:activityId" element={<LearnPage />} />
                   <Route path="about" element={<AboutPage />} />
                   <Route path="profiles" element={<ProfilesPage />} />
-                  <Route path="report" element={<WeeklyReportPage />} />
+                  <Route path="custom-learn" element={<CustomLearnPage />} />
                   {/* NOTE(ai): DO NOT REMOVE — catch-all 404 page */}
                   <Route path="*" element={<NotFoundPage />} />
                 </Route>
