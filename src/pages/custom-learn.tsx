@@ -16,8 +16,11 @@ import {
   Sparkles,
   BookOpen,
   GraduationCap,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import { useLevel } from "@/lib/brainy-hooks";
+import { useTTS } from "@/lib/use-tts";
 import {
   generateLearningPath,
   type GeneratedLearningPath,
@@ -59,6 +62,9 @@ const ENCOURAGEMENTS = ["Awesome! 🎉", "You got it! ⭐", "Brilliant! 🌟", "
 const TRY_AGAIN = ["Almost there!", "Good try!", "Keep going!", "So close!"];
 
 function StepQuiz({ step, stepIndex, totalSteps, onComplete, onBack }: StepQuizProps) {
+  const level = useLevel();
+  const isEarlyLearner = level === "kindergarten" || level === "grade1";
+  const { speak, stop, isSupported, isSpeaking, autoRead, toggleAutoRead } = useTTS();
   const [phase, setPhase] = useState<"learn" | "quiz">("learn");
   const [qIndex, setQIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -70,6 +76,26 @@ function StepQuiz({ step, stepIndex, totalSteps, onComplete, onBack }: StepQuizP
   const question: AIQuestion | undefined = questions[qIndex];
   const total = questions.length;
   const progressPct = phase === "learn" ? 0 : ((qIndex + (revealed ? 1 : 0)) / total) * 100;
+
+  // Full lesson text for read-aloud during the learn phase.
+  const lessonText = `${step.title}. ${step.description} ${step.keyPoints.join(". ")}`;
+
+  // Auto-read each quiz question when Read Aloud is enabled.
+  useEffect(() => {
+    if (phase === "quiz" && autoRead && question && !revealed) {
+      const text = question.prompt + ". " + question.choices.map((c, i) => `${String.fromCharCode(65 + i)}: ${c}`).join(". ");
+      speak(text);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [qIndex, phase, autoRead]);
+
+  // Auto-read the lesson when Read Aloud is enabled and we enter the learn phase.
+  useEffect(() => {
+    if (phase === "learn" && autoRead) {
+      speak(lessonText);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, autoRead]);
 
   function handleSelect(idx: number) {
     if (revealed) return;
@@ -95,12 +121,33 @@ function StepQuiz({ step, stepIndex, totalSteps, onComplete, onBack }: StepQuizP
   if (phase === "learn") {
     return (
       <div className="space-y-5 max-w-2xl mx-auto">
-        <button
-          onClick={onBack}
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
-        >
-          <ArrowLeft className="size-4" /> Back to overview
-        </button>
+        <div className="flex items-center justify-between gap-3">
+          <button
+            onClick={() => { stop(); onBack(); }}
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ArrowLeft className="size-4" /> Back to overview
+          </button>
+          {isSupported && (
+            <button
+              type="button"
+              onClick={toggleAutoRead}
+              aria-label={autoRead ? "Turn off read aloud" : "Turn on read aloud"}
+              className={cn(
+                "inline-flex items-center gap-1.5 rounded-full font-bold transition-all",
+                isEarlyLearner ? "px-4 py-2 text-sm shadow" : "px-3 py-1 text-xs border",
+                autoRead
+                  ? "bg-gradient-to-r from-amber-400 to-orange-400 text-white shadow-amber-200"
+                  : isEarlyLearner
+                    ? "bg-amber-100 text-amber-700 border-2 border-amber-300 hover:bg-amber-200"
+                    : "bg-muted text-muted-foreground border-transparent hover:bg-muted/80",
+              )}
+            >
+              {autoRead ? <Volume2 className={isEarlyLearner ? "size-4" : "size-3.5"} /> : <VolumeX className={isEarlyLearner ? "size-4" : "size-3.5"} />}
+              {isEarlyLearner ? (autoRead ? "Reading!" : "Read to me!") : "Read Aloud"}
+            </button>
+          )}
+        </div>
 
         <div className="rounded-3xl bg-gradient-to-br from-sky-400 via-blue-400 to-indigo-500 text-white p-6 md:p-8 shadow-lg space-y-3">
           <div className="flex items-center gap-3">
@@ -116,9 +163,27 @@ function StepQuiz({ step, stepIndex, totalSteps, onComplete, onBack }: StepQuizP
         </div>
 
         <div className="rounded-2xl border bg-card p-5 space-y-3 shadow-sm">
-          <h3 className="font-bold text-base flex items-center gap-2">
-            <BookOpen className="size-4 text-sky-500" /> Key Points
-          </h3>
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="font-bold text-base flex items-center gap-2">
+              <BookOpen className="size-4 text-sky-500" /> Key Points
+            </h3>
+            {isSupported && (
+              <button
+                type="button"
+                onClick={() => speak(lessonText)}
+                aria-label="Read this lesson aloud"
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold transition-colors",
+                  isSpeaking
+                    ? "bg-sky-500 text-white border-sky-500"
+                    : "bg-sky-50 text-sky-700 border-sky-200 hover:bg-sky-100",
+                )}
+              >
+                <Volume2 className="size-3.5" />
+                {isSpeaking ? "Reading…" : "Read aloud"}
+              </button>
+            )}
+          </div>
           <ul className="space-y-2.5">
             {step.keyPoints.map((pt, i) => (
               <li key={i} className="flex items-start gap-2.5 text-sm">
@@ -132,7 +197,7 @@ function StepQuiz({ step, stepIndex, totalSteps, onComplete, onBack }: StepQuizP
         </div>
 
         <button
-          onClick={() => setPhase("quiz")}
+          onClick={() => { stop(); setPhase("quiz"); }}
           className="w-full rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 text-white font-bold py-3.5 px-6 shadow hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
         >
           Ready? Start Mini Quiz <ChevronRight className="size-5" />
@@ -177,14 +242,39 @@ function StepQuiz({ step, stepIndex, totalSteps, onComplete, onBack }: StepQuizP
   const encouragement = ENCOURAGEMENTS[Math.floor(Math.random() * ENCOURAGEMENTS.length)];
   const tryAgain = TRY_AGAIN[Math.floor(Math.random() * TRY_AGAIN.length)];
 
+  const questionText = question
+    ? question.prompt + ". " + question.choices.map((c, i) => `${String.fromCharCode(65 + i)}: ${c}`).join(". ")
+    : "";
+
   return (
     <div className="max-w-2xl mx-auto space-y-5">
-      <button
-        onClick={onBack}
-        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
-      >
-        <ArrowLeft className="size-4" /> Back to overview
-      </button>
+      <div className="flex items-center justify-between gap-3">
+        <button
+          onClick={() => { stop(); onBack(); }}
+          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <ArrowLeft className="size-4" /> Back to overview
+        </button>
+        {isSupported && (
+          <button
+            type="button"
+            onClick={toggleAutoRead}
+            aria-label={autoRead ? "Turn off read aloud" : "Turn on read aloud"}
+            className={cn(
+              "inline-flex items-center gap-1.5 rounded-full font-bold transition-all",
+              isEarlyLearner ? "px-4 py-2 text-sm shadow" : "px-3 py-1 text-xs border",
+              autoRead
+                ? "bg-gradient-to-r from-amber-400 to-orange-400 text-white shadow-amber-200"
+                : isEarlyLearner
+                  ? "bg-amber-100 text-amber-700 border-2 border-amber-300 hover:bg-amber-200"
+                  : "bg-muted text-muted-foreground border-transparent hover:bg-muted/80",
+            )}
+          >
+            {autoRead ? <Volume2 className={isEarlyLearner ? "size-4" : "size-3.5"} /> : <VolumeX className={isEarlyLearner ? "size-4" : "size-3.5"} />}
+            {isEarlyLearner ? (autoRead ? "Reading!" : "Read to me!") : "Read Aloud"}
+          </button>
+        )}
+      </div>
 
       <div className="space-y-2">
         <div className="flex items-center justify-between text-xs text-muted-foreground font-medium">
@@ -195,7 +285,25 @@ function StepQuiz({ step, stepIndex, totalSteps, onComplete, onBack }: StepQuizP
       </div>
 
       <div className="rounded-2xl bg-card border shadow-sm p-6 space-y-5">
-        <p className="text-lg font-bold leading-snug">{question?.prompt}</p>
+        <div className="flex items-start justify-between gap-3">
+          <p className="text-lg font-bold leading-snug">{question?.prompt}</p>
+          {isSupported && (
+            <button
+              type="button"
+              onClick={() => speak(questionText)}
+              aria-label="Read question aloud"
+              className={cn(
+                "flex-shrink-0 inline-flex items-center justify-center rounded-full border transition-colors",
+                isEarlyLearner ? "size-11" : "size-9",
+                isSpeaking
+                  ? "bg-sky-500 text-white border-sky-500"
+                  : "bg-sky-50 text-sky-700 border-sky-200 hover:bg-sky-100",
+              )}
+            >
+              <Volume2 className={isEarlyLearner ? "size-5" : "size-4"} />
+            </button>
+          )}
+        </div>
 
         <div className="grid grid-cols-1 gap-2.5">
           {question?.choices.map((choice, i) => {

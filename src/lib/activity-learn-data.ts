@@ -5,7 +5,48 @@
  */
 import { SCIENCE_LEARN_ITEMS } from "@/lib/science-learn-data";
 import type { LearnItem } from "@/lib/science-learn-data";
+import {
+  WESTERN_EUROPE,
+  NORTHERN_EUROPE,
+  EASTERN_EUROPE,
+  SOUTHERN_EUROPE,
+  type CountryEntry,
+} from "@/lib/brainy-data-europe";
 export type { LearnItem } from "@/lib/science-learn-data";
+
+// ─── European capitals learn modules ──────────────────────────────────────────
+// Flag emoji for each country so kids can connect the flag, country, and capital.
+const EURO_FLAGS: Record<string, string> = {
+  France: "🇫🇷", Germany: "🇩🇪", "United Kingdom": "🇬🇧", Spain: "🇪🇸",
+  Portugal: "🇵🇹", Netherlands: "🇳🇱", Belgium: "🇧🇪", Switzerland: "🇨🇭",
+  Austria: "🇦🇹", Ireland: "🇮🇪", Sweden: "🇸🇪", Norway: "🇳🇴", Denmark: "🇩🇰",
+  Finland: "🇫🇮", Iceland: "🇮🇸", Estonia: "🇪🇪", Latvia: "🇱🇻", Poland: "🇵🇱",
+  "Czech Republic": "🇨🇿", Slovakia: "🇸🇰", Hungary: "🇭🇺", Romania: "🇷🇴",
+  Bulgaria: "🇧🇬", Serbia: "🇷🇸", Croatia: "🇭🇷", Lithuania: "🇱🇹", Italy: "🇮🇹",
+  Greece: "🇬🇷", Slovenia: "🇸🇮", Albania: "🇦🇱", "North Macedonia": "🇲🇰",
+  Montenegro: "🇲🇪", "Bosnia and Herzegovina": "🇧🇦", Malta: "🇲🇹",
+};
+
+/** Build one flashcard per country: flag + "Country → Capital" + kid-friendly fact. */
+function buildEuropeLearnItems(intro: LearnItem, entries: CountryEntry[]): LearnItem[] {
+  return [
+    intro,
+    ...entries.map((e): LearnItem => ({
+      emoji: EURO_FLAGS[e.name] ?? "🏛️",
+      title: `${e.name} → ${e.capital}`,
+      fact: e.explanation,
+    })),
+  ];
+}
+
+/** Build a compact "region overview" card listing every country → capital pair. */
+function buildRegionOverview(emoji: string, title: string, entries: CountryEntry[]): LearnItem {
+  return {
+    emoji,
+    title,
+    fact: entries.map((e) => `${e.name} → ${e.capital}`).join(" • "),
+  };
+}
 
 const EXTRA: Record<string, LearnItem[]> = {
 
@@ -712,6 +753,36 @@ const EXTRA: Record<string, LearnItem[]> = {
 export const ACTIVITY_LEARN_DATA: Record<string, LearnItem[]> = {
   ...SCIENCE_LEARN_ITEMS,
   ...EXTRA,
+
+  // ─── EUROPEAN CAPITALS ────────────────────────────────────────────────────
+  "europe-western": buildEuropeLearnItems(
+    { emoji: "🗼", title: "Western Europe", fact: "Western Europe has some of the world's most famous countries — France, Germany, and the UK. A capital is the city where a country's government works. Let's learn all 10!" },
+    WESTERN_EUROPE,
+  ),
+
+  "europe-northern": buildEuropeLearnItems(
+    { emoji: "❄️", title: "Northern Europe", fact: "Northern Europe includes Scandinavia (Sweden, Norway, Denmark) and the Baltic states. These countries are known for long winters, fjords, and the northern lights! Let's learn their 7 capitals." },
+    NORTHERN_EUROPE,
+  ),
+
+  "europe-eastern": buildEuropeLearnItems(
+    { emoji: "🏯", title: "Eastern Europe", fact: "Eastern Europe is full of historic cities along great rivers like the Danube. Many capitals here were rebuilt after wars and are now beautiful again. Let's learn all 9!" },
+    EASTERN_EUROPE,
+  ),
+
+  "europe-southern": buildEuropeLearnItems(
+    { emoji: "🏛️", title: "Southern Europe", fact: "Southern Europe touches the warm Mediterranean Sea. It's the home of ancient Rome and Greece — where democracy and the Olympics began! Let's learn these 8 capitals." },
+    SOUTHERN_EUROPE,
+  ),
+
+  "europe-all": [
+    { emoji: "🌍", title: "All of Europe", fact: "Europe has many countries, each with its own capital city. A capital is where a country's leaders and government work — it isn't always the biggest city! Here's a quick tour of all four regions." },
+    buildRegionOverview("🗼", "Western Europe", WESTERN_EUROPE),
+    buildRegionOverview("❄️", "Northern Europe", NORTHERN_EUROPE),
+    buildRegionOverview("🏯", "Eastern Europe", EASTERN_EUROPE),
+    buildRegionOverview("🏛️", "Southern Europe", SOUTHERN_EUROPE),
+    { emoji: "🎯", title: "You've Got This!", fact: "That's 34 capitals across Europe! Study the regions one at a time, then come back and test yourself on them all. Good luck!" },
+  ],
 
   // ─── GRADE 4 MATH ─────────────────────────────────────────────────────────
   "g4-math-mult": [
