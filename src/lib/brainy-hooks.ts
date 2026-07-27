@@ -3,14 +3,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/lib/supabase";
 import { getActiveProfileId, useActiveProfileId } from "@/lib/profiles";
 import {
-  isGuestId,
-  getLocalProgress,
-  saveLocalProgress,
-  getLocalLevel,
-  saveLocalLevel,
-  defaultLocalProgress,
-} from "@/lib/local-store";
-import {
   ACTIVITIES,
   BADGES,
   SUBJECTS,
@@ -59,11 +51,6 @@ export function useLevel(): Level {
     queryKey: ["profile-level", profileId],
     queryFn: async () => {
       if (!profileId) return "grade2";
-      if (isGuestId(profileId)) {
-        const level = getLocalLevel(profileId) as Level;
-        cacheLevel(level);
-        return level;
-      }
       const { data } = await supabase
         .from("profiles")
         .select("level")
@@ -86,11 +73,7 @@ export function useSetLevel() {
     async (level: Level) => {
       cacheLevel(level);
       if (profileId) {
-        if (isGuestId(profileId)) {
-          saveLocalLevel(profileId, level);
-        } else {
-          await supabase.from("profiles").update({ level }).eq("id", profileId);
-        }
+        await supabase.from("profiles").update({ level }).eq("id", profileId);
       }
       qc.invalidateQueries({ queryKey: ["profile-level", profileId] });
       qc.invalidateQueries({ queryKey: ["activities"] });
@@ -191,10 +174,7 @@ export function useDailyChallenge() {
     queryKey: ["daily-challenge", today, profileId],
     queryFn: async () => {
       let completedToday = false;
-      if (profileId && isGuestId(profileId)) {
-        const progress = getLocalProgress(profileId);
-        completedToday = progress.lastDailyChallengeDate === today;
-      } else if (profileId) {
+      if (profileId) {
         const { data } = await supabase
           .from("profile_progress")
           .select("last_daily_challenge_date")
@@ -209,7 +189,7 @@ export function useDailyChallenge() {
 }
 
 // ---------------------------------------------------------------------------
-// Progress — fetched from Supabase (or localStorage for guests)
+// Progress — fetched from Supabase (profile_progress + activity_results + earned_badges)
 // ---------------------------------------------------------------------------
 export function useProgress() {
   const profileId = useActiveProfileId();
@@ -217,7 +197,6 @@ export function useProgress() {
     queryKey: ["progress", profileId],
     queryFn: async () => {
       if (!profileId) return defaultProgress();
-      if (isGuestId(profileId)) return getLocalProgress(profileId);
 
       const [progressRes, resultsRes, badgesRes] = await Promise.all([
         supabase.from("profile_progress").select("*").eq("profile_id", profileId).maybeSingle(),
@@ -262,7 +241,7 @@ export function useAllBadges() {
 function evaluateBadges(progress: ProgressState, level: Level): string[] {
   const completedBySubject: Record<SubjectId, Set<string>> = {
     math: new Set(), science: new Set(), history: new Set(), geography: new Set(),
-    reading: new Set(), states: new Set(), presidents: new Set(), language: new Set(), sel: new Set(),
+    reading: new Set(), states: new Set(), presidents: new Set(), language: new Set(), sel: new Set(), memory: new Set(),
   };
   let perfectExists = false;
   for (const r of progress.results) {
@@ -289,7 +268,7 @@ function evaluateBadges(progress: ProgressState, level: Level): string[] {
 }
 
 // ---------------------------------------------------------------------------
-// Complete activity — writes to Supabase (or localStorage for guests)
+// Complete activity — writes to Supabase
 // ---------------------------------------------------------------------------
 export interface CompleteActivityInput {
   activityId: string;
@@ -325,8 +304,7 @@ export function useCompleteActivity() {
       const profileId = getActiveProfileId();
       if (!profileId) throw new Error("No active profile selected.");
 
-      const progress = qc.getQueryData<ProgressState>(["progress", profileId])
-        ?? (isGuestId(profileId) ? getLocalProgress(profileId) : defaultProgress());
+      const progress = qc.getQueryData<ProgressState>(["progress", profileId]) ?? defaultProgress();
       const now = Date.now();
 
       const isPerfect = input.correct === input.total && input.total > 0;
@@ -346,6 +324,28 @@ export function useCompleteActivity() {
 
       const today = dailyKey(level);
       const newTotalStars = progress.totalStars + starsEarned;
+
+      const { error: insertErr } = await supabase.from("activity_results").insert({
+        profile_id: profileId,
+        activity_id: input.activityId,
+        subject_id: input.subjectId,
+        correct: input.correct,
+        total: input.total,
+        stars_earned: starsEarned,
+        completed_at: now,
+      });
+      if (insertErr) throw insertErr;
+
+      const { error: upsertErr } = await supabase.from("profile_progress").upsert({
+        profile_id: profileId,
+        total_stars: newTotalStars,
+        streak_days: streakDays,
+        last_activity_at: now,
+        last_daily_challenge_date: input.isDaily ? today : progress.lastDailyChallengeDate,
+        daily_challenges_completed: progress.dailyChallengesCompleted + (input.isDaily ? 1 : 0),
+        updated_at: new Date().toISOString(),
+      });
+      if (upsertErr) throw upsertErr;
 
       const newResult: ActivityResult = {
         activityId: input.activityId,
@@ -368,40 +368,11 @@ export function useCompleteActivity() {
       const previouslyEarned = new Set(progress.earnedBadgeIds);
       const updatedBadgeIds = evaluateBadges(nextProgress, level);
       const newBadgeIds = updatedBadgeIds.filter((id) => !previouslyEarned.has(id));
-      nextProgress.earnedBadgeIds = updatedBadgeIds;
 
-      if (isGuestId(profileId)) {
-        // Guest path: persist everything to localStorage
-        saveLocalProgress(profileId, nextProgress);
-      } else {
-        // Authenticated path: persist to Supabase
-        const { error: insertErr } = await supabase.from("activity_results").insert({
-          profile_id: profileId,
-          activity_id: input.activityId,
-          subject_id: input.subjectId,
-          correct: input.correct,
-          total: input.total,
-          stars_earned: starsEarned,
-          completed_at: now,
-        });
-        if (insertErr) throw insertErr;
-
-        const { error: upsertErr } = await supabase.from("profile_progress").upsert({
-          profile_id: profileId,
-          total_stars: newTotalStars,
-          streak_days: streakDays,
-          last_activity_at: now,
-          last_daily_challenge_date: input.isDaily ? today : progress.lastDailyChallengeDate,
-          daily_challenges_completed: progress.dailyChallengesCompleted + (input.isDaily ? 1 : 0),
-          updated_at: new Date().toISOString(),
-        });
-        if (upsertErr) throw upsertErr;
-
-        if (newBadgeIds.length > 0) {
-          await supabase.from("earned_badges").upsert(
-            newBadgeIds.map((badge_id) => ({ profile_id: profileId, badge_id })),
-          );
-        }
+      if (newBadgeIds.length > 0) {
+        await supabase.from("earned_badges").upsert(
+          newBadgeIds.map((badge_id) => ({ profile_id: profileId, badge_id })),
+        );
       }
 
       const newBadges = BADGES.filter((b) => newBadgeIds.includes(b.id));

@@ -17,6 +17,7 @@ import {
 } from "@/lib/profiles";
 import { useProgress, useLevel } from "@/lib/brainy-hooks";
 import { LEVELS } from "@/lib/brainy-data";
+import { RewardsStore } from "@/components/brainy/RewardsStore";
 import { cn } from "@/lib/utils";
 
 // ---------------------------------------------------------------------------
@@ -249,6 +250,8 @@ export default function ProfilesPage() {
         if (searchParams.get("new") === "1") setShowCreate(true);
     }, [searchParams]);
 
+    const activeProfile = profiles.find((p) => p.id === activeId) ?? null;
+
     if (isLoading) {
         return (
             <div className="flex items-center justify-center py-20">
@@ -346,6 +349,11 @@ export default function ProfilesPage() {
                         );
                     })}
                 </div>
+            )}
+
+            {/* Rewards store — spend the active profile's stars on parent-set rewards */}
+            {activeProfile && (
+                <RewardsStore profileId={activeProfile.id} profileName={activeProfile.name} />
             )}
         </div>
     );

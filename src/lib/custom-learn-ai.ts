@@ -12,6 +12,7 @@ const LEVEL_DESCRIPTIONS: Record<Level, string> = {
   grade2: "2nd Grade (age 7-8): basic vocabulary, straightforward sentences",
   grade3: "3rd Grade (age 8-9): intermediate vocabulary, can handle a bit more detail",
   grade4: "4th Grade (age 9-10): more complex concepts, richer vocabulary",
+  grade5: "5th Grade (age 10-11): advanced vocabulary, multi-step reasoning, deeper explanations",
 };
 
 export interface AIQuestion {

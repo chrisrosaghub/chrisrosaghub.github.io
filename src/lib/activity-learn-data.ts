@@ -748,6 +748,58 @@ const EXTRA: Record<string, LearnItem[]> = {
     { emoji: "🏜️", title: "Ancient Wonders", fact: "The Pyramids of Giza in Egypt are thousands of years old and are the only ancient wonder of the world still standing." },
     { emoji: "🌏", title: "Natural & Modern Wonders", fact: "The Grand Canyon (Arizona) and Niagara Falls (U.S.–Canada border) are natural wonders; the Sydney Opera House is in Australia." },
   ],
+
+  // ─── MEMORY TECHNIQUES ────────────────────────────────────────────────────
+  "mem-acronyms": [
+    { emoji: "🔤", title: "What's an Acronym?", fact: "An acronym is a word made from the FIRST letter of each word in a list. It shrinks a big list down to one easy word!" },
+    { emoji: "🌈", title: "ROY G. BIV", fact: "This funny 'name' helps you remember the colors of the rainbow in order: Red, Orange, Yellow, Green, Blue, Indigo, Violet." },
+    { emoji: "🏞️", title: "HOMES", fact: "The word HOMES helps you remember the five Great Lakes: Huron, Ontario, Michigan, Erie, and Superior." },
+    { emoji: "✍️", title: "What's an Acrostic?", fact: "An acrostic is a sentence where the first letter of each word stands for something. The sillier the sentence, the easier to remember!" },
+    { emoji: "🪐", title: "Remembering the Planets", fact: "'My Very Educated Mother Just Served Us Nachos' = Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune!" },
+    { emoji: "🧭", title: "Never Eat Soggy Waffles", fact: "This acrostic gives the compass points clockwise: North, East, South, West." },
+    { emoji: "💡", title: "Make Your Own", fact: "The best acronyms and acrostics are ones YOU invent — they make sense to your brain, so they stick the best." },
+  ],
+  "mem-rhymes": [
+    { emoji: "🎵", title: "Why Rhymes Work", fact: "Matching sounds make a pattern your brain loves to hold onto. That's why rhymes are so easy to remember!" },
+    { emoji: "📅", title: "Days in Each Month", fact: "'Thirty days hath September, April, June, and November' tells you which months have 30 days." },
+    { emoji: "⛵", title: "A Date in History", fact: "'In fourteen hundred ninety-two, Columbus sailed the ocean blue' locks in the year 1492 with a rhyme." },
+    { emoji: "🔡", title: "i Before e", fact: "The spelling rhyme 'i before e, except after c' helps you spell tricky words like piece and receive." },
+    { emoji: "🔤", title: "The ABC Song", fact: "The ABC Song puts all 26 letters to a tune — that's why kids learn the alphabet so fast!" },
+    { emoji: "🔧", title: "Righty Tighty, Lefty Loosey", fact: "This rhyme reminds you to turn right to tighten a lid or screw, and left to loosen it." },
+    { emoji: "🎶", title: "Sing It Yourself", fact: "Turning facts into your own little song or beat makes them stick. Practice singing it a few times before a test!" },
+  ],
+  "mem-visualize": [
+    { emoji: "🖼️", title: "Make a Mental Picture", fact: "Visualization means making a clear picture in your mind of what you want to remember." },
+    { emoji: "🤪", title: "Bigger & Sillier = Better", fact: "The wilder, more colorful, and sillier your picture, the easier it is to remember!" },
+    { emoji: "🏃", title: "Add Action", fact: "A picture that's DOING something — jumping, spinning, exploding — sticks even better than a still one." },
+    { emoji: "👃", title: "Use All Your Senses", fact: "Imagine the smell, sound, and feel too. The more senses you add, the more 'hooks' your memory gets." },
+    { emoji: "🔗", title: "Link Two Ideas", fact: "To remember 'cat' and 'cloud,' picture a cat napping on a fluffy cloud. Funny links glue ideas together." },
+    { emoji: "🍕", title: "Names & Words", fact: "Picture Mr. Baker baking a giant cake, or 'Rome' as a roaming gnome in Italy. Vivid images make facts stick." },
+  ],
+  "mem-palace": [
+    { emoji: "🏰", title: "What Is a Memory Palace?", fact: "A Memory Palace is an imaginary walk through a place you know well — like your home — where you 'store' things to remember." },
+    { emoji: "🚪", title: "Place Each Item", fact: "Put each thing you want to remember in a different spot: the front door, the couch, the kitchen table." },
+    { emoji: "🚶", title: "Take a Walk", fact: "To recall your list, take the same imaginary walk and 'see' each item where you left it." },
+    { emoji: "🏛️", title: "The Method of Loci", fact: "'Loci' means 'places.' Ancient Greek and Roman speakers used this trick to remember long speeches!" },
+    { emoji: "🥛", title: "Make It Vivid", fact: "Picture a giant milk carton blocking your front door. Big, silly images at each spot are unforgettable." },
+    { emoji: "🔢", title: "Great for Order", fact: "Because you follow the same path every time, the items always come back in the right order." },
+  ],
+  "mem-chunking": [
+    { emoji: "🧩", title: "What Is Chunking?", fact: "Chunking means breaking big information into smaller, bite-sized groups that are easier to remember." },
+    { emoji: "📞", title: "Phone Numbers", fact: "8005551234 is hard to recall, but 800-555-1234 is easy — that's chunking into three small groups!" },
+    { emoji: "🧠", title: "Why It Works", fact: "Your short-term memory holds only about 4–7 items. Each chunk counts as ONE item, so you can fit more." },
+    { emoji: "🔠", title: "Group the Letters", fact: "F-B-I-N-A-S-A is 7 letters, but as FBI + NASA it's just 2 easy chunks." },
+    { emoji: "🦋", title: "Big Words", fact: "Read 'butterfly' as but-ter-fly. Breaking words into syllables makes them simpler to read and spell." },
+    { emoji: "🗓️", title: "Group by Type", fact: "Think of the year as 12 months, not 365 days. Grouping things by type makes long lists feel short." },
+  ],
+  "mem-story": [
+    { emoji: "📖", title: "What Is the Story Method?", fact: "The Story Method links your items together into one silly story, so each part reminds you of the next." },
+    { emoji: "🤣", title: "Make It Silly", fact: "Funny, action-packed stories stick the best. The crazier the story, the easier it is to remember!" },
+    { emoji: "🐶", title: "Link the Items", fact: "To remember dog, hat, banana: picture a dog wearing a hat while eating a banana. All three in one scene!" },
+    { emoji: "🔗", title: "Also Called the Link Method", fact: "You LINK each item to the next, building a chain. That's why it's also called the link method." },
+    { emoji: "➡️", title: "Great for Order", fact: "One event leads to the next, so the items come back in exactly the right sequence." },
+    { emoji: "🌟", title: "Team Up with Pictures", fact: "The Story Method works great with Picture Power — both use your imagination to make memories stick." },
+  ],
 };
 
 export const ACTIVITY_LEARN_DATA: Record<string, LearnItem[]> = {

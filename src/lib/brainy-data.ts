@@ -10,21 +10,24 @@ import { KINDERGARTEN_ACTIVITIES } from "@/lib/brainy-data-kindergarten";
 import { GRADE1_ACTIVITIES } from "@/lib/brainy-data-grade1";
 import { GRADE3_ACTIVITIES } from "@/lib/brainy-data-grade3";
 import { GRADE4_ACTIVITIES } from "@/lib/brainy-data-grade4";
+import { GRADE5_ACTIVITIES } from "@/lib/brainy-data-grade5";
 import { STATES_ACTIVITIES } from "@/lib/brainy-data-states";
 import { SIGHT_WORDS_ACTIVITIES } from "@/lib/brainy-data-sight-words";
 import { PRESIDENTS_ACTIVITIES } from "@/lib/brainy-data-presidents";
 import { LANGUAGE_ACTIVITIES } from "@/lib/brainy-data-language";
 import { EUROPE_ACTIVITIES } from "@/lib/brainy-data-europe";
 import { SEL_ACTIVITIES } from "@/lib/brainy-data-sel";
+import { MEMORY_ACTIVITIES } from "@/lib/brainy-data-memory";
 
-export type SubjectId = "math" | "science" | "history" | "geography" | "reading" | "states" | "presidents" | "language" | "sel";
-export type Level = "kindergarten" | "grade1" | "grade2" | "grade3" | "grade4";
+export type SubjectId = "math" | "science" | "history" | "geography" | "reading" | "states" | "presidents" | "language" | "sel" | "memory";
+export type Level = "kindergarten" | "grade1" | "grade2" | "grade3" | "grade4" | "grade5";
 export const LEVELS: { id: Level; label: string; shortLabel: string; emoji: string }[] = [
   { id: "kindergarten", label: "Kindergarten", shortLabel: "K", emoji: "\u{1F33C}" },
   { id: "grade1", label: "1st Grade", shortLabel: "G1", emoji: "\u{1F4D6}" },
   { id: "grade2", label: "2nd Grade", shortLabel: "G2", emoji: "\u{1F4DA}" },
   { id: "grade3", label: "3rd Grade", shortLabel: "G3", emoji: "\u{1F4D9}" },
   { id: "grade4", label: "4th Grade", shortLabel: "G4", emoji: "\u{1F4D5}" },
+  { id: "grade5", label: "5th Grade", shortLabel: "G5", emoji: "\u{1F393}" },
 ];
 
 export interface Subject {
@@ -221,6 +224,18 @@ export const SUBJECTS: Subject[] = [
     textClass: "text-rose-700",
     bgSoftClass: "bg-rose-100",
     chartVar: "var(--chart-3)",
+  },
+  {
+    id: "memory",
+    name: "Memory Techniques",
+    emoji: "🐘",
+    mascot: "Ellie the Elephant",
+    tagline: "Brain tricks to remember anything",
+    gradientClass: "from-purple-300 via-violet-300 to-blue-300",
+    ringClass: "ring-purple-300",
+    textClass: "text-purple-700",
+    bgSoftClass: "bg-purple-100",
+    chartVar: "var(--chart-4)",
   },
 ];
 
@@ -1130,6 +1145,7 @@ const GRADE2_ACTIVITIES: Activity[] = [
  * kindergarten activities to produce the canonical ACTIVITIES list.
  */
 export const ACTIVITIES: Activity[] = [
+  ...GRADE5_ACTIVITIES,
   ...GRADE4_ACTIVITIES,
   ...GRADE3_ACTIVITIES,
   ...STATES_ACTIVITIES,
@@ -1141,6 +1157,7 @@ export const ACTIVITIES: Activity[] = [
   ...KINDERGARTEN_ACTIVITIES,
   ...SIGHT_WORDS_ACTIVITIES,
   ...SEL_ACTIVITIES,
+  ...MEMORY_ACTIVITIES,
 ];
 
 /** Return all activities matching the given level (default: grade2). */
@@ -1169,6 +1186,7 @@ export const BADGES: Badge[] = [
   { id: "history-buff", name: "History Buff", description: "Finish every History activity.", emoji: "📜", rule: { kind: "subjectComplete", subjectId: "history" } },
   { id: "world-traveler", name: "World Traveler", description: "Finish every Geography activity.", emoji: "🌍", rule: { kind: "subjectComplete", subjectId: "geography" } },
   { id: "states-expert", name: "States Expert", description: "Finish every States & Capitals activity.", emoji: "🦅", rule: { kind: "subjectComplete", subjectId: "states" } },
+  { id: "memory-master", name: "Memory Master", description: "Finish every Memory Techniques activity.", emoji: "🐘", rule: { kind: "subjectComplete", subjectId: "memory" } },
   { id: "streak-3", name: "On a Roll", description: "Practice 3 days in a row.", emoji: "🔥", rule: { kind: "streakDays", days: 3 } },
   { id: "daily-champ", name: "Daily Champ", description: "Finish a Daily Challenge.", emoji: "🏅", rule: { kind: "dailyChallenge" } },
 ];
