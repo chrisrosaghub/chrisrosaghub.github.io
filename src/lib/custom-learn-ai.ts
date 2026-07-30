@@ -13,6 +13,8 @@ const LEVEL_DESCRIPTIONS: Record<Level, string> = {
   grade3: "3rd Grade (age 8-9): intermediate vocabulary, can handle a bit more detail",
   grade4: "4th Grade (age 9-10): more complex concepts, richer vocabulary",
   grade5: "5th Grade (age 10-11): advanced vocabulary, multi-step reasoning, deeper explanations",
+  grade6: "6th Grade (age 11-12): middle-school vocabulary, ratios, evidence-based reasoning, and connected concepts",
+  grade7: "7th Grade (age 12-13): precise academic vocabulary, proportional reasoning, analysis, and multi-step explanations",
 };
 
 export interface AIQuestion {

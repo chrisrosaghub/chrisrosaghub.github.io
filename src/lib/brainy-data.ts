@@ -11,6 +11,8 @@ import { GRADE1_ACTIVITIES } from "@/lib/brainy-data-grade1";
 import { GRADE3_ACTIVITIES } from "@/lib/brainy-data-grade3";
 import { GRADE4_ACTIVITIES } from "@/lib/brainy-data-grade4";
 import { GRADE5_ACTIVITIES } from "@/lib/brainy-data-grade5";
+import { GRADE6_ACTIVITIES } from "@/lib/brainy-data-grade6";
+import { GRADE7_ACTIVITIES } from "@/lib/brainy-data-grade7";
 import { STATES_ACTIVITIES } from "@/lib/brainy-data-states";
 import { SIGHT_WORDS_ACTIVITIES } from "@/lib/brainy-data-sight-words";
 import { PRESIDENTS_ACTIVITIES } from "@/lib/brainy-data-presidents";
@@ -20,7 +22,7 @@ import { SEL_ACTIVITIES } from "@/lib/brainy-data-sel";
 import { MEMORY_ACTIVITIES } from "@/lib/brainy-data-memory";
 
 export type SubjectId = "math" | "science" | "history" | "geography" | "reading" | "states" | "presidents" | "language" | "sel" | "memory";
-export type Level = "kindergarten" | "grade1" | "grade2" | "grade3" | "grade4" | "grade5";
+export type Level = "kindergarten" | "grade1" | "grade2" | "grade3" | "grade4" | "grade5" | "grade6" | "grade7";
 export const LEVELS: { id: Level; label: string; shortLabel: string; emoji: string }[] = [
   { id: "kindergarten", label: "Kindergarten", shortLabel: "K", emoji: "\u{1F33C}" },
   { id: "grade1", label: "1st Grade", shortLabel: "G1", emoji: "\u{1F4D6}" },
@@ -28,6 +30,8 @@ export const LEVELS: { id: Level; label: string; shortLabel: string; emoji: stri
   { id: "grade3", label: "3rd Grade", shortLabel: "G3", emoji: "\u{1F4D9}" },
   { id: "grade4", label: "4th Grade", shortLabel: "G4", emoji: "\u{1F4D5}" },
   { id: "grade5", label: "5th Grade", shortLabel: "G5", emoji: "\u{1F393}" },
+  { id: "grade6", label: "6th Grade", shortLabel: "G6", emoji: "\u{1F52C}" },
+  { id: "grade7", label: "7th Grade", shortLabel: "G7", emoji: "\u{1F9ED}" },
 ];
 
 export interface Subject {
@@ -1145,6 +1149,8 @@ const GRADE2_ACTIVITIES: Activity[] = [
  * kindergarten activities to produce the canonical ACTIVITIES list.
  */
 export const ACTIVITIES: Activity[] = [
+  ...GRADE7_ACTIVITIES,
+  ...GRADE6_ACTIVITIES,
   ...GRADE5_ACTIVITIES,
   ...GRADE4_ACTIVITIES,
   ...GRADE3_ACTIVITIES,

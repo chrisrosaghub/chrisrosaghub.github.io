@@ -5,6 +5,7 @@
  */
 import { SCIENCE_LEARN_ITEMS } from "@/lib/science-learn-data";
 import type { LearnItem } from "@/lib/science-learn-data";
+import { GRADE6_7_LEARN_DATA } from "@/lib/grade6-7-learn-data";
 import {
   WESTERN_EUROPE,
   NORTHERN_EUROPE,
@@ -805,6 +806,7 @@ const EXTRA: Record<string, LearnItem[]> = {
 export const ACTIVITY_LEARN_DATA: Record<string, LearnItem[]> = {
   ...SCIENCE_LEARN_ITEMS,
   ...EXTRA,
+  ...GRADE6_7_LEARN_DATA,
 
   // ─── EUROPEAN CAPITALS ────────────────────────────────────────────────────
   "europe-western": buildEuropeLearnItems(
