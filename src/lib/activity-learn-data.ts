@@ -1254,6 +1254,99 @@ export const ACTIVITY_LEARN_DATA: Record<string, LearnItem[]> = {
     { emoji: "🏘️", title: "Everyone Belongs", fact: "Every person has the fundamental human need to belong — to feel like they matter and are part of something. Creating that for others is one of the most meaningful things you can do." },
   ],
 
+  // Grade 5
+  "sel-g5-stress": [
+    { emoji: "🌤️", title: "Stress Is a Signal", fact: "Stress is your mind and body's response to a challenge. A little stress can help you prepare, but too much for too long can make it hard to think, sleep, or feel well." },
+    { emoji: "🔎", title: "Notice Your Signals", fact: "Stress can show up as tense muscles, a fast heartbeat, headaches, irritability, racing thoughts, or trouble concentrating. Noticing your early signals helps you respond sooner." },
+    { emoji: "🫁", title: "Calm the Body", fact: "Slow breathing tells your nervous system that you are safe. Try breathing in for four counts and out for six counts several times." },
+    { emoji: "🧩", title: "Make It Smaller", fact: "When a task feels overwhelming, divide it into small steps. Choose one next action instead of trying to solve everything at once." },
+    { emoji: "💬", title: "Helpful Self-Talk", fact: "Replace thoughts like 'I cannot do this' with realistic support: 'This is hard, and I can take it one step at a time.'" },
+    { emoji: "🏃", title: "Healthy Coping", fact: "Sleep, movement, time outside, creative hobbies, journaling, and talking with someone are healthy ways to recover from stress. Hurting others or avoiding every problem is not." },
+    { emoji: "🤝", title: "Know When to Reach Out", fact: "If stress lasts for weeks, disrupts daily life, or feels too big to manage, tell a trusted adult, teacher, counselor, or health professional." },
+  ],
+
+  "sel-g5-communication": [
+    { emoji: "💬", title: "Assertive Communication", fact: "Being assertive means saying what you think, feel, or need clearly while respecting the other person. It is the middle ground between silence and aggression." },
+    { emoji: "🙋", title: "Use I Statements", fact: "Try: 'I feel ___ when ___ because ___. I need ___.' This focuses on your experience instead of blaming the other person." },
+    { emoji: "👂", title: "Listen Actively", fact: "Give the speaker your attention, avoid interrupting, and ask questions that check your understanding. Listening to understand is different from waiting to reply." },
+    { emoji: "🔍", title: "Clarify Before Reacting", fact: "Tone and meaning can be misunderstood. Ask, 'What did you mean by that?' or summarize what you heard before assuming the worst." },
+    { emoji: "⏸️", title: "Pause Heated Conversations", fact: "When a discussion becomes too intense, request a short break and agree to return. A pause supports problem-solving; disappearing to punish someone does not." },
+    { emoji: "🛠️", title: "Repair With an Apology", fact: "A useful apology names what happened, recognizes the impact, and includes a plan to act differently. Forgiveness cannot be demanded." },
+    { emoji: "🤝", title: "Aim for Understanding", fact: "Strong communication is not about winning or always agreeing. It is about understanding one another and finding respectful ways forward." },
+  ],
+
+  "sel-g5-teamwork": [
+    { emoji: "🎯", title: "Start With a Shared Goal", fact: "Teams work best when everyone understands the goal, the plan, and their role. Clear expectations prevent confusion and duplicated work." },
+    { emoji: "🧩", title: "Different Strengths Matter", fact: "A strong team uses many strengths: planning, creativity, listening, research, building, presenting, and encouraging. Contribution does not look the same for everyone." },
+    { emoji: "📋", title: "Be Accountable", fact: "Complete the work you agreed to do and communicate early if you need help. Reliability builds trust across the whole team." },
+    { emoji: "👥", title: "Include Every Voice", fact: "Invite quieter members to contribute and make room for ideas that differ from yours. People share more when they know they will not be humiliated." },
+    { emoji: "💡", title: "Give Constructive Feedback", fact: "Useful feedback is specific, respectful, and focused on the work: what is effective, what could improve, and a practical next step." },
+    { emoji: "🧭", title: "Leadership Is Service", fact: "Good leaders listen, organize, encourage, and help the group succeed. Leadership is not control, and it can move between members as needs change." },
+    { emoji: "🏆", title: "Share Success", fact: "Celebrate the whole team's effort and recognize different contributions. A team's success belongs to everyone who helped create it." },
+  ],
+
+  // Grade 6
+  "sel-g6-resilience": [
+    { emoji: "🌱", title: "What Is Resilience?", fact: "Resilience is the ability to adapt and recover when life is difficult. It does not mean avoiding pain or handling everything alone." },
+    { emoji: "🧠", title: "Use a Growth Mindset", fact: "Abilities can improve through useful effort, strategies, feedback, and support. Replace 'I cannot do this' with 'I cannot do this yet.'" },
+    { emoji: "🔬", title: "Treat Mistakes as Data", fact: "A mistake shows the gap between your current approach and the result you wanted. Study that information, then choose what to change next time." },
+    { emoji: "🪜", title: "Build Small Milestones", fact: "Specific, manageable steps make large goals less overwhelming. Tracking small improvements also makes progress easier to see." },
+    { emoji: "🔄", title: "Adapt Your Strategy", fact: "Persistence does not mean repeating a method that fails. Keep the goal in view while changing your strategy, timeline, or source of support." },
+    { emoji: "💛", title: "Practice Self-Compassion", fact: "Speak to yourself as you would to a friend facing the same setback. Kindness supports learning better than shame or harsh self-criticism." },
+    { emoji: "🤝", title: "Resilience Uses Support", fact: "Trusted friends, family, teachers, coaches, and counselors can offer perspective and practical help. Reaching out is a resilience skill." },
+  ],
+
+  "sel-g6-digital-citizenship": [
+    { emoji: "👣", title: "Your Digital Footprint", fact: "Posts, comments, searches, and shared images can create a lasting trail. Pause before posting and assume digital content may travel beyond its intended audience." },
+    { emoji: "🔐", title: "Protect Private Information", fact: "Keep passwords, addresses, private images, and live locations secure. A trusted relationship never requires surrendering your password or privacy." },
+    { emoji: "⏸️", title: "Pause Before You Post", fact: "Online messages lack many facial and vocal cues. When upset, wait until you can communicate thoughtfully and check meaning before reacting." },
+    { emoji: "🛡️", title: "Respond to Cyberbullying", fact: "Do not join or forward harmful content. Save evidence when appropriate, block or report the behavior, support the target, and involve a trusted adult." },
+    { emoji: "🔎", title: "Verify Before Sharing", fact: "Check surprising claims against reliable sources. Popularity, emotional language, and repeated sharing do not prove that information is true." },
+    { emoji: "⚖️", title: "Balance Online and Offline Life", fact: "Protect time for sleep, movement, schoolwork, hobbies, and in-person relationships. Turning off unnecessary notifications can restore focus." },
+    { emoji: "🌐", title: "Character Counts Online", fact: "Anonymity does not remove responsibility. Use the same respect, consent, and fairness online that you expect in person." },
+  ],
+
+  "sel-g6-boundaries": [
+    { emoji: "🛡️", title: "What Is a Boundary?", fact: "A boundary is a limit that protects safety, comfort, privacy, time, or well-being. Boundaries describe what you will accept or do; they do not control another person." },
+    { emoji: "✅", title: "Consent Must Be Clear", fact: "Consent is freely given, specific, and reversible. A person may say no or change their mind at any time, and pressure is not consent." },
+    { emoji: "💬", title: "State Boundaries Directly", fact: "Use clear language such as 'Please do not read my messages' or 'I am not comfortable with that.' You do not need an elaborate excuse for a reasonable limit." },
+    { emoji: "👀", title: "Notice Nonverbal Discomfort", fact: "Pulling away, freezing, or becoming unusually quiet can signal discomfort. Pause and check in rather than waiting for a forceful no." },
+    { emoji: "🤝", title: "Respect Goes Both Ways", fact: "Healthy relationships respect each person's limits even when they differ. Disappointment is okay; pressure, ridicule, and retaliation are not." },
+    { emoji: "🚪", title: "Enforce Your Boundary", fact: "If someone ignores a boundary, repeat it firmly, leave the situation, block contact if needed, and seek support. Safety matters more than politeness." },
+    { emoji: "🧑‍🏫", title: "Get Help When Needed", fact: "Tell a trusted adult when someone repeatedly ignores a boundary, asks you to keep an unsafe secret, or makes you feel threatened." },
+  ],
+
+  // Grade 7
+  "sel-g7-emotional-intelligence": [
+    { emoji: "🧠", title: "What Is Emotional Intelligence?", fact: "Emotional intelligence is the ability to recognize and understand emotions, regulate responses, empathize with others, and use that awareness in decisions." },
+    { emoji: "🏷️", title: "Label Emotions Precisely", fact: "Words such as irritated, disappointed, anxious, jealous, and overwhelmed provide more useful information than simply saying good or bad." },
+    { emoji: "🔔", title: "Identify Triggers", fact: "A trigger is a situation that reliably brings up a strong reaction. Knowing your triggers lets you prepare a healthier response rather than excuse harmful behavior." },
+    { emoji: "⏸️", title: "Create a Response Gap", fact: "Emotions arrive automatically, but actions can be chosen. Pause long enough to calm your body, check the facts, and consider consequences." },
+    { emoji: "🔄", title: "Reframe the Situation", fact: "Reappraisal means finding another accurate way to view an event. 'This feedback can help me improve' leads to different choices than 'I am a failure.'" },
+    { emoji: "❤️", title: "Empathy Is Not Agreement", fact: "You can understand why someone feels as they do without agreeing with their opinion or accepting harmful behavior." },
+    { emoji: "📓", title: "Reflect and Practice", fact: "Review emotional situations: What did you feel? What triggered it? What helped? What would you choose next time? Reflection turns experience into skill." },
+  ],
+
+  "sel-g7-relationships": [
+    { emoji: "🔗", title: "Foundations of Healthy Relationships", fact: "Healthy relationships include trust, respect, honest communication, mutual effort, consent, and room for each person to grow." },
+    { emoji: "🌿", title: "Keep Your Individual Identity", fact: "Close relationships should still allow separate interests, friendships, opinions, and time. Support is healthy; control and total dependence are not." },
+    { emoji: "🚩", title: "Recognize Warning Signs", fact: "Control, humiliation, threats, repeated boundary violations, isolation, and pressure are warning signs. These behaviors are not proof of care." },
+    { emoji: "🗣️", title: "Handle Conflict Respectfully", fact: "Focus on the issue, listen, avoid insults, and take a planned pause if needed. Conflict can be healthy; threats and punishment are not." },
+    { emoji: "🧱", title: "Trust Requires Consistency", fact: "Trust grows from repeated honest and respectful actions. After harm, an apology matters, but changed behavior is what rebuilds trust." },
+    { emoji: "⚖️", title: "Look for Mutuality", fact: "Both people should have a voice, needs, responsibilities, and freedom to set boundaries. One person should not always give while the other takes." },
+    { emoji: "🧑‍🏫", title: "Safety Comes First", fact: "If a relationship feels unsafe or controlling, create distance and tell a trusted adult. You never have to manage a threatening situation alone." },
+  ],
+
+  "sel-g7-ethical-decisions": [
+    { emoji: "⚖️", title: "Think Beyond Yourself", fact: "Ethical decisions consider values, facts, rights, responsibilities, fairness, and the likely effects on everyone involved." },
+    { emoji: "🗺️", title: "Map the Decision", fact: "Identify the problem, reliable facts, people affected, possible choices, and likely short- and long-term consequences before acting." },
+    { emoji: "🧭", title: "Use Values as a Compass", fact: "Ask which choice best reflects honesty, respect, responsibility, compassion, and fairness, especially when the easiest choice conflicts with your values." },
+    { emoji: "🎯", title: "Intent and Impact Both Matter", fact: "Good intentions do not erase harmful impact. Responsible people listen, acknowledge the effect, and repair harm even when it was accidental." },
+    { emoji: "📏", title: "Equality and Fairness", fact: "Equality gives everyone the same thing. Fairness considers different needs and barriers so each person has a genuine opportunity to succeed." },
+    { emoji: "🦁", title: "Practice Moral Courage", fact: "Moral courage is acting according to your values even when it risks criticism or exclusion. Seeking trusted support can make courageous action safer." },
+    { emoji: "🛠️", title: "Reflect and Make Amends", fact: "New facts may require a new decision. When a choice causes harm, take accountability, repair what you can, and use the lesson to improve future choices." },
+  ],
+
   // ─── PERIODIC TABLE ───────────────────────────────────────────────────────
   "sci-elements-g2": [
     { emoji: "🧱", title: "Everything Is Made of Tiny Pieces!", fact: "Look at the table, the floor, the air, even YOU — everything is made of tiny, tiny pieces called elements! There are 118 different kinds, and they make up everything in the whole universe." },
