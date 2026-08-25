@@ -123,21 +123,10 @@ export default function AboutPage() {
                 <h2 className="text-2xl font-extrabold tracking-tight">About Me</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                     <p>
-                        I'm a <strong className="text-foreground">Business Value Advisor at Microsoft</strong>,
-                        specializing in helping enterprise organizations strategically leverage AI and cloud
-                        technologies to solve their most complex business challenges. My mission is to bridge the
-                        gap between cutting-edge technology and real-world business value.
-                    </p>
-                    <p>
-                        With deep expertise in AI transformation, enterprise solutions architecture, and
-                        organizational change management, I work with C-suite executives and business leaders to
-                        develop comprehensive strategies that drive measurable ROI, operational efficiency, and
-                        competitive advantage through intelligent technology adoption.
-                    </p>
-                    <p>
-                        Outside of work, I'm passionate about education and making learning fun. Brainy Buddies
-                        started as a late-night project with my son — and it's grown into something we're both
-                        really proud of.
+                        I’m a dad to a 9-year-old and a 6-year-old, and one of the things I hope to pass on to them
+                        is a love of learning. I’m endlessly curious about how things work, why people think the way
+                        they do, and what we can learn from the world and from each other. If I can help my kids stay
+                        curious, ask good questions, and never stop learning, I’ll feel like I’ve done something right.
                     </p>
                 </div>
             </section>
