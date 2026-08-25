@@ -62,6 +62,15 @@ export default function AboutPage() {
                             <Github className="size-4" />
                             GitHub
                         </a>
+                        <a
+                            href="https://www.chrisrosa.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors text-white px-4 py-2 text-sm font-bold ring-1 ring-white/40"
+                        >
+                            <Globe className="size-4" />
+                            chrisrosa.com
+                        </a>
                     </div>
                 </div>
             </section>
