@@ -26,7 +26,7 @@ export default function AboutPage() {
             {/* Hero card */}
             <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-orange-400 text-white shadow-lg p-8 md:p-12">
                 <div className="absolute -right-8 -top-8 text-[9rem] opacity-20 select-none" aria-hidden>
-                    💼
+                    📚
                 </div>
                 <div className="relative space-y-3">
                     <p className="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wide ring-1 ring-white/30">
@@ -35,9 +35,6 @@ export default function AboutPage() {
                     <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight drop-shadow">
                         Chris Rosa
                     </h1>
-                    <p className="text-lg font-semibold text-white/90">
-                        Business Value Advisor
-                    </p>
                     <p className="text-base text-white/85 max-w-xl leading-relaxed">
                         I’m a dad to a 9-year-old and a 6-year-old, and one of the things I hope to pass on to them
                         is a love of learning. I’m endlessly curious about how things work, why people think the way
