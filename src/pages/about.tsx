@@ -30,7 +30,7 @@ export default function AboutPage() {
                 </div>
                 <div className="relative space-y-3">
                     <p className="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wide ring-1 ring-white/30">
-                        👋 Behind the app
+                        👋 About Me
                     </p>
                     <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight drop-shadow">
                         Chris Rosa
@@ -39,9 +39,10 @@ export default function AboutPage() {
                         Business Value Advisor
                     </p>
                     <p className="text-base text-white/85 max-w-xl leading-relaxed">
-                        I help enterprise organizations unlock AI's potential to solve complex challenges and
-                        drive measurable business impact. I built Brainy Buddies for the curious learners in
-                        my life — because the best adventures start with a question.
+                        I’m a dad to a 9-year-old and a 6-year-old, and one of the things I hope to pass on to them
+                        is a love of learning. I’m endlessly curious about how things work, why people think the way
+                        they do, and what we can learn from the world and from each other. If I can help my kids stay
+                        curious, ask good questions, and never stop learning, I’ll feel like I’ve done something right.
                     </p>
                     <div className="flex flex-wrap gap-3 pt-2">
                         <a
@@ -124,19 +125,6 @@ export default function AboutPage() {
                     <Sparkles className="inline size-4 mr-1.5 text-violet-500" aria-hidden />
                     Brainy Buddies is built with love for curious kids everywhere — and the parents who want to
                     make learning feel like an adventure, not a chore.
-                </div>
-            </section>
-
-            {/* About */}
-            <section className="space-y-4">
-                <h2 className="text-2xl font-extrabold tracking-tight">About Me</h2>
-                <div className="space-y-4 text-muted-foreground leading-relaxed">
-                    <p>
-                        I’m a dad to a 9-year-old and a 6-year-old, and one of the things I hope to pass on to them
-                        is a love of learning. I’m endlessly curious about how things work, why people think the way
-                        they do, and what we can learn from the world and from each other. If I can help my kids stay
-                        curious, ask good questions, and never stop learning, I’ll feel like I’ve done something right.
-                    </p>
                 </div>
             </section>
 
