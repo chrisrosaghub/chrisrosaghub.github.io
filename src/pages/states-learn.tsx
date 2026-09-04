@@ -53,6 +53,13 @@ export default function StatesLearnPage() {
         }
     }
 
+    function handlePrevious() {
+        if (index === 0) return;
+        stop();
+        setIndex((i) => i - 1);
+        setRevealed(false);
+    }
+
     function handleRestart() {
         stop();
         setIndex(0);
@@ -194,12 +201,24 @@ export default function StatesLearnPage() {
 
                     {/* Reveal / revealed state */}
                     {!revealed ? (
-                        <button
-                            onClick={handleReveal}
-                            className="w-full rounded-2xl bg-primary text-primary-foreground py-3 font-bold text-sm hover:opacity-90 active:scale-[0.98] transition-all shadow"
-                        >
-                            Tap to Reveal Capital
-                        </button>
+                        <div className="grid grid-cols-[auto_1fr] gap-2">
+                            <button
+                                type="button"
+                                onClick={handlePrevious}
+                                disabled={index === 0}
+                                aria-label="Previous state card"
+                                className="inline-flex items-center justify-center gap-1.5 rounded-2xl border-2 border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700 shadow-sm transition-colors hover:border-slate-300 hover:bg-slate-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
+                            >
+                                <ArrowLeft className="size-4" />
+                                <span className="hidden sm:inline">Previous</span>
+                            </button>
+                            <button
+                                onClick={handleReveal}
+                                className="w-full rounded-2xl bg-primary text-primary-foreground py-3 font-bold text-sm hover:opacity-90 active:scale-[0.98] transition-all shadow"
+                            >
+                                Tap to Reveal Capital
+                            </button>
+                        </div>
                     ) : (
                         <div className="space-y-3 animate-in fade-in slide-in-from-bottom-2 duration-300">
                             {/* Capital reveal */}
@@ -237,26 +256,38 @@ export default function StatesLearnPage() {
                                 </button>
                             )}
 
-                            {/* Next / finish */}
-                            <button
-                                onClick={handleNext}
-                                className={cn(
-                                    "w-full inline-flex items-center justify-center gap-2 rounded-2xl py-3 font-bold text-sm shadow transition-colors active:scale-[0.98]",
-                                    isLast
-                                        ? "bg-emerald-600 text-white hover:bg-emerald-700"
-                                        : "bg-slate-900 text-white hover:bg-slate-800",
-                                )}
-                            >
-                                {isLast ? (
-                                    <>
-                                        <CheckCircle2 className="size-4" /> All done — Take the Quiz!
-                                    </>
-                                ) : (
-                                    <>
-                                        Next State <ArrowRight className="size-4" />
-                                    </>
-                                )}
-                            </button>
+                            {/* Previous / next */}
+                            <div className="grid grid-cols-[auto_1fr] gap-2">
+                                <button
+                                    type="button"
+                                    onClick={handlePrevious}
+                                    disabled={index === 0}
+                                    aria-label="Previous state card"
+                                    className="inline-flex items-center justify-center gap-1.5 rounded-2xl border-2 border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700 shadow-sm transition-colors hover:border-slate-300 hover:bg-slate-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
+                                >
+                                    <ArrowLeft className="size-4" />
+                                    <span className="hidden sm:inline">Previous</span>
+                                </button>
+                                <button
+                                    onClick={handleNext}
+                                    className={cn(
+                                        "w-full inline-flex items-center justify-center gap-2 rounded-2xl py-3 font-bold text-sm shadow transition-colors active:scale-[0.98]",
+                                        isLast
+                                            ? "bg-emerald-600 text-white hover:bg-emerald-700"
+                                            : "bg-slate-900 text-white hover:bg-slate-800",
+                                    )}
+                                >
+                                    {isLast ? (
+                                        <>
+                                            <CheckCircle2 className="size-4" /> All done — Take the Quiz!
+                                        </>
+                                    ) : (
+                                        <>
+                                            Next State <ArrowRight className="size-4" />
+                                        </>
+                                    )}
+                                </button>
+                            </div>
                         </div>
                     )}
                 </div>

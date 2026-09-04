@@ -6,6 +6,9 @@
 import { SCIENCE_LEARN_ITEMS } from "@/lib/science-learn-data";
 import type { LearnItem } from "@/lib/science-learn-data";
 import { GRADE6_7_LEARN_DATA } from "@/lib/grade6-7-learn-data";
+import { HISTORY_EXPANSION_LEARN_DATA } from "@/lib/history-learn-data";
+import { PYTHON_LEARN_DATA } from "@/lib/python-learn-data";
+import { LANGUAGE_MORPHOLOGY_LEARN_DATA } from "@/lib/brainy-data-language-morphology";
 import {
   WESTERN_EUROPE,
   NORTHERN_EUROPE,
@@ -356,6 +359,14 @@ const EXTRA: Record<string, LearnItem[]> = {
     { emoji: "🚦", title: "Community Laws", fact: "Laws are rules for the whole community — like stopping at red lights and not littering in parks." },
     { emoji: "🗳️", title: "Voting", fact: "In a democracy, people vote to choose their leaders. Your voice matters!" },
     { emoji: "🤝", title: "Good Citizens", fact: "A good citizen follows rules, helps neighbors, and takes care of the community. Even kids can be great citizens!" },
+  ],
+
+  "g1-hist-family-community": [
+    { emoji: "📖", title: "Stories Carry History", fact: "Family and community stories tell what people did, saw, and learned in the past. Listening carefully helps preserve those memories." },
+    { emoji: "📷", title: "Photographs Are Clues", fact: "Old photographs show clothing, homes, celebrations, and places from another time. Labels help us remember who and when they show." },
+    { emoji: "🏺", title: "Artifacts", fact: "An artifact is an object from the past. A toy, letter, tool, or piece of clothing can reveal how people once lived." },
+    { emoji: "🗓️", title: "Timelines", fact: "A timeline places events in time order. Words like first, next, later, and finally help explain what happened." },
+    { emoji: "🎉", title: "Traditions", fact: "Traditions are customs families and communities repeat over time. Food, music, stories, and celebrations can connect generations." },
   ],
 
   // ─── GRADE 1 GEOGRAPHY ────────────────────────────────────────────────────
@@ -804,9 +815,12 @@ const EXTRA: Record<string, LearnItem[]> = {
 };
 
 export const ACTIVITY_LEARN_DATA: Record<string, LearnItem[]> = {
+  ...LANGUAGE_MORPHOLOGY_LEARN_DATA,
   ...SCIENCE_LEARN_ITEMS,
   ...EXTRA,
+  ...PYTHON_LEARN_DATA,
   ...GRADE6_7_LEARN_DATA,
+  ...HISTORY_EXPANSION_LEARN_DATA,
 
   // ─── EUROPEAN CAPITALS ────────────────────────────────────────────────────
   "europe-western": buildEuropeLearnItems(

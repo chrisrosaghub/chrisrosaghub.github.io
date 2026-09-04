@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, RotateCcw, Volume2, VolumeX } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, FlaskConical, RotateCcw, Volume2, VolumeX, XCircle } from "lucide-react";
 import { ACTIVITY_LEARN_DATA } from "@/lib/activity-learn-data";
 import { ACTIVITIES } from "@/lib/brainy-data";
+import { PYTHON_PRACTICE_QUESTION_IDS } from "@/lib/python-learn-data";
 import { useTTS } from "@/lib/use-tts";
 import { useLevel } from "@/lib/brainy-hooks";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
+import { useAutoScrollIntoView } from "@/lib/use-auto-scroll-into-view";
 
 export default function LearnPage() {
   const { activityId } = useParams<{ activityId: string }>();
@@ -15,6 +17,8 @@ export default function LearnPage() {
 
   const [index, setIndex] = useState(0);
   const [finished, setFinished] = useState(false);
+  const [showPractice, setShowPractice] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const { speak, stop, isSupported, isSpeaking, autoRead, toggleAutoRead } = useTTS();
   const level = useLevel();
   const isEarlyLearner = level === "kindergarten" || level === "grade1";
@@ -33,17 +37,51 @@ export default function LearnPage() {
   }
 
   const item = items[index];
+  const practiceQuestionId = PYTHON_PRACTICE_QUESTION_IDS[activityId]?.[index];
+  const practiceQuestion = activity?.subjectId === "python"
+    ? activity.questions.find((question) => question.id === practiceQuestionId)
+    : undefined;
+  const usesImmediatePractice = Boolean(practiceQuestion);
+  const practiceAnswered = selectedAnswer !== null;
+  const practiceCorrect = practiceAnswered && selectedAnswer === practiceQuestion?.answer;
+  const lessonActionsRef = useAutoScrollIntoView<HTMLDivElement>(practiceAnswered);
+  const lessonCardRef = useAutoScrollIntoView<HTMLDivElement>(index, {
+    enabled: index > 0,
+    block: "start",
+  });
   const isLast = index + 1 >= items.length;
-  const progressPct = (index / items.length) * 100;
+  const stepProgress = showPractice ? (practiceAnswered ? 0.9 : 0.5) : 0;
+  const progressPct = ((index + stepProgress) / items.length) * 100;
   const backHref = activity ? `/${activity.subjectId}` : "/";
   const backLabel = activity ? `Back to ${activity.subjectId === "states" ? "States & Capitals" : activity.subjectId.charAt(0).toUpperCase() + activity.subjectId.slice(1)}` : "Back";
 
   function handleNext() {
+    if (usesImmediatePractice && !showPractice) {
+      stop();
+      setShowPractice(true);
+      return;
+    }
+    if (showPractice && !practiceAnswered) return;
     if (isLast) {
       stop();
       setFinished(true);
     } else {
       setIndex((i) => i + 1);
+      setShowPractice(false);
+      setSelectedAnswer(null);
+    }
+  }
+
+  function handlePrevious() {
+    stop();
+    if (showPractice) {
+      setShowPractice(false);
+      setSelectedAnswer(null);
+      return;
+    }
+    if (index > 0) {
+      setIndex((i) => i - 1);
+      setSelectedAnswer(null);
     }
   }
 
@@ -51,6 +89,8 @@ export default function LearnPage() {
     stop();
     setIndex(0);
     setFinished(false);
+    setShowPractice(false);
+    setSelectedAnswer(null);
   }
 
   // ── Done screen ─────────────────────────────────────────────────────────
@@ -69,7 +109,8 @@ export default function LearnPage() {
           <h1 className="text-2xl font-extrabold">You're ready!</h1>
           <p className="text-white/90">
             You studied all <strong>{items.length} facts</strong> for{" "}
-            <strong>{activity?.title ?? "this activity"}</strong>.
+              <strong>{activity?.title ?? "this activity"}</strong>
+              {activity?.subjectId === "python" ? " and practiced each one" : ""}.
           </p>
           <p className="text-white/75 text-sm">Now put that knowledge to work!</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
@@ -148,7 +189,9 @@ export default function LearnPage() {
         <div className="flex items-center justify-between mb-1.5">
           <div className="flex items-center gap-1.5">
             <BookOpen className="size-3.5 text-primary" />
-            <span className="text-xs font-bold text-primary">Learn Mode</span>
+            <span className="text-xs font-bold text-primary">
+              {usesImmediatePractice ? "Learn + Try" : "Learn Mode"}
+            </span>
           </div>
           <span className="text-[11px] text-muted-foreground font-medium">
             {activity?.title}
@@ -159,37 +202,95 @@ export default function LearnPage() {
 
       {/* Flashcard */}
       <div
+        ref={lessonCardRef}
         key={index}
-        className="animate-float-up rounded-3xl border-2 border-white/70 bg-gradient-to-br from-sky-50 via-indigo-50 to-violet-50 shadow-lg overflow-hidden"
+        className="scroll-mt-4 animate-float-up rounded-3xl border-2 border-white/70 bg-gradient-to-br from-sky-50 via-indigo-50 to-violet-50 shadow-lg overflow-hidden"
       >
         <div className="p-6 md:p-8 space-y-4">
-          {/* Term / topic */}
-          <div className="flex flex-col items-center text-center gap-3">
-            {item.elementCard ? (
-              <div className={`relative rounded-2xl bg-gradient-to-br ${item.elementCard.gradient} shadow-lg px-6 py-4 min-w-[120px] text-white text-center select-none`}>
-                <div className="text-xs font-bold opacity-80 mb-0.5">{item.elementCard.number}</div>
-                <div className="text-5xl font-black leading-none tracking-tight">{item.elementCard.symbol}</div>
-                <div className="text-sm font-bold mt-1 opacity-90">{item.elementCard.name}</div>
+          {!showPractice ? (
+            <>
+              {/* Term / topic */}
+              <div className="flex flex-col items-center text-center gap-3">
+                {item.elementCard ? (
+                  <div className={`relative rounded-2xl bg-gradient-to-br ${item.elementCard.gradient} shadow-lg px-6 py-4 min-w-[120px] text-white text-center select-none`}>
+                    <div className="text-xs font-bold opacity-80 mb-0.5">{item.elementCard.number}</div>
+                    <div className="text-5xl font-black leading-none tracking-tight">{item.elementCard.symbol}</div>
+                    <div className="text-sm font-bold mt-1 opacity-90">{item.elementCard.name}</div>
+                  </div>
+                ) : (
+                  <div className="text-6xl select-none" aria-hidden>
+                    {item.emoji}
+                  </div>
+                )}
+                <h2 className="text-xl md:text-2xl font-extrabold tracking-tight text-slate-900">
+                  {item.title}
+                </h2>
               </div>
-            ) : (
-              <div className="text-6xl select-none" aria-hidden>
-                {item.emoji}
-              </div>
-            )}
-            <h2 className="text-xl md:text-2xl font-extrabold tracking-tight text-slate-900">
-              {item.title}
-            </h2>
-          </div>
 
-          {/* Fact */}
-          <div className="rounded-2xl bg-white/90 border border-slate-100 p-4 shadow-sm">
-            <p className="text-base md:text-lg text-slate-800 leading-relaxed text-center">
-              {item.fact}
-            </p>
-          </div>
+              {/* Fact */}
+              <div className="rounded-2xl bg-white/90 border border-slate-100 p-4 shadow-sm">
+                <p className="text-base md:text-lg text-slate-800 leading-relaxed text-center">
+                  {item.fact}
+                </p>
+              </div>
+            </>
+          ) : practiceQuestion ? (
+            <div className="space-y-4">
+              <div className="flex items-center justify-center gap-2 text-cyan-800">
+                <FlaskConical className="size-5" />
+                <span className="text-sm font-extrabold uppercase">Try it now</span>
+              </div>
+              <h2 className="whitespace-pre-wrap text-xl md:text-2xl font-extrabold tracking-tight text-center text-slate-900">
+                {practiceQuestion.prompt}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {practiceQuestion.choices.map((choice, choiceIndex) => {
+                  const isCorrectChoice = choiceIndex === practiceQuestion.answer;
+                  const isSelected = choiceIndex === selectedAnswer;
+                  return (
+                    <button
+                      key={choice}
+                      type="button"
+                      onClick={() => !practiceAnswered && setSelectedAnswer(choiceIndex)}
+                      disabled={practiceAnswered}
+                      className={cn(
+                        "min-h-12 rounded-2xl border-2 bg-white px-4 py-3 text-left text-sm font-bold transition-colors",
+                        !practiceAnswered && "hover:border-cyan-400 hover:bg-cyan-50",
+                        practiceAnswered && isCorrectChoice && "border-emerald-500 bg-emerald-50 text-emerald-800",
+                        practiceAnswered && isSelected && !isCorrectChoice && "border-rose-400 bg-rose-50 text-rose-800",
+                        practiceAnswered && !isSelected && !isCorrectChoice && "opacity-60",
+                      )}
+                    >
+                      {choice}
+                    </button>
+                  );
+                })}
+              </div>
+              {practiceAnswered && (
+                <div
+                  role="status"
+                  className={cn(
+                    "rounded-2xl border p-4 text-sm",
+                    practiceCorrect
+                      ? "border-emerald-200 bg-emerald-50 text-emerald-900"
+                      : "border-amber-200 bg-amber-50 text-amber-950",
+                  )}
+                >
+                  <div className="flex items-center gap-2 font-extrabold">
+                    {practiceCorrect
+                      ? <><CheckCircle2 className="size-4" /> Nice work. You used it!</>
+                      : <><XCircle className="size-4" /> Good experiment. Check the highlighted answer.</>}
+                  </div>
+                  <p className="mt-1">
+                    {practiceQuestion.explanation ?? `The answer is ${practiceQuestion.choices[practiceQuestion.answer]}.`}
+                  </p>
+                </div>
+              )}
+            </div>
+          ) : null}
 
           {/* Read aloud button */}
-          {isSupported && (
+          {isSupported && !showPractice && (
             <button
               onClick={() => speak(item.title + ". " + item.fact)}
               aria-label="Read aloud"
@@ -215,26 +316,44 @@ export default function LearnPage() {
             </button>
           )}
 
-          {/* Next / finish */}
-          <button
-            onClick={handleNext}
-            className={cn(
-              "w-full inline-flex items-center justify-center gap-2 rounded-2xl py-3 font-bold text-sm shadow transition-colors active:scale-[0.98]",
-              isLast
-                ? "bg-emerald-600 text-white hover:bg-emerald-700"
-                : "bg-slate-900 text-white hover:bg-slate-800",
-            )}
-          >
-            {isLast ? (
-              <>
-                <CheckCircle2 className="size-4" /> All done — Take the Quiz!
-              </>
-            ) : (
-              <>
-                Got it! Next <ArrowRight className="size-4" />
-              </>
-            )}
-          </button>
+          {/* Previous / next */}
+          <div ref={lessonActionsRef} className="grid grid-cols-[auto_1fr] gap-2 scroll-mb-4">
+            <button
+              type="button"
+              onClick={handlePrevious}
+              disabled={index === 0 && !showPractice}
+              aria-label={showPractice ? "Back to lesson card" : "Previous lesson card"}
+              className="inline-flex items-center justify-center gap-1.5 rounded-2xl border-2 border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700 shadow-sm transition-colors hover:border-slate-300 hover:bg-slate-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <ArrowLeft className="size-4" />
+              <span className="hidden sm:inline">{showPractice ? "Lesson" : "Previous"}</span>
+            </button>
+            <button
+              onClick={handleNext}
+              className={cn(
+                "w-full inline-flex items-center justify-center gap-2 rounded-2xl py-3 font-bold text-sm shadow transition-colors active:scale-[0.98]",
+                isLast && (!usesImmediatePractice || showPractice)
+                  ? "bg-emerald-600 text-white hover:bg-emerald-700"
+                  : "bg-slate-900 text-white hover:bg-slate-800",
+                showPractice && !practiceAnswered && "opacity-50 cursor-not-allowed",
+              )}
+              disabled={showPractice && !practiceAnswered}
+            >
+              {usesImmediatePractice && !showPractice ? (
+                <>
+                  Try it now <FlaskConical className="size-4" />
+                </>
+              ) : isLast ? (
+                <>
+                  <CheckCircle2 className="size-4" /> All done — Take the Quiz!
+                </>
+              ) : (
+                <>
+                  {showPractice ? "Next concept" : "Got it! Next"} <ArrowRight className="size-4" />
+                </>
+              )}
+            </button>
+          </div>
         </div>
       </div>
 

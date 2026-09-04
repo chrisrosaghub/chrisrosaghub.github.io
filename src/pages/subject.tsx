@@ -78,13 +78,17 @@ export default function SubjectPage({ subjectId }: SubjectPageProps) {
         <section>
           <div className="flex items-center gap-2 mb-1">
             <BookOpen className="size-5 text-primary" />
-            <h2 className="text-lg md:text-xl font-extrabold">Learn First</h2>
+            <h2 className="text-lg md:text-xl font-extrabold">
+              {subjectId === "python" ? "Learn + Try" : "Learn First"}
+            </h2>
             <span className="rounded-full bg-primary/10 text-primary px-2 py-0.5 text-[11px] font-bold">
               Recommended
             </span>
           </div>
           <p className="text-sm text-muted-foreground mb-3">
-            Study the key concepts as flashcards, then take the quiz when you feel ready.
+            {subjectId === "python"
+              ? "Learn one coding idea, try it immediately, then bring everything together in the challenge quiz."
+              : "Study the key concepts as flashcards, then take the quiz when you feel ready."}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {activities

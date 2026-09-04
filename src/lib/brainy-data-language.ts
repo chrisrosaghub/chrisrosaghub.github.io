@@ -1,11 +1,12 @@
 /**
  * Language Arts — activity data.
- * All activities available at every grade level (allLevels: true).
- * Topics: synonyms, antonyms, prefixes, suffixes, Greek roots, Latin roots, homophones.
+ * Shared Language Arts activity data. Grade-banded morphology activities live
+ * in brainy-data-language-morphology.ts.
  */
 import type { Activity } from "@/lib/brainy-data";
+import { LANGUAGE_MORPHOLOGY_ACTIVITIES } from "@/lib/brainy-data-language-morphology";
 
-export const LANGUAGE_ACTIVITIES: Activity[] = [
+const SHARED_LANGUAGE_ACTIVITIES: Activity[] = [
 
   // ── Synonyms ─────────────────────────────────────────────────────────────
   {
@@ -242,4 +243,16 @@ export const LANGUAGE_ACTIVITIES: Activity[] = [
       { id: "q18", prompt: "\"The brave _____ wore shining armor.\" (a warrior who served a king)", choices: ["night", "nite", "knight", "knite"], answer: 2, explanation: "'Knight' is a warrior in armor — the 'k' is silent. 'Night' is when the sky is dark. They sound identical!" },
     ],
   },
+];
+
+const LEGACY_MORPHOLOGY_IDS = new Set([
+  "lang-prefixes",
+  "lang-suffixes",
+  "lang-greek-roots",
+  "lang-latin-roots",
+]);
+
+export const LANGUAGE_ACTIVITIES: Activity[] = [
+  ...SHARED_LANGUAGE_ACTIVITIES.filter((activity) => !LEGACY_MORPHOLOGY_IDS.has(activity.id)),
+  ...LANGUAGE_MORPHOLOGY_ACTIVITIES,
 ];

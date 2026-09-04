@@ -15,6 +15,7 @@ import { Progress } from "@/components/ui/progress";
 import { Shimmer } from "@/components/brainy/Shimmer";
 import { Confetti } from "@/components/brainy/Confetti";
 import { cn } from "@/lib/utils";
+import { useAutoScrollIntoView } from "@/lib/use-auto-scroll-into-view";
 
 const ENCOURAGEMENTS = ["Awesome!", "You got it!", "Brilliant!", "Way to go!", "Super star!", "Wonderful!"];
 const TRY_AGAIN = ["Almost!", "Good try!", "Keep going!", "You can do it!"];
@@ -39,6 +40,11 @@ export default function ActivityPage() {
   const [correctCount, setCorrectCount] = useState(0);
   const [missedQuestions, setMissedQuestions] = useState<Question[]>([]);
   const [finished, setFinished] = useState(false);
+  const nextQuestionRef = useAutoScrollIntoView<HTMLDivElement>(revealed);
+  const questionCardRef = useAutoScrollIntoView<HTMLDivElement>(index, {
+    enabled: index > 0,
+    block: "start",
+  });
   const [summary, setSummary] = useState<{
     starsEarned: number;
     newBadges: Badge[];
@@ -333,8 +339,9 @@ export default function ActivityPage() {
       </div>
 
       <div
+        ref={questionCardRef}
         key={index}
-        className="animate-float-up rounded-3xl border-2 border-white/60 bg-white shadow-md p-6 md:p-8 space-y-5"
+        className="scroll-mt-4 animate-float-up rounded-3xl border-2 border-white/60 bg-white shadow-md p-6 md:p-8 space-y-5"
       >
         {question?.image && (
           <div className="flex justify-center">
@@ -462,7 +469,7 @@ export default function ActivityPage() {
         )}
 
         {revealed && (
-          <div className="flex justify-end">
+          <div ref={nextQuestionRef} className="flex justify-end scroll-mb-4">
             <button
               type="button"
               onClick={handleNext}

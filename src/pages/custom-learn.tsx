@@ -40,6 +40,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
+import { useAutoScrollIntoView } from "@/lib/use-auto-scroll-into-view";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -71,6 +72,11 @@ function StepQuiz({ step, stepIndex, totalSteps, onComplete, onBack }: StepQuizP
   const [revealed, setRevealed] = useState(false);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
+  const nextQuestionRef = useAutoScrollIntoView<HTMLButtonElement>(revealed);
+  const questionCardRef = useAutoScrollIntoView<HTMLDivElement>(qIndex, {
+    enabled: qIndex > 0,
+    block: "start",
+  });
 
   const questions = step.questions;
   const question: AIQuestion | undefined = questions[qIndex];
@@ -284,7 +290,7 @@ function StepQuiz({ step, stepIndex, totalSteps, onComplete, onBack }: StepQuizP
         <Progress value={progressPct} className="h-2" />
       </div>
 
-      <div className="rounded-2xl bg-card border shadow-sm p-6 space-y-5">
+      <div ref={questionCardRef} className="scroll-mt-4 rounded-2xl bg-card border shadow-sm p-6 space-y-5">
         <div className="flex items-start justify-between gap-3">
           <p className="text-lg font-bold leading-snug">{question?.prompt}</p>
           {isSupported && (
@@ -354,8 +360,9 @@ function StepQuiz({ step, stepIndex, totalSteps, onComplete, onBack }: StepQuizP
         </button>
       ) : (
         <button
+          ref={nextQuestionRef}
           onClick={handleNext}
-          className="w-full rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 text-white font-bold py-3.5 px-6 shadow hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+          className="w-full scroll-mb-4 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-500 text-white font-bold py-3.5 px-6 shadow hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
         >
           {qIndex + 1 >= total ? "See Results" : "Next Question"}
           <ChevronRight className="size-5" />

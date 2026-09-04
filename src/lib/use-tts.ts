@@ -5,49 +5,66 @@
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 
-// Ordered list of preferred voice names — first match wins.
-// Covers Edge Neural, Chrome, macOS/iOS enhanced voices.
-const PREFERRED_VOICE_NAMES = [
-  // Microsoft Edge neural voices (Windows — highest quality)
-  "Microsoft Aria Online (Natural) - English (United States)",
-  "Microsoft Jenny Online (Natural) - English (United States)",
-  "Microsoft Guy Online (Natural) - English (United States)",
-  "Microsoft Aria - English (United States)",
-  "Microsoft Jenny - English (United States)",
-  // Chrome TTS engine
-  "Google US English",
-  "Google UK English Female",
-  // macOS / iOS enhanced voices
-  "Samantha (Enhanced)",
-  "Samantha",
-  "Alex",
-  "Karen (Enhanced)",
+// Friendly modern voices to prefer when the browser exposes several voices of
+// the same quality. Quality is scored first, so an unlisted Natural voice still
+// beats an older exact-name match such as Google US English.
+const FRIENDLY_VOICE_NAMES = [
+  "ava",
+  "aria",
+  "jenny",
+  "emma",
+  "ana",
+  "samantha",
+  "karen",
+  "andrew",
+  "brian",
+  "guy",
+  "alex",
 ];
+
+function scoreVoice(voice: SpeechSynthesisVoice): number {
+  if (!voice.lang.toLowerCase().startsWith("en")) return Number.NEGATIVE_INFINITY;
+
+  const name = voice.name.toLowerCase();
+  let score = voice.lang.toLowerCase() === "en-us" ? 30 : 20;
+
+  // These labels are supplied by the OS/browser and are the strongest signal
+  // that a voice uses a newer, less robotic synthesis model.
+  if (name.includes("natural")) score += 200;
+  if (name.includes("neural")) score += 190;
+  if (name.includes("premium")) score += 170;
+  if (name.includes("enhanced")) score += 160;
+  if (name.includes("online")) score += 60;
+  if (!voice.localService) score += 40;
+
+  const friendlyIndex = FRIENDLY_VOICE_NAMES.findIndex((candidate) => name.includes(candidate));
+  if (friendlyIndex >= 0) score += 35 - friendlyIndex;
+
+  // Older Windows desktop voices are clear but noticeably more mechanical.
+  if (["david", "zira", "mark", "hazel"].some((candidate) => name.includes(candidate))) {
+    score -= 60;
+  }
+
+  if (voice.default) score += 5;
+  return score;
+}
 
 function pickBestVoice(): SpeechSynthesisVoice | null {
   const voices = window.speechSynthesis.getVoices();
   if (!voices.length) return null;
 
-  // 1. Exact match from preferred list
-  for (const name of PREFERRED_VOICE_NAMES) {
-    const v = voices.find((v) => v.name === name);
-    if (v) return v;
-  }
+  return voices
+    .map((voice) => ({ voice, score: scoreVoice(voice) }))
+    .filter(({ score }) => Number.isFinite(score))
+    .sort((a, b) => b.score - a.score)[0]?.voice ?? null;
+}
 
-  // 2. Any voice with quality keywords in English
-  const qualityKeywords = ["natural", "neural", "enhanced", "online", "premium"];
-  const english = voices.filter((v) => v.lang.startsWith("en"));
-  for (const kw of qualityKeywords) {
-    const v = english.find((v) => v.name.toLowerCase().includes(kw));
-    if (v) return v;
-  }
-
-  // 3. Any English voice
-  const enUS = english.find((v) => v.lang === "en-US");
-  if (enUS) return enUS;
-  if (english.length) return english[0];
-
-  return null;
+function prepareTextForSpeech(text: string): string {
+  return text
+    .replace(/\s+/g, " ")
+    .replace(/(^|[.!?]\s+)([A-D]):\s*/g, "$1Option $2. ")
+    .replace(/\s*[—–]\s*/g, ", ")
+    .trim();
 }
 
 export function useTTS() {
@@ -77,20 +94,27 @@ export function useTTS() {
     (text: string) => {
       if (!isSupported) return;
       window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
+      const utterance = new SpeechSynthesisUtterance(prepareTextForSpeech(text));
 
-      // Apply best voice if available; otherwise browser picks default
-      if (voiceRef.current) {
-        utterance.voice = voiceRef.current;
-        utterance.lang = voiceRef.current.lang;
+      // Refresh at click time as some browsers populate voices after the
+      // initial voiceschanged event. Otherwise the browser picks its default.
+      const voice = pickBestVoice() ?? voiceRef.current;
+      if (voice) {
+        voiceRef.current = voice;
+        utterance.voice = voice;
+        utterance.lang = voice.lang;
       }
 
-      utterance.rate = 0.9;   // slightly slower — easier for kids
+      utterance.rate = 0.96;  // conversational while remaining clear for kids
       utterance.pitch = 1.0;  // neutral pitch sounds more natural on neural voices
       utterance.volume = 1;
       utterance.onstart = () => setIsSpeaking(true);
-      utterance.onend = () => setIsSpeaking(false);
-      utterance.onerror = () => setIsSpeaking(false);
+      utterance.onend = () => {
+        if (utteranceRef.current === utterance) setIsSpeaking(false);
+      };
+      utterance.onerror = () => {
+        if (utteranceRef.current === utterance) setIsSpeaking(false);
+      };
       utteranceRef.current = utterance;
       window.speechSynthesis.speak(utterance);
     },

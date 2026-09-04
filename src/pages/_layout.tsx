@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { Sparkles, Home, Flame, Star, BookOpenCheck, Globe2, FlaskConical, Calculator, Landmark, Trophy, GraduationCap, BookA, UserRound, Map, Crown, Languages, ChevronDown, Heart, Wand2 } from "lucide-react";
+import { Sparkles, Home, Flame, Star, BookOpenCheck, Globe2, FlaskConical, Calculator, Landmark, Trophy, GraduationCap, BookA, UserRound, Map, Crown, Languages, ChevronDown, Heart, Code2 } from "lucide-react";
 import { useLevel, useProgress, useSetLevel } from "@/lib/brainy-hooks";
 import { LEVELS, type Level } from "@/lib/brainy-data";
 import { ProfileSwitcher } from "@/components/brainy/ProfileSwitcher";
@@ -19,8 +19,8 @@ const NAV_ITEMS = [
   { to: "/presidents", label: "Presidents", icon: Crown },
   { to: "/language", label: "Language Arts", icon: Languages },
   { to: "/sel", label: "SEL", icon: Heart },
+  { to: "/python", label: "Python Coding", icon: Code2, levels: ["grade2", "grade3", "grade4", "grade5", "grade6", "grade7"] as Level[] },
   { to: "/reading", label: "Sight Words", icon: BookA, levels: ["kindergarten"] as Level[] },
-  { to: "/custom-learn", label: "Custom Learn", icon: Wand2 },
   { to: "/daily", label: "Daily Challenge", icon: Trophy },
   { to: "/progress", label: "My Progress", icon: BookOpenCheck },
   { to: "/profiles", label: "Profiles", icon: UserRound },
@@ -190,7 +190,7 @@ export default function Layout() {
             onClick={() => setNavOpen((o) => !o)}
             className={cn(
               "w-full border-t flex items-center justify-center gap-1.5 py-1 text-[11px] text-muted-foreground/60 hover:text-muted-foreground transition-all duration-200",
-              navCollapsed ? "opacity-100" : "opacity-0 pointer-events-none",
+              navCollapsed ? "opacity-100" : "opacity-0 pointer-events-none h-0 py-0",
             )}
           >
             <ChevronDown className="size-3" />
