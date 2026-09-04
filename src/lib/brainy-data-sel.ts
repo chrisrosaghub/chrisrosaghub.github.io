@@ -327,4 +327,160 @@ export const SEL_ACTIVITIES: Activity[] = [
       { id: "q10", prompt: "How can YOU build a more inclusive classroom?", choices: ["Wait for teachers to do it", "Invite others in, listen with curiosity, and stand up for fairness", "Only include people who are like you", "Complain about unfairness without acting"], answer: 1 },
     ],
   },
+
+  // ─────────────────────────────────────────────
+  // GRADE 5
+  // ─────────────────────────────────────────────
+  {
+    id: "sel-g5-goals-growth",
+    subjectId: "sel",
+    level: "grade5",
+    title: "Goals & Growth Mindset",
+    description: "Set useful goals and turn setbacks into next steps.",
+    emoji: "🎯",
+    questions: [
+      { id: "q1", prompt: "Which goal is specific and measurable?", choices: ["Get better at math", "Practice multiplication for 15 minutes four days this week", "Be the best student", "Never make a mistake"], answer: 1, explanation: "A specific goal says exactly what you will do and how you will track it." },
+      { id: "q2", prompt: "You do poorly on a quiz after studying. A growth-mindset response is...", choices: ["I'm just bad at this", "I'll review my errors and try a new study strategy", "The grade can never improve", "I'll avoid the subject"], answer: 1 },
+      { id: "q3", prompt: "Breaking a large goal into smaller steps helps because...", choices: ["each step is easier to plan and track", "the goal disappears", "someone else does the work", "you no longer need effort"], answer: 0 },
+      { id: "q4", prompt: "Useful feedback should help you...", choices: ["feel embarrassed", "identify a next step for improvement", "compare yourself with everyone", "prove you cannot learn"], answer: 1 },
+      { id: "q5", prompt: "What is a healthy response when progress is slower than expected?", choices: ["Quit immediately", "Adjust the plan and keep practicing", "Hide the problem", "Blame someone else"], answer: 1 },
+      { id: "q6", prompt: "Celebrating small progress can...", choices: ["build motivation to continue", "replace all future effort", "make goals less important", "guarantee perfection"], answer: 0 },
+    ],
+  },
+  {
+    id: "sel-g5-digital-citizenship",
+    subjectId: "sel",
+    level: "grade5",
+    title: "Digital Citizenship",
+    description: "Communicate responsibly and protect yourself and others online.",
+    emoji: "🛡️",
+    questions: [
+      { id: "q1", prompt: "Before posting a photo of a friend, you should...", choices: ["post it quickly", "ask for their permission", "add their location", "send it to strangers"], answer: 1 },
+      { id: "q2", prompt: "A message online makes you feel unsafe. What should you do?", choices: ["Reply with personal information", "Save the evidence, block the sender, and tell a trusted adult", "Keep it secret", "Forward it to classmates"], answer: 1 },
+      { id: "q3", prompt: "Why can online words have a lasting impact?", choices: ["Messages can be saved and shared", "Online words are never real", "Posts always vanish instantly", "Only adults read them"], answer: 0 },
+      { id: "q4", prompt: "Which information should stay private online?", choices: ["A favorite book", "A home address and password", "A favorite color", "A public school mascot"], answer: 1 },
+      { id: "q5", prompt: "You see someone being bullied in a group chat. A responsible response is...", choices: ["Join in", "Support the person and report the behavior", "Share screenshots publicly", "Pretend it is funny"], answer: 1 },
+      { id: "q6", prompt: "A digital footprint is...", choices: ["the trail of information created by online activity", "a computer repair tool", "a private password", "the size of a screen"], answer: 0 },
+    ],
+  },
+  {
+    id: "sel-g5-teamwork-conflict",
+    subjectId: "sel",
+    level: "grade5",
+    title: "Teamwork & Fair Conflict",
+    description: "Share responsibility, listen actively, and repair disagreements.",
+    emoji: "🤝",
+    questions: [
+      { id: "q1", prompt: "A productive team begins by...", choices: ["letting one person do everything", "agreeing on roles and a shared goal", "avoiding different ideas", "choosing the loudest leader"], answer: 1 },
+      { id: "q2", prompt: "Active listening includes...", choices: ["planning your reply while others talk", "summarizing what you heard before responding", "interrupting incorrect ideas", "agreeing with everything"], answer: 1 },
+      { id: "q3", prompt: "A teammate misses a deadline. What is the best first response?", choices: ["Insult them", "Ask what happened and make a recovery plan together", "Remove their name secretly", "Complain to everyone else"], answer: 1 },
+      { id: "q4", prompt: "A fair compromise means...", choices: ["one side gets everything", "everyone gives up their values", "the solution considers the important needs of each side", "the conflict is ignored"], answer: 2 },
+      { id: "q5", prompt: "Which statement is assertive rather than aggressive?", choices: ["Your idea is terrible", "I disagree because the evidence points another way", "Be quiet and do what I say", "Whatever, I don't care"], answer: 1 },
+      { id: "q6", prompt: "After hurting a teammate's feelings, a sincere repair includes...", choices: ["an apology and changed behavior", "an excuse only", "pretending it never happened", "demanding forgiveness"], answer: 0 },
+    ],
+  },
+
+  // ─────────────────────────────────────────────
+  // GRADE 6
+  // ─────────────────────────────────────────────
+  {
+    id: "sel-g6-stress-regulation",
+    subjectId: "sel",
+    level: "grade6",
+    title: "Stress Signals & Regulation",
+    description: "Recognize stress early and choose strategies that fit the situation.",
+    emoji: "🌤️",
+    questions: [
+      { id: "q1", prompt: "Which can be a physical signal of stress?", choices: ["Tight muscles or a fast heartbeat", "Knowing every answer", "Growing taller instantly", "Never needing sleep"], answer: 0 },
+      { id: "q2", prompt: "Before a presentation, slow breathing can help by...", choices: ["calming the body's stress response", "erasing the presentation", "guaranteeing a perfect grade", "avoiding preparation"], answer: 0 },
+      { id: "q3", prompt: "Which strategy addresses the cause of feeling overwhelmed by assignments?", choices: ["Ignore every deadline", "Make a prioritized task list and start one step", "Stay awake all night", "Compare your workload online"], answer: 1 },
+      { id: "q4", prompt: "Positive stress can sometimes...", choices: ["provide energy for a challenge", "remove every difficult feeling", "make sleep unnecessary", "solve problems without action"], answer: 0 },
+      { id: "q5", prompt: "When stress keeps interfering with sleep or daily life, a wise step is to...", choices: ["hide it", "talk with a trusted adult or counselor", "stop all activities forever", "criticize yourself"], answer: 1 },
+      { id: "q6", prompt: "Which self-talk is most balanced?", choices: ["I must be perfect", "This is challenging, and I can take it one step at a time", "Everything will go wrong", "I should already know this"], answer: 1 },
+    ],
+  },
+  {
+    id: "sel-g6-boundaries-friendships",
+    subjectId: "sel",
+    level: "grade6",
+    title: "Healthy Friendships & Boundaries",
+    description: "Build relationships based on trust, consent, honesty, and respect.",
+    emoji: "🧩",
+    questions: [
+      { id: "q1", prompt: "A personal boundary communicates...", choices: ["what helps you feel safe and respected", "how to control another person", "that friendship is over", "a rule everyone must share"], answer: 0 },
+      { id: "q2", prompt: "A friend asks to read your private messages. You do not want to share them. You can say...", choices: ["I have to let you", "No, those are private. Please respect that", "I'll share yours instead", "Nothing and feel resentful"], answer: 1 },
+      { id: "q3", prompt: "In a healthy friendship, disagreement should...", choices: ["be handled with respect", "lead to threats", "require one person to give in", "be shared online"], answer: 0 },
+      { id: "q4", prompt: "Which behavior is a warning sign in a friendship?", choices: ["Respecting time with other friends", "Pressuring someone after they say no", "Apologizing after a mistake", "Celebrating each other's success"], answer: 1 },
+      { id: "q5", prompt: "Consent means a person...", choices: ["freely and clearly agrees", "stays silent", "agreed once in the past", "is pressured to say yes"], answer: 0 },
+      { id: "q6", prompt: "If a boundary is repeatedly ignored, you should...", choices: ["assume it is your fault", "seek support from a trusted adult", "ignore your discomfort", "retaliate publicly"], answer: 1 },
+    ],
+  },
+  {
+    id: "sel-g6-organization-balance",
+    subjectId: "sel",
+    level: "grade6",
+    title: "Organization & Healthy Balance",
+    description: "Manage growing responsibilities while protecting rest and well-being.",
+    emoji: "🗓️",
+    questions: [
+      { id: "q1", prompt: "Which task should usually come first?", choices: ["A project due tomorrow", "A game with no deadline", "Reorganizing old photos", "Choosing a weekend movie"], answer: 0 },
+      { id: "q2", prompt: "A calendar is most useful for tracking...", choices: ["deadlines and scheduled commitments", "other people's private information", "every thought you have", "only completed work"], answer: 0 },
+      { id: "q3", prompt: "Why include breaks in a study plan?", choices: ["Short breaks can restore focus", "Breaks finish the work", "Learning only happens during breaks", "Deadlines stop during breaks"], answer: 0 },
+      { id: "q4", prompt: "You underestimate how long homework will take. What should you change next time?", choices: ["Stop planning", "Record the actual time and adjust your estimate", "Skip difficult tasks", "Blame the schedule"], answer: 1 },
+      { id: "q5", prompt: "Healthy balance includes time for...", choices: ["responsibilities, sleep, movement, and connection", "schoolwork every waking hour", "screens instead of sleep", "avoiding every challenge"], answer: 0 },
+      { id: "q6", prompt: "When several tasks feel equally urgent, it helps to...", choices: ["choose randomly", "compare deadlines and importance", "do none of them", "start the easiest and ignore the rest"], answer: 1 },
+    ],
+  },
+
+  // ─────────────────────────────────────────────
+  // GRADE 7
+  // ─────────────────────────────────────────────
+  {
+    id: "sel-g7-identity-values",
+    subjectId: "sel",
+    level: "grade7",
+    title: "Identity, Values & Belonging",
+    description: "Explore how values and social groups shape choices without defining your limits.",
+    emoji: "🧭",
+    questions: [
+      { id: "q1", prompt: "A personal value is...", choices: ["a principle that guides your choices", "whatever is popular today", "a grade someone gives you", "a rule that never changes for anyone"], answer: 0 },
+      { id: "q2", prompt: "Your identity can include...", choices: ["interests, culture, experiences, roles, and values", "only your appearance", "only other people's opinions", "one fixed label"], answer: 0 },
+      { id: "q3", prompt: "You notice yourself changing an opinion after learning new evidence. This can show...", choices: ["weakness", "reflection and growth", "dishonesty", "lack of identity"], answer: 1 },
+      { id: "q4", prompt: "A strong sense of belonging should allow you to...", choices: ["be respected without hiding important parts of yourself", "agree with the group at all times", "exclude outsiders", "avoid individual goals"], answer: 0 },
+      { id: "q5", prompt: "When two of your values seem to conflict, it helps to...", choices: ["consider consequences and which value matters most in that situation", "let someone else always decide", "act before thinking", "pretend neither value matters"], answer: 0 },
+      { id: "q6", prompt: "Stereotype threat can affect someone when they...", choices: ["worry about confirming a negative stereotype about their group", "learn about another culture", "join a supportive team", "change an ordinary preference"], answer: 0 },
+    ],
+  },
+  {
+    id: "sel-g7-decisions-consequences",
+    subjectId: "sel",
+    level: "grade7",
+    title: "Decisions, Risk & Consequences",
+    description: "Pause, evaluate evidence and pressure, and choose with long-term consequences in mind.",
+    emoji: "⚖️",
+    questions: [
+      { id: "q1", prompt: "Before a high-impact decision, the most useful first step is to...", choices: ["identify the decision and possible outcomes", "follow the crowd", "choose the fastest option", "assume there is no risk"], answer: 0 },
+      { id: "q2", prompt: "A short-term reward may be a poor choice when it...", choices: ["creates serious long-term harm", "requires planning", "helps someone else", "matches your values"], answer: 0 },
+      { id: "q3", prompt: "Friends pressure you to share an embarrassing video. Which response shows integrity?", choices: ["Share it before it disappears", "Refuse and ask that it be deleted", "Watch but do not comment", "Send it privately"], answer: 1 },
+      { id: "q4", prompt: "Reliable evidence for a decision should be...", choices: ["relevant and from trustworthy sources", "the first claim you see", "popular but unverified", "based only on fear"], answer: 0 },
+      { id: "q5", prompt: "If emotions are making a decision feel urgent, you can...", choices: ["pause until you can think more clearly", "act immediately", "ignore all consequences", "ask only someone who agrees"], answer: 0 },
+      { id: "q6", prompt: "Taking responsibility after a poor choice means...", choices: ["acknowledging the impact, repairing harm, and changing course", "giving a convincing excuse", "hiding all evidence", "blaming the person affected"], answer: 0 },
+    ],
+  },
+  {
+    id: "sel-g7-resilience-support",
+    subjectId: "sel",
+    level: "grade7",
+    title: "Resilience & Asking for Support",
+    description: "Recover from setbacks, respond to unhelpful thoughts, and know when to seek help.",
+    emoji: "🌱",
+    questions: [
+      { id: "q1", prompt: "Resilience means...", choices: ["never feeling upset", "adapting and recovering after difficulty", "handling every problem alone", "avoiding all risks"], answer: 1 },
+      { id: "q2", prompt: "After not making a team, a resilient next step might be to...", choices: ["identify skills to practice and another opportunity to participate", "decide you have no ability", "insult the selected players", "avoid the activity forever"], answer: 0 },
+      { id: "q3", prompt: "Which thought is an example of reframing?", choices: ["One setback proves I'll always fail", "This result hurts, but it can show me what to work on", "Nothing I do matters", "Everyone is judging me"], answer: 1 },
+      { id: "q4", prompt: "Asking for help is especially important when...", choices: ["a problem feels unsafe or too heavy to manage alone", "you want to avoid all effort", "you already know the answer", "someone tells you help is weak"], answer: 0 },
+      { id: "q5", prompt: "Which person could be part of a support network?", choices: ["A trusted family member, teacher, coach, or counselor", "Only someone your age", "An anonymous stranger", "Nobody but yourself"], answer: 0 },
+      { id: "q6", prompt: "A friend says they may hurt themselves. What should you do?", choices: ["Keep it secret", "Tell a trusted adult immediately, even if your friend asks you not to", "Try to manage it alone", "Wait several days"], answer: 1, explanation: "Safety comes first. A trusted adult can connect your friend with immediate support." },
+    ],
+  },
 ];

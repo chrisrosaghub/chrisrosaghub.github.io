@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, CheckCircle2, Star, Zap } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, GraduationCap, Star, Zap } from "lucide-react";
 import { ACTIVITY_LEARN_DATA } from "@/lib/activity-learn-data";
 import {
   useActivities,
@@ -8,9 +8,10 @@ import {
   useSubject,
   totalActivitiesForSubject,
   useLevel,
+  useSetLevel,
   useTotalActivitiesForSubject,
 } from "@/lib/brainy-hooks";
-import { DAILY_CHALLENGE_ID, QUESTIONS_PER_ROUND, type SubjectId } from "@/lib/brainy-data";
+import { DAILY_CHALLENGE_ID, getActivitiesForLevel, LEVELS, QUESTIONS_PER_ROUND, type Level, type SubjectId } from "@/lib/brainy-data";
 import { Shimmer } from "@/components/brainy/Shimmer";
 import { cn } from "@/lib/utils";
 
@@ -19,13 +20,17 @@ interface SubjectPageProps {
 }
 
 export default function SubjectPage({ subjectId }: SubjectPageProps) {
-  useLevel(); // subscribe to level changes
+  const level = useLevel();
+  const setLevel = useSetLevel();
   const { data: subject } = useSubject(subjectId);
   const { data: activities, isLoading } = useActivities(subjectId);
   const { data: progress } = useProgress();
   const completedIds = useCompletedActivityIds();
 
   const total = totalActivitiesForSubject(subjectId);
+  const subjectLevels = LEVELS.filter(({ id }) =>
+    getActivitiesForLevel(id).some((activity) => activity.subjectId === subjectId),
+  );
   const done = activities?.filter((a) => completedIds.has(a.id)).length ?? 0;
   const subjectStars =
     progress?.results
@@ -54,6 +59,20 @@ export default function SubjectPage({ subjectId }: SubjectPageProps) {
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-3 mt-4">
+                <label className="inline-flex items-center gap-2 rounded-full bg-white/90 text-slate-900 pl-3 pr-2 py-1.5 text-sm font-bold shadow focus-within:ring-4 focus-within:ring-white/50">
+                  <GraduationCap className="size-4 text-violet-600" aria-hidden />
+                  <span>Grade</span>
+                  <select
+                    value={level}
+                    onChange={(event) => void setLevel(event.target.value as Level)}
+                    aria-label={`Choose grade level for ${subject.name}`}
+                    className="cursor-pointer rounded-full border border-slate-200 bg-white px-2 py-1 text-sm font-bold text-slate-800 outline-none"
+                  >
+                    {subjectLevels.map((option) => (
+                      <option key={option.id} value={option.id}>{option.label}</option>
+                    ))}
+                  </select>
+                </label>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-white/85 text-slate-900 px-3 py-1.5 text-sm font-bold shadow">
                   <CheckCircle2 className="size-4 text-emerald-600" />
                   {done} / {total} activities

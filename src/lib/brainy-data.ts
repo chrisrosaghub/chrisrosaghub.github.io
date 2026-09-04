@@ -13,6 +13,8 @@ import { GRADE4_ACTIVITIES } from "@/lib/brainy-data-grade4";
 import { GRADE5_ACTIVITIES } from "@/lib/brainy-data-grade5";
 import { GRADE6_ACTIVITIES } from "@/lib/brainy-data-grade6";
 import { GRADE7_ACTIVITIES } from "@/lib/brainy-data-grade7";
+import { GRADE8_ACTIVITIES } from "@/lib/brainy-data-grade8";
+import { GRADE9_ACTIVITIES } from "@/lib/brainy-data-grade9";
 import { PYTHON_ACTIVITIES } from "@/lib/brainy-data-python";
 import { STATES_ACTIVITIES } from "@/lib/brainy-data-states";
 import { SIGHT_WORDS_ACTIVITIES } from "@/lib/brainy-data-sight-words";
@@ -22,7 +24,7 @@ import { EUROPE_ACTIVITIES } from "@/lib/brainy-data-europe";
 import { SEL_ACTIVITIES } from "@/lib/brainy-data-sel";
 
 export type SubjectId = "math" | "science" | "history" | "geography" | "reading" | "states" | "presidents" | "language" | "sel" | "memory" | "python";
-export type Level = "kindergarten" | "grade1" | "grade2" | "grade3" | "grade4" | "grade5" | "grade6" | "grade7";
+export type Level = "kindergarten" | "grade1" | "grade2" | "grade3" | "grade4" | "grade5" | "grade6" | "grade7" | "grade8" | "grade9";
 export const LEVELS: { id: Level; label: string; shortLabel: string; emoji: string }[] = [
   { id: "kindergarten", label: "Kindergarten", shortLabel: "K", emoji: "\u{1F33C}" },
   { id: "grade1", label: "1st Grade", shortLabel: "G1", emoji: "\u{1F4D6}" },
@@ -32,6 +34,8 @@ export const LEVELS: { id: Level; label: string; shortLabel: string; emoji: stri
   { id: "grade5", label: "5th Grade", shortLabel: "G5", emoji: "\u{1F4D7}" },
   { id: "grade6", label: "6th Grade", shortLabel: "G6", emoji: "\u{1F393}" },
   { id: "grade7", label: "7th Grade", shortLabel: "G7", emoji: "\u{1F52C}" },
+  { id: "grade8", label: "8th Grade", shortLabel: "G8", emoji: "\u{1F9EA}" },
+  { id: "grade9", label: "9th Grade", shortLabel: "G9", emoji: "\u{1F4A1}" },
 ];
 
 export interface Subject {
@@ -242,7 +246,7 @@ export const SUBJECTS: Subject[] = [
     textClass: "text-cyan-800",
     bgSoftClass: "bg-cyan-100",
     chartVar: "#0891b2",
-    availableLevels: ["grade2", "grade3", "grade4", "grade5", "grade6", "grade7"],
+    availableLevels: ["grade2", "grade3", "grade4", "grade5", "grade6", "grade7", "grade8", "grade9"],
   },
 ];
 
@@ -948,6 +952,8 @@ const GRADE2_ACTIVITIES: Activity[] = [
  */
 export const ACTIVITIES: Activity[] = [
   ...PYTHON_ACTIVITIES,
+  ...GRADE9_ACTIVITIES,
+  ...GRADE8_ACTIVITIES,
   ...GRADE7_ACTIVITIES,
   ...GRADE6_ACTIVITIES,
   ...GRADE5_ACTIVITIES,

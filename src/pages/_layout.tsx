@@ -19,7 +19,7 @@ const NAV_ITEMS = [
   { to: "/presidents", label: "Presidents", icon: Crown },
   { to: "/language", label: "Language Arts", icon: Languages },
   { to: "/sel", label: "SEL", icon: Heart },
-  { to: "/python", label: "Python Coding", icon: Code2, levels: ["grade2", "grade3", "grade4", "grade5", "grade6", "grade7"] as Level[] },
+  { to: "/python", label: "Python Coding", icon: Code2, levels: ["grade2", "grade3", "grade4", "grade5", "grade6", "grade7", "grade8", "grade9"] as Level[] },
   { to: "/reading", label: "Sight Words", icon: BookA, levels: ["kindergarten"] as Level[] },
   { to: "/daily", label: "Daily Challenge", icon: Trophy },
   { to: "/progress", label: "My Progress", icon: BookOpenCheck },

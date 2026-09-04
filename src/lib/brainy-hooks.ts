@@ -72,10 +72,10 @@ export function useSetLevel() {
   return useCallback(
     async (level: Level) => {
       cacheLevel(level);
+      qc.setQueryData(["profile-level", profileId], level);
       if (profileId) {
         await supabase.from("profiles").update({ level }).eq("id", profileId);
       }
-      qc.invalidateQueries({ queryKey: ["profile-level", profileId] });
       qc.invalidateQueries({ queryKey: ["activities"] });
       qc.invalidateQueries({ queryKey: ["daily-challenge"] });
     },
