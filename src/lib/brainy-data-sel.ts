@@ -483,4 +483,108 @@ export const SEL_ACTIVITIES: Activity[] = [
       { id: "q6", prompt: "A friend says they may hurt themselves. What should you do?", choices: ["Keep it secret", "Tell a trusted adult immediately, even if your friend asks you not to", "Try to manage it alone", "Wait several days"], answer: 1, explanation: "Safety comes first. A trusted adult can connect your friend with immediate support." },
     ],
   },
+
+  // ─────────────────────────────────────────────
+  // GRADE 8
+  // ─────────────────────────────────────────────
+  {
+    id: "sel-g8-digital-wellbeing",
+    subjectId: "sel",
+    level: "grade8",
+    title: "Digital Well-Being & Social Comparison",
+    description: "Use social media intentionally and protect your attention, mood, and self-worth.",
+    emoji: "📱",
+    questions: [
+      { id: "q1", prompt: "Why can comparing your life with social media posts be misleading?", choices: ["Posts often show selected highlights rather than the whole picture", "Every post is fictional", "Online experiences never affect emotions", "Only adults edit photos"], answer: 0 },
+      { id: "q2", prompt: "You notice scrolling late at night is affecting your sleep. A useful boundary is to...", choices: ["keep your phone under your pillow", "set a device cutoff and charge it outside the bedroom", "turn up screen brightness", "open more apps"], answer: 1 },
+      { id: "q3", prompt: "Which sign suggests an online space may be harming your well-being?", choices: ["You regularly leave it feeling anxious or worse about yourself", "You learn a useful skill", "You connect with a trusted friend", "You take planned breaks"], answer: 0 },
+      { id: "q4", prompt: "A healthy response to an upsetting post is to...", choices: ["reply immediately while angry", "pause, check the context, and choose whether engaging is useful", "share it without reading", "assume it represents everyone"], answer: 1 },
+      { id: "q5", prompt: "Curating your feed means...", choices: ["choosing accounts that support your interests and well-being", "making every account public", "following anyone who asks", "hiding all online activity"], answer: 0 },
+      { id: "q6", prompt: "Which habit best protects focused study time?", choices: ["Keeping every notification on", "Using a planned focus period with notifications silenced", "Switching apps every few minutes", "Studying only when messages stop"], answer: 1 },
+    ],
+  },
+  {
+    id: "sel-g8-communication-repair",
+    subjectId: "sel",
+    level: "grade8",
+    title: "Communication, Conflict & Repair",
+    description: "Handle misunderstandings directly, listen for meaning, and rebuild trust after conflict.",
+    emoji: "💬",
+    questions: [
+      { id: "q1", prompt: "Which opening is most likely to support a productive conflict conversation?", choices: ["You always ruin everything", "I felt left out when plans changed without telling me", "Everyone agrees you're wrong", "Forget it; it doesn't matter"], answer: 1 },
+      { id: "q2", prompt: "Reflective listening means...", choices: ["repeating every word exactly", "checking that you understood the speaker's meaning", "planning your argument while they speak", "agreeing with every opinion"], answer: 1 },
+      { id: "q3", prompt: "A text message sounds rude, but its tone is unclear. What is the best next step?", choices: ["Post it publicly", "Ask the sender what they meant before assuming intent", "Send a harsher reply", "End the friendship immediately"], answer: 1 },
+      { id: "q4", prompt: "A complete apology includes...", choices: ["acknowledging the impact and explaining how you will act differently", "the words 'I'm sorry' followed by blame", "a demand for immediate forgiveness", "pretending the harm was small"], answer: 0 },
+      { id: "q5", prompt: "When a conversation becomes too heated, a respectful pause should include...", choices: ["leaving without explanation", "agreeing on when to return to the conversation", "refusing to discuss it again", "asking others to take sides"], answer: 1 },
+      { id: "q6", prompt: "Trust is most likely to rebuild when someone...", choices: ["makes repeated promises", "consistently follows through on changed behavior", "avoids the person affected", "explains why the other person overreacted"], answer: 1 },
+    ],
+  },
+  {
+    id: "sel-g8-stress-planning",
+    subjectId: "sel",
+    level: "grade8",
+    title: "Stress, Priorities & Coping Plans",
+    description: "Distinguish controllable problems from worries and build a realistic coping plan.",
+    emoji: "🧠",
+    questions: [
+      { id: "q1", prompt: "Which action focuses on something you can control before an exam?", choices: ["Predicting every question", "Making a study schedule and asking for clarification", "Controlling other students' scores", "Guaranteeing the final grade"], answer: 1 },
+      { id: "q2", prompt: "A coping plan is most useful when it...", choices: ["names your warning signs, strategies, and support people", "depends on never feeling stressed", "uses the same strategy in every situation", "keeps concerns secret"], answer: 0 },
+      { id: "q3", prompt: "You have three major assignments due soon. What is the strongest first step?", choices: ["Avoid checking deadlines", "List each task, deadline, and next concrete action", "Begin all three at the same time", "Wait until motivation appears"], answer: 1 },
+      { id: "q4", prompt: "Problem-focused coping is best illustrated by...", choices: ["asking a teacher for help with confusing directions", "pretending the assignment does not exist", "criticizing yourself", "staying awake worrying"], answer: 0 },
+      { id: "q5", prompt: "Emotion-focused coping can help when...", choices: ["you need to calm your body before solving a problem", "you want every problem to disappear", "deadlines do not matter", "you can control another person's choices"], answer: 0 },
+      { id: "q6", prompt: "If stress remains intense and interferes with daily life, you should...", choices: ["handle it entirely alone", "tell a trusted adult, counselor, or health professional", "stop sleeping to catch up", "hide it from people who care"], answer: 1 },
+    ],
+  },
+
+  // ─────────────────────────────────────────────
+  // GRADE 9
+  // ─────────────────────────────────────────────
+  {
+    id: "sel-g9-independence-executive-skills",
+    subjectId: "sel",
+    level: "grade9",
+    title: "Independence & Executive Skills",
+    description: "Manage high-school responsibilities with planning, self-advocacy, and flexible routines.",
+    emoji: "🗂️",
+    questions: [
+      { id: "q1", prompt: "Self-advocacy means...", choices: ["communicating what you need and taking part in finding a solution", "expecting others to notice every problem", "avoiding difficult conversations", "demanding that rules never apply"], answer: 0 },
+      { id: "q2", prompt: "You do not understand an assignment. Which message shows effective self-advocacy?", choices: ["This makes no sense", "Could you clarify the evidence required for the final section?", "I'll just skip it", "Someone else should explain everything"], answer: 1 },
+      { id: "q3", prompt: "Planning backward from a deadline means...", choices: ["starting with the due date and scheduling earlier milestones", "waiting until the final day", "doing the last step first", "changing the deadline yourself"], answer: 0 },
+      { id: "q4", prompt: "Which approach helps when a routine stops working?", choices: ["Identify the obstacle, adjust the system, and test the change", "Assume you lack willpower", "Abandon every goal", "Copy another person's schedule exactly"], answer: 0 },
+      { id: "q5", prompt: "Prioritizing by urgency and importance helps you...", choices: ["decide what deserves attention first", "avoid all difficult tasks", "make every task equally urgent", "finish work without effort"], answer: 0 },
+      { id: "q6", prompt: "Responsible independence includes...", choices: ["knowing when to act alone and when to seek support", "never asking questions", "making choices without considering others", "hiding mistakes"], answer: 0 },
+    ],
+  },
+  {
+    id: "sel-g9-healthy-relationships",
+    subjectId: "sel",
+    level: "grade9",
+    title: "Healthy Relationships & Consent",
+    description: "Recognize mutual respect, communicate boundaries, and respond safely to controlling behavior.",
+    emoji: "🤝",
+    questions: [
+      { id: "q1", prompt: "A healthy relationship is built on...", choices: ["mutual respect, trust, and honest communication", "constant access to each other's accounts", "one person making every decision", "avoiding all disagreement"], answer: 0 },
+      { id: "q2", prompt: "Consent should be...", choices: ["freely given, informed, specific, and reversible", "assumed from silence", "permanent once given", "required to avoid disappointing someone"], answer: 0 },
+      { id: "q3", prompt: "Which behavior may signal an unhealthy relationship?", choices: ["Supporting separate interests", "Demanding passwords and monitoring locations", "Respecting a request for space", "Discussing disagreements calmly"], answer: 1 },
+      { id: "q4", prompt: "Someone sets a boundary you do not understand. A respectful response is to...", choices: ["honor it and ask questions without pressure", "test whether they really mean it", "take it as a personal attack", "ask friends to change their mind"], answer: 0 },
+      { id: "q5", prompt: "Jealousy is a feeling, but it does not justify...", choices: ["controlling another person's friendships or choices", "talking honestly about insecurity", "taking time to calm down", "reflecting on what triggered it"], answer: 0 },
+      { id: "q6", prompt: "If you feel controlled or unsafe in a relationship, a strong next step is to...", choices: ["isolate yourself", "contact a trusted adult, counselor, or support service", "keep it secret to protect the relationship", "respond with threats"], answer: 1 },
+    ],
+  },
+  {
+    id: "sel-g9-mental-health-literacy",
+    subjectId: "sel",
+    level: "grade9",
+    title: "Mental Health Literacy & Support",
+    description: "Understand mental well-being, challenge stigma, and connect yourself or a friend with help.",
+    emoji: "🌿",
+    questions: [
+      { id: "q1", prompt: "Mental health refers to...", choices: ["emotional, psychological, and social well-being", "feeling happy at all times", "a person's physical strength only", "something that matters only during a crisis"], answer: 0 },
+      { id: "q2", prompt: "Which change may be a reason to check in and seek support?", choices: ["Persistent distress that interferes with sleep, school, or relationships", "Enjoying a new hobby", "Having one difficult afternoon", "Wanting quiet time after a busy day"], answer: 0 },
+      { id: "q3", prompt: "Stigma can prevent people from getting help because it...", choices: ["creates shame or fear of judgment", "makes support easier to find", "provides accurate information", "improves communication"], answer: 0 },
+      { id: "q4", prompt: "A friend says they have been struggling emotionally. A supportive response is...", choices: ["Listen without judgment and help them connect with a trusted adult", "Diagnose the problem yourself", "Promise to keep every concern secret", "Tell them others have it worse"], answer: 0 },
+      { id: "q5", prompt: "If someone talks about suicide or immediate self-harm, you should...", choices: ["tell a trusted adult or emergency support immediately and stay with them if safe", "wait to see whether they mention it again", "promise secrecy", "try to solve it without help"], answer: 0, explanation: "Treat talk of suicide or self-harm seriously. Immediate adult or emergency support can protect a life." },
+      { id: "q6", prompt: "Professional mental-health support can...", choices: ["provide assessment, coping tools, and treatment", "guarantee life has no stress", "replace every personal relationship", "help only after an emergency"], answer: 0 },
+    ],
+  },
 ];
