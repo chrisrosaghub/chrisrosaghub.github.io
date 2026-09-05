@@ -5,6 +5,7 @@
  */
 import { SCIENCE_LEARN_ITEMS } from "@/lib/science-learn-data";
 import type { LearnItem } from "@/lib/science-learn-data";
+import { ACTIVITIES, type Activity } from "@/lib/brainy-data";
 import { GRADE6_7_LEARN_DATA } from "@/lib/grade6-7-learn-data";
 import { HISTORY_EXPANSION_LEARN_DATA } from "@/lib/history-learn-data";
 import { PYTHON_LEARN_DATA } from "@/lib/python-learn-data";
@@ -1481,3 +1482,22 @@ export const ACTIVITY_LEARN_DATA: Record<string, LearnItem[]> = {
     },
   ],
 };
+
+function buildQuizStudyCards(activity: Activity): LearnItem[] {
+  return activity.questions.map((question) => {
+    const answer = question.choices[question.answer];
+    const answerText = answer.endsWith(".") ? answer : `${answer}.`;
+
+    return {
+      emoji: activity.emoji,
+      title: question.prompt.replace(/[?.!]+$/, ""),
+      fact: `Remember: ${answerText}${question.explanation ? ` ${question.explanation}` : ""}`,
+    };
+  });
+}
+
+for (const activity of ACTIVITIES) {
+  if (!ACTIVITY_LEARN_DATA[activity.id]?.length) {
+    ACTIVITY_LEARN_DATA[activity.id] = buildQuizStudyCards(activity);
+  }
+}
