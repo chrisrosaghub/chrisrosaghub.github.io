@@ -17,6 +17,9 @@ const LEVEL_DESCRIPTIONS: Record<Level, string> = {
   grade7: "7th Grade (age 12-13): precise academic vocabulary, proportional reasoning, analysis, and multi-step explanations",
   grade8: "8th Grade (age 13-14): formal reasoning, linear models, source evaluation, and evidence-supported analysis",
   grade9: "9th Grade (age 14-15): high-school vocabulary, algebraic modeling, scientific argument, and nuanced textual analysis",
+  grade10: "10th Grade (age 15-16): deductive reasoning, disciplinary evidence, comparative analysis, and independent problem-solving",
+  grade11: "11th Grade (age 16-17): advanced functions, source synthesis, systems thinking, and evidence-based evaluation",
+  grade12: "12th Grade (age 17-18): college-ready analysis, statistical reasoning, civic judgment, and independent application",
 };
 
 export interface AIQuestion {
